@@ -3,17 +3,17 @@ import java.util.List;
 
 public class BookingManager {
 
-    private List<Booking> bookingManager = new ArrayList<>();
+    public List<Booking> bookingManager = new ArrayList<>();
 
-    private void overviewFreeRooms(){
-
-    }
-
-    private void searchingFreeRooms(){
+    public void overviewFreeRooms(){
 
     }
 
-    private void availablilitySpecificRoom(){
+    public void searchingFreeRooms(){
+
+    }
+
+    public void availablilitySpecificRoom(){
 
     }
 }
