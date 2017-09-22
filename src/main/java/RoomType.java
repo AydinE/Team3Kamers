@@ -1,3 +1,3 @@
-public enum KamerType {
+public enum RoomType {
             LUXURY, NORMAL, BUDGET
 }
