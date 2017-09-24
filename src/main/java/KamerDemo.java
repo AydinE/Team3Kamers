@@ -19,6 +19,7 @@ public class KamerDemo {
                "tstraatman@gmail.com") ;
 
         guestList.alterGuestAddress(guest,"Straat3");
+        guestList.removeGuest("Pipo"+' '+"de Clown",guest);
 
         System.out.println(guestList);
 

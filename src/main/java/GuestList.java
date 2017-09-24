@@ -13,7 +13,7 @@ public class GuestList {
     //toevoegen method zoeken in lijst.
     public void searchGuest(int guestNumber){
             }
-    
+
     public HashMap<String, Guest> getGuestList() {
         return guestList;
     }
@@ -37,6 +37,33 @@ public class GuestList {
 
         return guest;
     }
+
+    // methode voor remove guest
+    public void removeGuest(String guest, Guest guest1){
+        guestList.remove(guest);
+        guest1.getFirstName();
+        guest1.setFirstName(null);
+        guest1.getLastName();
+        guest1.setLastName(null);
+        guest1.getPostalCode();
+        guest1.setPostalCode(null);
+        guest1.getPhoneNumber();
+        guest1.setPhoneNumber(null);
+        guest1.getGuestNumber();
+        guest1.setGuestNumber(0);
+        guest1.getEmail();
+        guest1.setEmail(null);
+        guest1.getCountry();
+        guest1.setCountry(null);
+        guest1.getCity();
+        guest1.setCity(null);
+        guest1.getAddress();
+        guest1.setAddress(null);
+
+
+
+    }
+
 
 
 
