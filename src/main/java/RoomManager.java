@@ -4,21 +4,21 @@ import java.util.List;
 public class RoomManager {
 
 
-    private List<Room> roomManager = new ArrayList<>();
+    public List<Room> roomManager = new ArrayList<>();
 
-    private void add(){
-
-    }
-
-    private void change(){
+    public void add(){
 
     }
 
-    private void block(){
+    public void change(){
 
     }
 
-    private void delete(){
+    public void block(){
+
+    }
+
+    public void delete(){
 
     }
 }
