@@ -10,16 +10,15 @@ public class GuestList {
     }
 
 
-
+    //toevoegen method zoeken in lijst.
     public void searchGuest(int guestNumber){
-        //toevoegen method zoeken in lijst.
-
-    }
+            }
+    
     public HashMap<String, Guest> getGuestList() {
         return guestList;
     }
 
-    
+
     // methode wijzigen adres. Elke andere methode voor wijzigen kan als deze opgebouwd worden.
     public void alterGuestAddress(Guest guest, String address){  // guest moet nog toegevoegd worden. String is nu key.
         guest.getAddress();
@@ -29,12 +28,12 @@ public class GuestList {
     }
 
     //methode voor toevoegen nieuwe gast
-    public Guest addGuest(int guestNumber,String firstName, String lastName, String address, String postalCode,
-                         String city, String country, String phoneNumber, String email){
+    public Guest addGuest(int guestNumber, String firstName, String lastName, String address, String postalCode,
+                          String city, String country, String phoneNumber, String email) {
 
-        Guest guest = new Guest(guestNumber,firstName,lastName,address,postalCode,city,country,phoneNumber, email);
+        Guest guest = new Guest(guestNumber, firstName, lastName, address, postalCode, city, country, phoneNumber, email);
 
-        guestList.put(guest.getFirstName()+' '+ guest.getLastName(),guest);
+        guestList.put(guest.getFirstName() + ' ' + guest.getLastName(), guest);
 
         return guest;
     }
