@@ -9,30 +9,18 @@ public class KamerDemo {
 
         // Starting point of the application.
 
-
-
-        Guest guest = new Guest(1, "Tijs","Straatman",
-                "straat1","d","Sleeuwijk","Nedelrand","06123",
-                "tstraatman@gmail.com");
-
         GuestList guestList = new GuestList();
 
-        HashMap<String, Guest> hList = guestList.getGuestList();
+       Guest guest = guestList.addGuest(2, "Pipo", "de Clown", "Clownstraat",
+               "3321bp", "Clownstad", "NL", "06789", "pipo@slechteclown.nl");
 
-        guest.getLastName();
-        guest.getAddress();
-        guest.getFirstName();
-        guest.getCity();
-        guest.getCountry();
-        guest.getEmail();
-        guest.getGuestNumber();
-        guest.getPhoneNumber();
-        guest.getPostalCode();
+       Guest guest2 = guestList.addGuest(1, "Tijs","Straatman",
+               "straat1","d","Sleeuwijk","Nedelrand","06123",
+               "tstraatman@gmail.com") ;
 
-        guestList.addGuest("Tijs"+ ' '+ "Straatman",guest);
+        guestList.alterGuestAddress(guest,"Straat3");
 
         System.out.println(guestList);
-
 
         // Logging example
 //        Logger logger = LogManager.getRootLogger();
