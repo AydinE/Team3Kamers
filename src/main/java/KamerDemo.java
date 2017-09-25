@@ -14,7 +14,7 @@ public class KamerDemo {
        Guest guest = guestList.addGuest(2, "Pipo", "de Clown", "Clownstraat",
                "3321bp", "Clownstad", "NL", "06789", "pipo@slechteclown.nl");
 
-       Guest guest2 = guestList.addGuest(1, "Tijs","Straatman",
+       Guest guest2 = guestList.addGuest(1, "Charlie","Straatman",
                "straat1","d","Sleeuwijk","Nedelrand","06123",
                "tstraatman@gmail.com") ;
 
