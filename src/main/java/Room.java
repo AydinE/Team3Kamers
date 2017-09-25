@@ -3,22 +3,31 @@ import java.time.LocalDateTime;
 public class Room {
 
     private int roomNr;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private RoomType typeOfRoom;
+    private RoomSize sizeOfRoom;
+    private LocalDateTime availableFrom;
 
+    public Room(int identifier, RoomType typeOfRoom, RoomSize sizeOfRoom, LocalDateTime availableFrom) {
+        roomNr = identifier;
+        this.typeOfRoom = typeOfRoom;
+        this.sizeOfRoom = sizeOfRoom;
+        this.availableFrom = availableFrom;
 
-
-
+    }
 
     public int getRoomNr() {
         return roomNr;
     }
 
-    public LocalDateTime getStartTime() {
-        return startTime;
+    public RoomType getTypeOfRoom() {
+        return typeOfRoom;
     }
 
-    public LocalDateTime getEndTime() {
-        return endTime;
+    public RoomSize getSizeOfRoom() {
+        return sizeOfRoom;
+    }
+
+    public LocalDateTime getAvailableFrom() {
+        return availableFrom;
     }
 }

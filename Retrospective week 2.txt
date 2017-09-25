@@ -1,0 +1,7 @@
+Action points
+	- Er worden te snel vragen gesteld, probeer eerst zelf een oplossing te vinden zo leer je ook sneller
+	- Laat nadat je code hebt geschreven een code review uitvoeren en loop er stap voor stap samen doorheen.
+	- Meer rekening houden met Chaouki's afwezigheid op donderdag, maak beter planning.
+	
+	- Goed gesprek hebben met de PO, laten merken dat we niet tevreden zijn over de communicatie en het veranderen van
+	  functionaliteit mid-sprint. Strakkere afspraken maken.
