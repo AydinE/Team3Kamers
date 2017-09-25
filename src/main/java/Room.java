@@ -1,3 +1,5 @@
+package model;
+
 import model.enums;
 
 import java.time.LocalDateTime;

@@ -1,3 +1,5 @@
+import model.Room;
+
 import java.time.LocalDateTime;
 
 public class Booking {

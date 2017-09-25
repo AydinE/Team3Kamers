@@ -1,3 +1,5 @@
+import model.Room;
+
 import java.util.ArrayList;
 import java.util.List;
 
