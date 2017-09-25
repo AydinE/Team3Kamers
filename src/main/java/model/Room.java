@@ -35,4 +35,20 @@ public class Room {
     public LocalDateTime getCreatedOn() {
         return createdOn;
     }
+
+    public void setRoomNr(int roomNr) {
+        this.roomNr = roomNr;
+    }
+
+    public void setTypeOfRoom(RoomType typeOfRoom) {
+        this.typeOfRoom = typeOfRoom;
+    }
+
+    public void setSizeOfRoom(RoomSize sizeOfRoom) {
+        this.sizeOfRoom = sizeOfRoom;
+    }
+
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
 }
