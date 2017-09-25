@@ -24,6 +24,8 @@ public class GuestList {
         guest.getAddress();
         guest.setAddress(address);                                            // op deze regel roepen we de setter aan.
         guestList.put(guest.getFirstName() +' '+ guest.getLastName(), guest);
+        System.out.println("Wijziging voltooid");
+        System.out.println(guest);
 
     }
 
@@ -37,6 +39,11 @@ public class GuestList {
 
         return guest;
     }
+    //Methode versimpeld voor addguest
+//
+//    public void addGuest(Guest guest) {
+//        guestList.put(guest.getFirstName() + ' ' + guest.getLastName(), guest);
+//    }
 
     // methode voor remove guest
     public void removeGuest(String guest, Guest guest1){
