@@ -1,4 +1,4 @@
-import model.Room;
+import model.RoomOld;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 public class RoomManager {
 
 
-    public List<Room> roomManager = new ArrayList<>();
+    public List<RoomOld> roomManager = new ArrayList<>();
 
     public void add(){
 

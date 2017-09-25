@@ -4,14 +4,14 @@ import model.enums;
 
 import java.time.LocalDateTime;
 
-public class Room {
+public class RoomOld {
 
     private int roomNr;
     private enums.RoomType typeOfRoom;
     private enums.RoomSize sizeOfRoom;
     private LocalDateTime availableFrom;
 
-    public Room(int identifier, enums.RoomType typeOfRoom, enums.RoomSize sizeOfRoom, LocalDateTime availableFrom) {
+    public RoomOld(int identifier, enums.RoomType typeOfRoom, enums.RoomSize sizeOfRoom, LocalDateTime availableFrom) {
         roomNr = identifier;
         this.typeOfRoom = typeOfRoom;
         this.sizeOfRoom = sizeOfRoom;

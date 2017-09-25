@@ -1,4 +1,4 @@
-import model.Room;
+import model.RoomOld;
 
 import java.time.LocalDateTime;
 
@@ -6,7 +6,7 @@ public class Booking {
 
     private int bookingNr;
     private Guest guest;
-    private Room room;
+    private RoomOld room;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 
@@ -51,7 +51,7 @@ public class Booking {
         return guest;
     }
 
-    public Room getRoom() {
+    public RoomOld getRoom() {
         return room;
     }
 
