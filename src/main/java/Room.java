@@ -1,13 +1,15 @@
+import model.enums;
+
 import java.time.LocalDateTime;
 
 public class Room {
 
     private int roomNr;
-    private RoomType typeOfRoom;
-    private RoomSize sizeOfRoom;
+    private enums.RoomType typeOfRoom;
+    private enums.RoomSize sizeOfRoom;
     private LocalDateTime availableFrom;
 
-    public Room(int identifier, RoomType typeOfRoom, RoomSize sizeOfRoom, LocalDateTime availableFrom) {
+    public Room(int identifier, enums.RoomType typeOfRoom, enums.RoomSize sizeOfRoom, LocalDateTime availableFrom) {
         roomNr = identifier;
         this.typeOfRoom = typeOfRoom;
         this.sizeOfRoom = sizeOfRoom;
@@ -19,11 +21,11 @@ public class Room {
         return roomNr;
     }
 
-    public RoomType getTypeOfRoom() {
+    public enums.RoomType getTypeOfRoom() {
         return typeOfRoom;
     }
 
-    public RoomSize getSizeOfRoom() {
+    public enums.RoomSize getSizeOfRoom() {
         return sizeOfRoom;
     }
 
