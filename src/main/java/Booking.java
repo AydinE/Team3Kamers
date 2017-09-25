@@ -9,7 +9,7 @@ public class Booking {
     private LocalDateTime endDate;
 
 
-    
+
     public void CreateBooking() {
 
     }
