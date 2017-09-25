@@ -94,4 +94,18 @@ public class Guest {
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return "Guest{" +
+                "guestNumber=" + guestNumber +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
