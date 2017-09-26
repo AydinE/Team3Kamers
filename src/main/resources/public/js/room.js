@@ -1,9 +1,3 @@
-//$(function() {
-//    $.get("/api/addRoom?roomNr=1&roomType=NORMAL&roomSize=ONE_PERSON", function(data) {
-//        console.log(data);
-//    });
-//});
-
 $("#createButton").click(function() {
     var roomNumber = $("#roomNumber").val();
     var roomType = $("#roomType").val();
