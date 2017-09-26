@@ -41,7 +41,7 @@ public class RoomController {
     public Room addRoom(@RequestParam(value="roomNr", required = true) int roomNr, @RequestParam(value="roomType", required = true) RoomType roomType, @RequestParam(value="roomSize", required = true) RoomSize roomSize) {
 
         Room room = new Room(roomNr, roomType, roomSize, LocalDateTime.now());
-
+        System.out.println("Created new room: " + roomNr);
         return room;
 
     }
