@@ -9,19 +9,32 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import static java.time.LocalTime.now;
 
 @RestController
 public class RoomController {
 
-    private ArrayList<Room> roomsList= new ArrayList<>();
+    private ArrayList<Integer> roomID= new ArrayList<Integer>();
 
     public RoomController(){
 
-        roomsList.add(new Room(1, RoomType.BUDGET, RoomSize.ONE_PERSON, LocalDateTime.now()));
+//        roomID.add(new Room(1));
+//        roomID.add(new Room(2));
+//        roomID.add(new Room(3));
+//        roomID.add(new Room(5));
+//        roomID.add(new Room(6));
+//        roomID.add(new Room(7));
+//        roomID.add(new Room(8));
+//        roomID.add(new Room(9));
+//        roomID.add(new Room(10));
+//        roomID.add(new Room(12));
     }
+
+//    public void addRoom(){
+//
+//        roomID.add(objt.Data(name, address, contact))
+//        System.out.println(("Roomnumber "), + Room + ,("has been added to the list"));
+//
+//    }
 
     //http://localhost:8080/api/addRoom?roomNr=1&roomType=NORMAL&roomSize=ONE_PERSON
     @RequestMapping("/api/addRoom")
@@ -29,36 +42,19 @@ public class RoomController {
 
         Room room = new Room(roomNr, roomType, roomSize, LocalDateTime.now());
 
-        roomsList.add(room);
         return room;
+
     }
 
-    public Room changeRoom(int currentRoomNumber, int newRoomNumber, RoomType newRoomType, RoomSize newRoomSize, LocalDateTime newTime){
-        for (Room room : roomsList) {
-            if (currentRoomNumber == room.getRoomNr()){
-                room.setRoomNr(newRoomNumber);
-                room.setTypeOfRoom(newRoomType);
-                room.setSizeOfRoom(newRoomSize);
-                room.setCreatedOn(newTime);
-            }
-            System.out.println(room);
-            return room;
-        }
-        return null;
+    public void change(){
+
     }
 
-    public void blockRoom(){
+    public void block(){
+
     }
 
-    public void deleteRoom(){
-    }
+    public void delete(){
 
-    public ArrayList<Room> getRoomsList() {
-        return roomsList;
     }
-
-    public void setRoomsList(ArrayList<Room> roomsList) {
-        this.roomsList = roomsList;
-    }
-
 }
