@@ -1,4 +1,4 @@
-package model.enums;
+package com.capgemini.model.enums;
 
 public enum RoomType {
     LUXURY,

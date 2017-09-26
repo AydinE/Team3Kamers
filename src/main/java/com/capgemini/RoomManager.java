@@ -1,4 +1,6 @@
-import model.Room;
+package com.capgemini;
+
+import com.capgemini.model.Room;
 import java.util.ArrayList;
 import java.util.List;
 

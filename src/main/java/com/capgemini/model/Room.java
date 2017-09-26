@@ -1,7 +1,7 @@
-package model;
+package com.capgemini.model;
 
-import model.enums.RoomSize;
-import model.enums.RoomType;
+import com.capgemini.model.enums.RoomSize;
+import com.capgemini.model.enums.RoomType;
 
 import java.time.LocalDateTime;
 
