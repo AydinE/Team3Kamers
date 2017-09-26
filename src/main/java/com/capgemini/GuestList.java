@@ -1,5 +1,7 @@
 package com.capgemini;
 
+import com.capgemini.model.Guest;
+
 import java.util.HashMap;
 
 public class GuestList {
@@ -21,8 +23,7 @@ public class GuestList {
 
 
     // methode wijzigen adres. Elke andere methode voor wijzigen kan als deze opgebouwd worden.
-    public void alterGuestAddress(Guest guest, String address){  // guest moet nog toegevoegd worden. String is nu key.
-        guest.getAddress();
+    public void alterGuest(Guest guest, String address){  // guest moet nog toegevoegd worden. String is nu key.
         guest.setAddress(address);                                            // op deze regel roepen we de setter aan.
         guestList.put(guest.getFirstName() +' '+ guest.getLastName(), guest);
         System.out.println("Wijziging voltooid");
