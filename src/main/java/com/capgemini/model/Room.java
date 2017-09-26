@@ -24,9 +24,9 @@ public class Room {
         return roomNr;
     }
 
-    public RoomType getTypeOfRoom() {
-        return typeOfRoom;
-    }
+//    public RoomType getTypeOfRoom() {
+//        return typeOfRoom;
+//    }
 
     public RoomSize getSizeOfRoom() {
         return sizeOfRoom;

@@ -49,8 +49,7 @@ public class GuestController {
     }
     @RequestMapping("/api/alterGuest")
     // methode wijzigen adres. Elke andere methode voor wijzigen kan als deze opgebouwd worden.
-    public void alterGuestAddress(Guest guest, String address){  // guest moet nog toegevoegd worden. String is nu key.
-        guest.getAddress();
+    public void alterGuest(Guest guest, String address){  // guest moet nog toegevoegd worden. String is nu key.
         guest.setAddress(address);                                            // op deze regel roepen we de setter aan.
         guestList.add(guest);
         System.out.println("Wijziging voltooid");
