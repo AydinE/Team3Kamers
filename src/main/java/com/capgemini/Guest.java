@@ -1,3 +1,5 @@
+package com.capgemini;
+
 public class Guest {
 
     private int guestNumber;
