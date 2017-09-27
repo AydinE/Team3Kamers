@@ -3,14 +3,10 @@ package com.capgemini.controller;
 import com.capgemini.model.Room;
 import com.capgemini.model.enums.RoomSize;
 import com.capgemini.model.enums.RoomType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import static java.time.LocalTime.now;
 
 @RestController
@@ -33,13 +29,14 @@ public class RoomController {
         return room;
     }
 
-    public Room changeRoom(int currentRoomNumber, int newRoomNumber, RoomType newRoomType, RoomSize newRoomSize, LocalDateTime newTime){
-        for (Room room : roomsList) {
-            if (currentRoomNumber == room.getRoomNr()){
-                room.setRoomNr(newRoomNumber);
-                room.setTypeOfRoom(newRoomType);
-                room.setSizeOfRoom(newRoomSize);
-                room.setCreatedOn(newTime);
+    @RequestMapping(value = "/api/changeRoom", method = RequestMethod.POST)
+    public Room changeRoom(@RequestBody Room room){
+        for (Room changedRoom : roomsList){
+            if (changedRoom.getRoomNr() == room.getRoomNr());{
+                changedRoom.setRoomNr(room.getRoomNr());
+                changedRoom.setTypeOfRoom(room.getTypeOfRoom());
+                changedRoom.setSizeOfRoom(room.getSizeOfRoom());
+                changedRoom.setCreatedOn(LocalDateTime.now());
             }
             System.out.println(room);
             return room;
