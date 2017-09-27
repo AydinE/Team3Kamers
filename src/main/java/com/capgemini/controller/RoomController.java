@@ -16,14 +16,14 @@ public class RoomController {
 
     public RoomController(){
 
-        roomsList.add(new Room(1, RoomType.BUDGET, RoomSize.ONE_PERSON, LocalDateTime.now()));
+        roomsList.add(new Room(1, RoomType.BUDGET, RoomSize.ONE_PERSON, LocalDateTime.now(), true));
     }
 
     //http://localhost:8080/api/addRoom?roomNr=1&roomType=NORMAL&roomSize=ONE_PERSON
     @RequestMapping("/api/addRoom")
-    public Room addRoom(@RequestParam(value="roomNr", required = true) int roomNr, @RequestParam(value="roomType", required = true) RoomType roomType, @RequestParam(value="roomSize", required = true) RoomSize roomSize) {
+    public Room addRoom(@RequestParam(value="roomNr", required = true) int roomNr, @RequestParam(value="roomType", required = true) RoomType roomType, @RequestParam(value="roomSize", required = true) RoomSize roomSize, @RequestParam(value="availability", required = true) boolean availability)  {
 
-        Room room = new Room(roomNr, roomType, roomSize, LocalDateTime.now());
+        Room room = new Room(roomNr, roomType, roomSize, LocalDateTime.now(), true);
 
         roomsList.add(room);
         return room;
@@ -32,7 +32,7 @@ public class RoomController {
     @RequestMapping(value = "/api/changeRoom", method = RequestMethod.POST)
     public Room changeRoom(@RequestBody Room room){
         for (Room changedRoom : roomsList){
-            if (changedRoom.getRoomNr() == room.getRoomNr());{
+            if (changedRoom.getRoomNr() == room.getRoomNr()) {
                 changedRoom.setRoomNr(room.getRoomNr());
                 changedRoom.setTypeOfRoom(room.getTypeOfRoom());
                 changedRoom.setSizeOfRoom(room.getSizeOfRoom());
@@ -44,10 +44,18 @@ public class RoomController {
         return null;
     }
 
-    public void blockRoom(){
+    @RequestMapping(value = "/api/blockRoom", method = RequestMethod.POST)
+    public Room blockRoom(@RequestBody Room room){
+        for (Room blockedRoom : roomsList){
+            if (blockedRoom.getRoomNr() == room.getRoomNr()) {
+
+            }
+        }
+        return room;
     }
 
     public void deleteRoom(){
+
     }
 
     public ArrayList<Room> getRoomsList() {
