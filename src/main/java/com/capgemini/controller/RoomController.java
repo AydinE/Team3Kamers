@@ -63,7 +63,6 @@ public class RoomController {
         }
     }
 
-
     public void setRoomsList(ArrayList<Room> roomsList) {
         this.roomsList = roomsList;
     }
