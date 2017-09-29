@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import static java.time.LocalTime.now;
 
 @RestController
 public class RoomController {

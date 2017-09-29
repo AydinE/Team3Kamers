@@ -33,7 +33,6 @@ public class GuestController {
     }
 
 
-
     @RequestMapping("/api/addGuest")
     public Guest addGuest(@RequestParam(value="guestNumber", required = true) int guestNumber, @RequestParam(value="firstName", required = true)
             String firstName, @RequestParam(value="lastName", required = true) String lastName, @RequestParam(value="address", required = true)String address,
