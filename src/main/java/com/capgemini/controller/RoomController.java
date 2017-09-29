@@ -49,16 +49,19 @@ public class RoomController {
         for (Room blockedRoom : roomsList){
             if (blockedRoom.getRoomNr() == room.getRoomNr()) {
                 blockedRoom.setAvailability(room.isAvailability());
-
             }
         }
         return room;
     }
 
-    public void deleteRoom() {
-        for (Room blockedRoom : roomsList);
+    @RequestMapping(value = "/api/deleteRoom", method = RequestMethod.POST)
+    public void deleteRoom(@RequestBody Room room) {
+        for (Room excistingRoom : roomsList){
+            if (excistingRoom.getRoomNr() == room.getRoomNr()) {
+                roomsList.remove(excistingRoom);
+            }
+        }
     }
-
 
     public void setRoomsList(ArrayList<Room> roomsList) {
         this.roomsList = roomsList;
