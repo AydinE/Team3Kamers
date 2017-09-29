@@ -1,0 +1,127 @@
+.wrapper {
+    display: flex;
+    align-items: stretch;
+    perspective: 1500px; /* Define how many pixels the sidebar is placed from the view. */
+    bottom: 0px;
+    position: fixed;
+    right: 0px;
+    top: 52px;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #f1f1f1;
+    overflow: hidden;
+    color: #fff;
+    transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
+    transform-origin: center left; /* Set the transformed position of sidebar to center left side. */
+}
+
+#sidebar .icon {
+    min-width: 50px;
+    min-height: 50px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#sidebar .icon:hover {
+    background-color: #D1D1D1;
+}
+
+#sidebar .selected {
+    background-color: #D1D1D1;
+}
+
+/* Shrinking the sidebar from 250px to 80px and center aligining its content*/
+#sidebar.inactive {
+    min-width: 51px;
+    max-width: 51px;
+}
+
+/* Toggling the sidebar header content, hide the big heading [h3] and showing the small heading [strong] and vice versa*/
+#sidebar .sidebar-header strong {
+    display: none;
+}
+#sidebar.inactive .sidebar-header h3 {
+    display: none;
+}
+#sidebar.inactive .sidebar-header strong {
+    display: block;
+}
+
+#sidebar ul li a {
+    text-align: left;
+}
+
+#sidebar.inactive ul li a {
+    padding: 20px 10px;
+    text-align: center;
+    font-size: 0.85em;
+}
+
+#sidebar.inactive ul li a i {
+    margin-right:  0;
+    display: block;
+    font-size: 1.8em;
+    margin-bottom: 5px;
+}
+
+/* Same dropdown links padding*/
+#sidebar.inactive ul ul a {
+    padding: 10px !important;
+}
+
+/* Changing the arrow position to bottom center position,
+   translateX(50%) works with right: 50%
+   to accurately  center the arrow */
+#sidebar.inactive a[aria-expanded="false"]::before, #sidebar.inactive a[aria-expanded="true"]::before {
+    top: auto;
+    bottom: 5px;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+@media (max-width: 768px) {
+    /* Reversing the behavior of the sidebar:
+       it'll be rotated vertically and off canvas by default,
+       collapsing in on toggle button click with removal of
+       the vertical rotation.   */
+    #sidebar {
+        margin-left: -250px;
+        transform: rotateY(100deg);
+    }
+    #sidebar.inactive {
+        margin-left: 0;
+        transform: none;
+    }
+
+    /* Reversing the behavior of the bars:
+       Removing the rotation from the first,
+       last bars and reappear the second bar on default state,
+       and giving them a vertical margin */
+    #sidebarCollapse span:first-of-type,
+    #sidebarCollapse span:nth-of-type(2),
+    #sidebarCollapse span:last-of-type {
+        transform: none;
+        opacity: 1;
+        margin: 5px auto;
+    }
+
+    /* Removing the vertical margin and make the first and last bars rotate again when the sidebar is open, hiding the second bar */
+    #sidebarCollapse.inactive span {
+        margin: 0 auto;
+    }
+    #sidebarCollapse.inactive span:first-of-type {
+        transform: rotate(45deg) translate(2px, 2px);
+    }
+    #sidebarCollapse.inactive span:nth-of-type(2) {
+        opacity: 0;
+    }
+    #sidebarCollapse.inactive span:last-of-type {
+        transform: rotate(-45deg) translate(1px, -1px);
+    }
+}
