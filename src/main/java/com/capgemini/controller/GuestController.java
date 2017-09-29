@@ -2,9 +2,7 @@ package com.capgemini.controller;
 
 import com.capgemini.GuestList;
 import com.capgemini.model.Guest;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -34,19 +32,27 @@ public class GuestController {
 
 
 
-    @RequestMapping("/api/addGuest")
-    public Guest addGuest(@RequestParam(value="guestNumber", required = true) int guestNumber, @RequestParam(value="firstName", required = true)
-            String firstName, @RequestParam(value="lastName", required = true) String lastName, @RequestParam(value="address", required = true)String address,
-                          @RequestParam(value="postalCode", required = true)String postalCode,@RequestParam(value="city", required = true)String city, @RequestParam(value="country",
-            required = true)String country, @RequestParam(value="phoneNumber", required = true)String phoneNumber, @RequestParam(value="email", required = true)String email) {
-
-        Guest guest = new Guest(guestNumber,firstName,lastName,address,postalCode,city,country,phoneNumber,email);
+    @RequestMapping(method = RequestMethod.POST, value = "/api/addGuest")
+    public Guest addGuest(@RequestBody Guest guest) {
 
         guestList.add(guest);
 
         return guest;
 
     }
+
+//    @RequestMapping(method = RequestMethod.GET, value = "/api/getGuest")
+//    public Guest getGuest(@RequestParam(value="firstName", required = true)String firstName), @RequestParam(value="lastName", required = true)String lastName){
+//
+//        for(Guest guest: guestList){
+//            if( guest.getFirstName().equals(firstName)&& guest.getLastName().equals(lastName)){
+//                return guest;
+//            }
+//
+//        }
+//        return null;
+//    }
+
     @RequestMapping("/api/alterGuest")
     // methode wijzigen adres. Elke andere methode voor wijzigen kan als deze opgebouwd worden.
     public void alterGuestAddress(Guest guest, String address){  // guest moet nog toegevoegd worden. String is nu key.
