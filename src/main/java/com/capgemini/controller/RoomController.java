@@ -54,13 +54,10 @@ public class RoomController {
         return room;
     }
 
-    public void deleteRoom(){
-
+    public void deleteRoom() {
+        for (Room blockedRoom : roomsList);
     }
 
-    public ArrayList<Room> getRoomsList() {
-        return roomsList;
-    }
 
     public void setRoomsList(ArrayList<Room> roomsList) {
         this.roomsList = roomsList;
