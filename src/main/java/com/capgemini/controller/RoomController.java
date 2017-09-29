@@ -16,6 +16,7 @@ public class RoomController {
     public RoomController(){
 
         roomsList.add(new Room(1, RoomType.BUDGET, RoomSize.ONE_PERSON, LocalDateTime.now(), true));
+        roomsList.add(new Room(13, RoomType.BUDGET, RoomSize.ONE_PERSON, LocalDateTime.now(), true));
     }
 
     //http://localhost:8080/api/addRoom?roomNr=1&roomType=NORMAL&roomSize=ONE_PERSON
