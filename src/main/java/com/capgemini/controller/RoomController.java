@@ -48,6 +48,7 @@ public class RoomController {
     public Room blockRoom(@RequestBody Room room){
         for (Room blockedRoom : roomsList){
             if (blockedRoom.getRoomNr() == room.getRoomNr()) {
+                blockedRoom.setAvailability(room.isAvailability());
 
             }
         }
