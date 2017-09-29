@@ -28,6 +28,17 @@ public class RoomController {
         return room;
     }
 
+    @RequestMapping("/api/getRoom")
+    public Room getRoom(@RequestParam(value = "roomNr", required = true) int roomNr) {
+        for (Room requiredRoom : roomsList){
+            if (requiredRoom.getRoomNr() == roomNr){
+                return requiredRoom;
+            }
+        }
+        return null;
+    }
+
+
     @RequestMapping(value = "/api/changeRoom", method = RequestMethod.POST)
     public Room changeRoom(@RequestBody Room room){
         for (Room changedRoom : roomsList){
