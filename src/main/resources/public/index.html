@@ -10,46 +10,66 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/navbar-style.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/sidebar.css">
 </head>
 <body>
-<nav class="navbar navbar-custom">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Logo</a>
-        </div>
+    <nav class="navbar navbar-custom">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Logo</a>
+            </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Link</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="inactive"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Link</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
 
-    <div class="container-fluid text-center">
+
+
+    <div class="container">
         <div class="row content">
-            <div class="col-sm-11 text-left">
-                <p>Content</p>
+            <div class="wrapper">
+                <nav id="sidebar">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <ul id="sidebar-icons" class="list-unstyled components">
+                                <li>
+                                    <div class="icon selected" id="addButton">
+                                        <img src="images/symbol-add.png" alt="add_symbol" style="width:25px;height:25px;">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon" id="searchButton">
+                                        <img src="images/symbol-search.png" alt="search_symbol" style="width:25px;height:25px;">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="sidebar-content" class="col-md-10" >
+                                <p>dsif sidf h</p>
+                        </div>
+                    </div>
+                </nav>
             </div>
-            <div class="col-sm-1 sidenav">
-                <div class="sidenav-button">
-                    <img src="images/symbol-add.png" alt="add_symbol" style="width:25px;height:25px;">
-                </div>
-                <div class="sidenav-button">
-                    <img src="images/symbol-search.png" alt="search_symbol" style="width:25px;height:25px;">
-                </div>
-            </div>
+
+
+
         </div>
     </div>
 
