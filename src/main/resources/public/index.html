@@ -1,33 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-
-<body>
-    <center>
-        <br/>
-        <strong>Add new room</strong><br/><br/>
-        Room number: <input type="number" id="roomNumber" min="1" max="999"><br/>
-        Room type:
-        <select id="roomType">
-            <option value="LUXURY">Luxury</option>
-            <option value="NORMAL">Normal</option>
-            <option value="BUDGET">Budget</option>
-        </select><br/>
-        Room size:
-        <select id="roomSize">
-            <option value="ONE_PERSON">1</option>
-            <option value="TWO_PERSONS">2</option>
-            <option value="THREE_FOUR_PERSONS">3-4</option>
-            <option value="FIVE_SIX_PERSONS">5-6</option>
-        </select><br/><br/>
-        <button type="button" id="createButton">Create</button><br/>
-        <div id="outputField"></div>
-    </center>
-
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<script src="js/jquery-3.2.1.min.js"></script>-->
+    <!--<script src="js/bootstrap.min.js"></script>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/room.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/navbar-style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-custom">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Logo</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Link</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+    <div class="container-fluid text-center">
+        <div class="row content">
+            <div class="col-sm-11 text-left">
+                <p>Content</p>
+            </div>
+            <div class="col-sm-1 sidenav">
+                <div class="sidenav-button">
+                    <img src="images/symbol-add.png" alt="add_symbol" style="width:25px;height:25px;">
+                </div>
+                <div class="sidenav-button">
+                    <img src="images/symbol-search.png" alt="search_symbol" style="width:25px;height:25px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
