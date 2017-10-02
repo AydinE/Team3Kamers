@@ -1,10 +1,10 @@
 package com.capgemini.controller;
 
+import com.capgemini.utils.Database;
 import com.capgemini.model.Room;
 import com.capgemini.model.enums.RoomSize;
 import com.capgemini.model.enums.RoomType;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ public class RoomController {
     private ArrayList<Room> roomsList= new ArrayList<>();
 
     public RoomController(){
-
+        
         roomsList.add(new Room(1, RoomType.BUDGET, RoomSize.ONE_PERSON, LocalDateTime.now(), true));
         roomsList.add(new Room(13, RoomType.BUDGET, RoomSize.ONE_PERSON, LocalDateTime.now(), true));
     }
