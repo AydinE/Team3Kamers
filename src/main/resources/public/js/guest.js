@@ -39,3 +39,26 @@ $("#createButton").click(function() {
 
 
 });
+
+$("#getButton").click (function(){
+    var firstName = $("#firstName2").val();
+    var lastName = $("#lastName2").val();
+    var url = "/api/getGuest?firstName=" + firstName +"&lastName=" + lastName;
+
+    $.get(url, function(result){
+        console.log(result);
+               $("#outputField11").html("Information Guest: "); // resultaat in gedefineerd HTML veld.
+                $("#outputField12").html(result.guestNumber);
+                 $("#outputField13").html(result.firstName);
+                  $("#outputField14").html(result.lastName);
+                   $("#outputField15").html(result.address);
+                    $("#outputField16").html(result.postalCode);
+                     $("#outputField17").html(result.city);
+                      $("#outputField18").html(result.country);
+                       $("#outputField19").html(result.phoneNumber);
+                        $("#outputField20").html(result.email);
+
+    });
+
+});
+

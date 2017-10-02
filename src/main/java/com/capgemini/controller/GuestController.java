@@ -25,12 +25,28 @@ public class GuestController {
         guestList.add(guest2);
     }
 
-    @RequestMapping("/api/getGuestList")
+    @RequestMapping(method = RequestMethod.GET, value = "/api/getGuestList")
     public ArrayList<Guest> getGuestList() {
+
         return guestList;
     }
 
+        @RequestMapping(method = RequestMethod.GET, value = "/api/getGuest")
+    public Guest getGuest(@RequestParam(value = "firstName", required = true)String firstName,
+                          @RequestParam(value= "lastName", required = true)String lastName) {
 
+        for (Guest guest: guestList) {
+
+            if (guest.getFirstName().equals(firstName) && guest.getLastName().equals(lastName)) {
+               // if (guest.getLastName().equals(lastName)) {
+               //   return guest;
+              //  }
+                return guest;
+            }
+
+        }
+        return null;
+    }
 
     @RequestMapping(method = RequestMethod.POST, value = "/api/addGuest")
     public Guest addGuest(@RequestBody Guest guest) {
