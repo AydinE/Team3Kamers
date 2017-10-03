@@ -73,14 +73,25 @@ public class GuestController {
 //        return null;
 //    }
 
-    @RequestMapping("/api/alterGuest")
-    // methode wijzigen adres. Elke andere methode voor wijzigen kan als deze opgebouwd worden.
-    public void alterGuestAddress(Guest guest, String address){  // guest moet nog toegevoegd worden. String is nu key.
-        guest.getAddress();
-        guest.setAddress(address);                                            // op deze regel roepen we de setter aan.
-        guestList.add(guest);
-        System.out.println("Wijziging voltooid");
-        System.out.println(guest);
+//
 
+    @RequestMapping(value = "/api/changeGuest", method = RequestMethod.POST)
+    public Guest changeGuest (@RequestBody Guest guest){
+        for (Guest changedGuest : guestList){
+            if (changedGuest.getGuestNumber() == guest.getGuestNumber()) {
+                changedGuest.setFirstName(guest.getFirstName());
+                changedGuest.setLastName(guest.getLastName());
+                changedGuest.setAddress(guest.getAddress());
+                changedGuest.setPostalCode(guest.getPostalCode());
+                changedGuest.setCity(guest.getCity());
+                changedGuest.setCountry(guest.getCountry());
+                changedGuest.setPhoneNumber(guest.getPhoneNumber());
+                changedGuest.setEmail(guest.getEmail());
+            }
+            System.out.println(guest);
+            return guest;
+        }
+        return null;
     }
+
 }
