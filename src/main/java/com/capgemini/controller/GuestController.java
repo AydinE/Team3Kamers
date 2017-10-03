@@ -94,4 +94,14 @@ public class GuestController {
         return null;
     }
 
+    @RequestMapping(value = "/api/removeguest", method = RequestMethod.POST)
+    public void removeGuest (@RequestBody Guest guest){
+        for(Guest removeGuest1 : guestList){
+            if(removeGuest1.getGuestNumber() == (guest.getGuestNumber())){
+                guestList.remove(guest);
+            }
+        }
+
+    }
+
 }
