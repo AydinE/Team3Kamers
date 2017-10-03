@@ -5,6 +5,8 @@ import com.capgemini.model.Room;
 import com.capgemini.model.enums.RoomSize;
 import com.capgemini.model.enums.RoomType;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -30,13 +32,9 @@ public Room addRoom(@RequestParam(value="roomNr", required = true) int roomNr, @
 }
 
     @RequestMapping("/api/getAllRoom")
-    public Room getAllRoom(@RequestParam(value = "roomNr", required = true) int roomNr) {
-        for (Room requiredRoom : roomsList){
-            while (requiredRoom.getRoomNr() == roomNr){
-                return requiredRoom;
-            }
-        }
-        return null;
+    public ArrayList<Room> getAllRoom(@RequestBody Room room) {
+
+        return roomsList;
     }
 
     @RequestMapping("/api/getRoom")
