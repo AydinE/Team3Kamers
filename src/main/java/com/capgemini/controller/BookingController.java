@@ -1,7 +1,8 @@
 package com.capgemini.controller;
 
 import com.capgemini.model.Booking;
-import com.capgemini.model.Guest;
+import com.capgemini.model.enums.RoomSize;
+import com.capgemini.model.enums.RoomType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,20 +29,4 @@ public class BookingController {
             }
         }
     }
-
-    @RequestMapping(value = "/api/changeBooking", method = RequestMethod.POST) //does not return anything yet VOID
-    public void changeBooking(@RequestBody Booking booking){
-        for (Booking changedBooking : bookingList){
-            if (changedBooking.getBookingNr() == booking.getBookingNr()) {
-                changedBooking.setBookingNr(booking.getBookingNr());
-                changedBooking.setGuest(booking.getGuest());
-                changedBooking.setRoom(booking.getRoom());
-                changedBooking.setStartDate(LocalDateTime.now());
-                changedBooking.setEndDate(LocalDateTime.now());
-            }
-            System.out.println(booking);
-        }
-    }
-
-
 }
