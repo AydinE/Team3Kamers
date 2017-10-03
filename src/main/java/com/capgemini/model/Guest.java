@@ -1,5 +1,18 @@
 package com.capgemini.model;
 
+// SQL create table
+//CREATE TABLE guest (
+//    guestNumber int NOT NULL AUTO_INCREMENT,
+//    firstName varchar(25),
+//    lastName varchar(25),
+//    address varchar(50),
+//    postalCode varchar(10),
+//    city varchar(25),
+//    country varchar(25),
+//    phoneNumber varchar(15),
+//    email varchar(30)
+//);
+
 public class Guest {
 
     private int guestNumber;
