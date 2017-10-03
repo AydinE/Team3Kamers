@@ -19,8 +19,8 @@ public class GuestController {
                 "3321bp", "Clownstad", "NL", "06789", "pipo@slechteclown.nl");
 
         Guest guest2 = new Guest(1, "Charlie", "Straatman",
-                "straat1", "d", "Sleeuwijk", "Nedelrand", "06123",
-                "tstraatman@gmail.com");
+                "straat1", "d", "Sleeuwijk", "Nederland", "06123",
+                "cstraatman@gmail.com");
         guestList.add(guest1);
         guestList.add(guest2);
     }
