@@ -20,6 +20,25 @@ public class BookingController {
 //        bookingList.add(new Booking (2, "guest2"));
     }
 
+    @RequestMapping(value = "/api/changeBooking", method = RequestMethod.POST) //does not return anything yet VOID
+    public void changeBooking(@RequestBody Booking booking){
+
+        for (Booking changedBooking : bookingList){
+
+            if (changedBooking.getBookingNr() == booking.getBookingNr()) {
+
+                changedBooking.setBookingNr(booking.getBookingNr());
+                changedBooking.setGuest(booking.getGuest());
+                changedBooking.setRoom(booking.getRoom());
+                changedBooking.setStartDate(LocalDateTime.now());
+                changedBooking.setEndDate(LocalDateTime.now());
+            }
+
+            System.out.println(booking);
+        }
+
+    }
+
 
     @RequestMapping(value = "/api/deleteBooking", method = RequestMethod.POST)
     public void deleteBooking(@RequestBody Booking booking) {
