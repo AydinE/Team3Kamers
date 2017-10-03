@@ -5,6 +5,8 @@ import com.capgemini.model.Room;
 import com.capgemini.model.enums.RoomSize;
 import com.capgemini.model.enums.RoomType;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -14,19 +16,25 @@ public class RoomController {
     private ArrayList<Room> roomsList= new ArrayList<>();
 
     public RoomController(){
-        
+
         roomsList.add(new Room(1, RoomType.BUDGET, RoomSize.ONE_PERSON, LocalDateTime.now(), true));
         roomsList.add(new Room(13, RoomType.BUDGET, RoomSize.ONE_PERSON, LocalDateTime.now(), true));
     }
 
     //http://localhost:8080/api/addRoom?roomNr=1&roomType=NORMAL&roomSize=ONE_PERSON
     @RequestMapping("/api/addRoom")
-    public Room addRoom(@RequestParam(value="roomNr", required = true) int roomNr, @RequestParam(value="roomType", required = true) RoomType roomType, @RequestParam(value="roomSize", required = true) RoomSize roomSize, @RequestParam(value="availability", required = true) boolean availability)  {
+public Room addRoom(@RequestParam(value="roomNr", required = true) int roomNr, @RequestParam(value="roomType", required = true) RoomType roomType, @RequestParam(value="roomSize", required = true) RoomSize roomSize, @RequestParam(value="availability", required = true) boolean availability)  {
 
-        Room room = new Room(roomNr, roomType, roomSize, LocalDateTime.now(), true);
+    Room room = new Room(roomNr, roomType, roomSize, LocalDateTime.now(), true);
 
-        roomsList.add(room);
-        return room;
+    roomsList.add(room);
+    return room;
+}
+
+    @RequestMapping("/api/getAllRoom")
+    public ArrayList<Room> getAllRoom(@RequestBody Room room) {
+
+        return roomsList;
     }
 
     @RequestMapping("/api/getRoom")
