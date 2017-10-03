@@ -25,6 +25,9 @@ public class Guest {
     private String phoneNumber;
     private String email;
 
+    public Guest() {
+    }
+
     public Guest(int guestNumber, String firstName, String lastName, String address, String postalCode, String city, String country, String phoneNumber, String email) {
         this.guestNumber = guestNumber;
         this.firstName = firstName;
