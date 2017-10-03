@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>getRoom</title>
+</head>
+<body>
+    <center>
+        <br/>
+        <strong>Select room</strong><br/><br/>
+        Which room number do you want to change?<br/><br/>
+        <input type="number" id="roomNumber" min="1" max="999"><br/>
+            <br/>
+
+            <strong>Change exciting room</strong><br/><br/>
+
+            Room type:
+            <select id="roomType">
+                <option value="LUXURY">Luxury</option>
+                <option value="NORMAL">Normal</option>
+                <option value="BUDGET">Budget</option>
+            </select><br/>
+
+            Room size:
+            <select id="roomSize">
+                <option value="ONE_PERSON">1</option>
+                <option value="TWO_PERSONS">2</option>
+                <option value="THREE_FOUR_PERSONS">3-4</option>
+                <option value="FIVE_SIX_PERSONS">5-6</option>
+            </select><br/><br/>
+
+            <button type="button" id="changeButton">Change</button><br/>
+            <div id="outputField"></div>
+    </center>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/changeRoom.js"></script>
+</body>
+</html>
