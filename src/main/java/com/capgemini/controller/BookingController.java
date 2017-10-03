@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.awt.print.Book;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -26,9 +27,24 @@ public class BookingController {
     public Booking addBooking(@RequestParam(value="bookingNr", required = true) int bookingNr, @RequestParam(value = "guest", required = true)Guest guest, @RequestParam(value = "room", required = true)Room room, @RequestParam(value = "startDate", required = true)LocalDateTime startDate, @RequestParam(value = "endDate", required = true)LocalDateTime endDate, @RequestParam(value = "checkedIn", required = true) boolean checkedIn) {
 
         Booking booking = new Booking(bookingNr, guest, room, startDate, endDate, checkedIn);
-        
+
         bookingList.add(booking);
         return booking;
+    }
+
+    @RequestMapping("/api/getAllBooking")
+    public ArrayList<Booking> getAllBooking(@RequestBody Booking booking) {
+        return bookingList;
+    }
+
+    @RequestMapping("/api/getBooking")
+    public Booking getBooking(@RequestParam(value = "bookingNr", required = true) int bookingNr) {
+        for (Booking requiredBooking : bookingList){
+            if (requiredBooking.getBookingNr() == bookingNr){
+                return requiredBooking;
+            }
+        }
+        return null;
     }
 
     @RequestMapping(value = "/api/changeBooking", method = RequestMethod.POST) //does not return anything yet VOID
@@ -44,12 +60,10 @@ public class BookingController {
                 changedBooking.setStartDate(LocalDateTime.now());
                 changedBooking.setEndDate(LocalDateTime.now());
             }
-
             System.out.println(booking);
         }
 
     }
-
 
     @RequestMapping(value = "/api/deleteBooking", method = RequestMethod.POST)
     public void deleteBooking(@RequestBody Booking booking) {
