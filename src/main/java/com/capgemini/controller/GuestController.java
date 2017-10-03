@@ -35,16 +35,20 @@ public class GuestController {
     public Guest getGuest(@RequestParam(value = "firstName", required = true)String firstName,
                           @RequestParam(value= "lastName", required = true)String lastName) {
 
+      //  try{ (int)firstName, nog afmaken.
+
         for (Guest guest: guestList) {
 
             if (guest.getFirstName().equals(firstName) && guest.getLastName().equals(lastName)) {
-               // if (guest.getLastName().equals(lastName)) {
-               //   return guest;
-              //  }
+                // if (guest.getLastName().equals(lastName)) {
+                //   return guest;
+                //  }
+
                 return guest;
             }
+            }
 
-        }
+       // }
         return null;
     }
 
