@@ -15,9 +15,14 @@
     <link rel="stylesheet" type="text/css" href="css/navbar-style.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/sidebar.css">
+
+    <!--<link  rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+    <link  rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.css">
+    <link  rel="stylesheet" type="text/css" href="css/pitscheduler.css">
+    <link  rel="stylesheet" type="text/css" href="css/demo.css">
 </head>
 <body>
-    <nav class="navbar navbar-custom">
+    <nav class="navbar navbar-custom navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -40,38 +45,214 @@
         </div><!-- /.container-fluid -->
     </nav>
 
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="row">
+                <div class="col-md-2">
+                    <ul id="sidebar-icons" class="list-unstyled components">
+                        <li>
+                            <div class="icon selected" id="addButton">
+                                <img src="images/symbol-add.png" alt="add_symbol" style="width:25px;height:25px;">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon" id="searchButton">
+                                <img src="images/symbol-search.png" alt="search_symbol" style="width:25px;height:25px;">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="sidebar-content" class="col-md-10" >
+                        <p>dsif sidf h</p>
+                </div>
+            </div>
+        </nav>
+    </div>
 
-
-    <div class="container">
-        <div class="row content">
-            <div class="wrapper">
-                <nav id="sidebar">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <ul id="sidebar-icons" class="list-unstyled components">
-                                <li>
-                                    <div class="icon selected" id="addButton">
-                                        <img src="images/symbol-add.png" alt="add_symbol" style="width:25px;height:25px;">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="icon" id="searchButton">
-                                        <img src="images/symbol-search.png" alt="search_symbol" style="width:25px;height:25px;">
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="sidebar-content" class="col-md-10" >
-                                <p>dsif sidf h</p>
+    <div class="row">
+        <div class="col-md-10">
+            <div class="container">
+                <div class="row content">
+                    <div class="main-container container-fluid row">
+                        <div class="demo-container">
+                            <h1 class="text-center">jQuery Pit-scheduler v2.O</h1><br>
+                            <h4 class="text-center">Pit-scheduler is a jQuery plugin that lets you manage tasks through a complete interface. It has been developed to be used for permissions management but is compatible with both usages.</h4><br>
+                            <div id="pit-scheduler"></div>
                         </div>
                     </div>
-                </nav>
+                    <script src="js/jquery-2.2.4.min.js"></script>
+                    <script src="js/bootstrap.min.js"></script>
+                    <script src="js/moment-with-locales.min.js"></script>
+                    <script src="js/bootstrap-datetimepicker.js"></script>
+                    <script src="/js/pitscheduler.js"></script>
+                    <script>
+
+            $(document).ready(function () {
+                $("#pit-scheduler").pitScheduler({
+                    locale: 'en',
+                    defaultDisplay: 'months',
+                    hideEmptyLines: true,
+                    disableLabelsMovement: false,
+                    defaultGroupName: 'Default group',
+                    defaultDate: '2017-09-01 16:30',
+                    disableNotifications: false,
+                    notificationDuration: 4000,
+                    hideSpinner: true,
+                    onChange: '',
+                    onTaskCreation: '',
+                    onUserCreation: '',
+                    onTaskRemoval: '',
+                    onUserRemoval: '',
+                    onUserEdition: '',
+                    onTaskAssignation: '',
+                    onUserTaskDeletion: '',
+                    onTaskEdition: '',
+                    disableUndo: false,
+                    resizeTask: true,
+                    tasks:  [
+                        {
+                            id: '1',
+                            name: 'Jan Janssen',
+                            description: '',
+                            color: '#50d371',
+                        },
+                        {
+                            id: '2',
+                            name: 'Berta Bertus',
+                            color: '#50d371'
+                        },
+                        {
+                            id: '3',
+                            name: 'Juan Percent',
+                            color: '#50d371'
+                        },
+                        {
+                            id: '4',
+                            name: 'Charlie Sheen',
+                            color: '#50d371',
+                        }
+                    ],
+                    users: [
+                           {
+                            name: '1',
+                            group: 'Rooms',
+                            tasks: [
+                                {
+                                    id: '1',
+                                    start_date: '2015-09-10 00:00',
+                                    end_date: '2016-09-20 00:00'
+                                },
+                                {
+                                    id: '2',
+                                    start_date: '2016-09-28 6:00',
+                                    end_date: '2017-09-28 18:30'
+                                },
+                                {
+                                    id: '3',
+                                    start_date: '2016-09-08 10:40',
+                                    end_date: '2016-09-21 16:00'
+                                },
+                                {
+                                    id: '4',
+                                    start_date: '2016-09-23 10:10',
+                                    end_date: '2016-09-29 16:50'
+                                },
+                                {
+                                    id: '1',
+                                    start_date: '2016-09-10 08:00',
+                                    end_date: '2016-09-12 20:00'
+                                }
+                            ]
+                        },
+                        {
+                            name: '2',
+                            group: 'Rooms',
+                            tasks: [
+                                {
+                                    id: '2',
+                                    start_date: '2016-09-01 06:00',
+                                    end_date: '2016-09-04 00:00'
+                                },
+                                {
+                                    id: '2',
+                                    start_date: '2016-09-04 11:00',
+                                    end_date: '2016-09-08 18:00'
+                                },
+                                {
+                                    id: '3',
+                                    start_date: '2016-09-07 17:00',
+                                    end_date: '2016-09-11 20:00'
+                                }
+                            ]
+                        },
+                        {
+                            name: '3',
+                            group: 'Rooms',
+                            tasks: [
+                                {
+                                    id: '2',
+                                    start_date: '2017-09-01 02:30',
+                                    end_date: '2017-09-03 09:00'
+                                },
+                                {
+                                    id: '2',
+                                    start_date: '2017-09-04 17:30',
+                                    end_date: '2017-09-24 07:42'
+                                },
+                                {
+                                    id: '4',
+                                    start_date: '2017-09-02 17:30',
+                                    end_date: '2017-09-11 07:42'
+                                },
+                                {
+                                    id: '1',
+                                    start_date: '2017-09-13 10:00',
+                                    end_date: '2017-09-26 16:00'
+                                },
+                                {
+                                    id: '2',
+                                    start_date: '2017-09-30 10:00',
+                                    end_date: '2017-10-05 16:00'
+                                },
+                                {
+                                    id: '1',
+                                    start_date: '2017-10-23 10:00',
+                                    end_date: '2017-11-04 16:00'
+                                },
+                                {
+                                    id: '3',
+                                    start_date: '2017-11-06 10:00',
+                                    end_date: '2017-11-09 16:00'
+                                },
+                                {
+                                    id: '4',
+                                    start_date: '2017-11-10 10:00',
+                                    end_date: '2017-11-21 16:00'
+                                },
+                                {
+                                    id: '1',
+                                    start_date: '2017-09-01 08:00',
+                                    end_date: '2017-09-10 18:00'
+                                },
+                                {
+                                    id: '2',
+                                    start_date: '2017-09-12 08:00',
+                                    end_date: '2017-09-21 18:00'
+                                }
+                            ]
+                        }
+                    ]
+                });
+
+            });
+
+        </script>
+                </div>
             </div>
-
-
-
         </div>
     </div>
+
+
 
 </body>
 </html>
