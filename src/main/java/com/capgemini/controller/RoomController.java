@@ -47,7 +47,6 @@ public Room addRoom(@RequestParam(value="roomNr", required = true) int roomNr, @
         return null;
     }
 
-
     @RequestMapping(value = "/api/changeRoom", method = RequestMethod.POST)
     public Room changeRoom(@RequestBody Room room){
         for (Room changedRoom : roomsList){
