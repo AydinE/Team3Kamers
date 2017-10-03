@@ -1,8 +1,7 @@
 package com.capgemini.controller;
 
 import com.capgemini.model.Booking;
-import com.capgemini.model.enums.RoomSize;
-import com.capgemini.model.enums.RoomType;
+import com.capgemini.model.Room;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,11 +13,6 @@ public class BookingController {
 
     private ArrayList<Booking> bookingList= new ArrayList<>();
 
-    public BookingController(){
-
-//       bookingList.add(new Booking(1, "guest1", ));
-//        bookingList.add(new Booking (2, "guest2"));
-    }
 
 
     @RequestMapping(value = "/api/deleteBooking", method = RequestMethod.POST)
