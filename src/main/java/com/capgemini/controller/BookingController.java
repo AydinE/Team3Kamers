@@ -17,13 +17,13 @@ public class BookingController {
 
     }
 
-    @RequestMapping(value = "addBooking", method = RequestMethod.POST)
+    @RequestMapping(value = "/addBooking", method = RequestMethod.POST)
     public Booking addBooking(@RequestBody Booking booking){
         bookingList.add(booking);
         return booking;
     }
 
-    @RequestMapping(value = "getAllBooking", method = RequestMethod.GET)
+    @RequestMapping(value = "/getAllBooking", method = RequestMethod.GET)
     public ArrayList<Booking> getAllBooking() {
         return bookingList;
     }
@@ -63,7 +63,7 @@ public class BookingController {
         }
     }
 
-    @RequestMapping(value = "/api/guestCheckIn", method = RequestMethod.POST)
+    @RequestMapping(value = "/guestCheckIn", method = RequestMethod.POST)
     public void checkIn(@RequestBody Booking booking) {
         for (Booking booking1 : bookingList) {
             if (booking1.getBookingNr() == booking.getBookingNr()) {
