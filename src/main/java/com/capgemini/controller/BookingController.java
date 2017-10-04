@@ -30,7 +30,6 @@ public class BookingController {
     public Booking addBooking(@RequestParam(value="bookingNr", required = true) int bookingNr, @RequestParam(value = "guest", required = true)Guest guest, @RequestParam(value = "room", required = true)Room room, @RequestParam(value = "startDate", required = true)LocalDateTime startDate, @RequestParam(value = "endDate", required = true)LocalDateTime endDate, @RequestParam(value = "checkedIn", required = true) boolean checkedIn) {
 
         Booking booking = new Booking(bookingNr, guest, room, startDate, endDate, checkedIn);
-
         bookingList.add(booking);
         return booking;
     }
