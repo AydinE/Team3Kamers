@@ -2,9 +2,6 @@ package com.capgemini.controller;
 
 import com.capgemini.model.Booking;
 import com.capgemini.model.Guest;
-import com.capgemini.model.enums.RoomSize;
-import com.capgemini.model.enums.RoomType;
-import com.capgemini.model.Guest;
 import com.capgemini.model.Room;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
