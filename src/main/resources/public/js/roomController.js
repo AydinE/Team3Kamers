@@ -5,9 +5,9 @@ $("#checkButton").click(function() {
         console.log(data);
         $("#outputField").html("Room " + data.roomNr + " can be changed");
         $("#roomID").val(data.roomNr);
-        $("#typeOfRoom").val(data.);
-        $("#sizeOfRoom").val(data.);
-        $("#availability").val(data.);
+        $("#roomType").val(data.typeOfRoom);
+        $("#roomSize").val(data.sizeOfRoom);
+        $("#Availability").val(data.availability);
     });
 });
 
@@ -16,7 +16,7 @@ $("#changeButton").click(function() {
         roomNr: $("#roomNumber").val(),
         roomType: $("#roomType").val(),
         roomSize: $("#roomSize").val(),
-        availability: $("#availability").val(),
+        availability: $("#Availability").val(),
     };
 
     $.ajax({
