@@ -1,6 +1,8 @@
 package com.capgemini.controller;
 
 import com.capgemini.model.Booking;
+import com.capgemini.repository.BookingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -10,6 +12,9 @@ import java.util.ArrayList;
 @RequestMapping("/api")
 public class BookingController {
 
+    @Autowired
+    BookingRepository bookingRepository;
+
     private ArrayList<Booking> bookingList= new ArrayList<>();
 
     public BookingController(){
@@ -18,7 +23,7 @@ public class BookingController {
 
     @RequestMapping(value = "/addBooking", method = RequestMethod.POST)
     public Booking addBooking(@RequestBody Booking booking){
-        bookingList.add(booking);
+        bookingRepository.save(booking);
         return booking;
     }
 
