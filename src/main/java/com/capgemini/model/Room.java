@@ -13,14 +13,7 @@ public class Room {
     private LocalDateTime createdOn;
     private boolean availability;
 
-    public Room(int identifier, RoomType typeOfRoom, RoomSize sizeOfRoom, LocalDateTime createdOn, boolean availability) {
-        roomNr = identifier;
-        this.typeOfRoom = typeOfRoom;
-        this.sizeOfRoom = sizeOfRoom;
-        this.createdOn = createdOn;
-        this.availability = availability;
-
-    }
+    public Room() {}
 
     public int getRoomNr() {
         return roomNr;
@@ -34,7 +27,7 @@ public class Room {
         return sizeOfRoom;
     }
 
-    public boolean isAvailability() { return availability; }
+    public boolean isAvailable() { return availability; }
 
     public void setAvailability(boolean availability) { this.availability = availability; }
 

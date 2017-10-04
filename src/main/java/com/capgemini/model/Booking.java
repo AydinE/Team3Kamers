@@ -11,45 +11,7 @@ public class Booking {
     private LocalDateTime endDate;
     private boolean checkedIn;
 
-    public Booking(int bookingNr, Guest guest, Room room, LocalDateTime startDate, LocalDateTime endDate, boolean checkedIn) {
-        this.bookingNr = bookingNr;
-        this.guest = guest;
-        this.room = room;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.checkedIn = checkedIn;
-    }
-
-    public void createBooking() {
-
-    }
-
-    public void cancelBooking() {
-
-    }
-
-    public void guestRegisteryCheck() {
-
-    }
-
-    public void guestCheckin() {
-
-    }
-
-    public void guestCheckout() {
-
-    }
-
-    public void paymentCheck() {
-
-    }
-
-    public void RoomNrCoupling() {
-
-    }
-
-
-
+    public Booking() {}
 
     public int getBookingNr() {
         return bookingNr;

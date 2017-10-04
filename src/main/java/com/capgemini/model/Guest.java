@@ -25,20 +25,7 @@ public class Guest {
     private String phoneNumber;
     private String email;
 
-    public Guest() {
-    }
-
-    public Guest(int guestNumber, String firstName, String lastName, String address, String postalCode, String city, String country, String phoneNumber, String email) {
-        this.guestNumber = guestNumber;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.postalCode = postalCode;
-        this.city = city;
-        this.country = country;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-    }
+    public Guest() {}
 
     public int getGuestNumber() {
         return guestNumber;
@@ -126,4 +113,6 @@ public class Guest {
                 ", email='" + email + '\'' +
                 '}';
     }
+
+
 }
