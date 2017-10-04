@@ -1,0 +1,8 @@
+exclude:
+- /src/main/resources/public/js/bootstrap-datetimepicker.js
+- /src/main/resources/public/js/bootstrap.js
+- /src/main/resources/public/js/pitscheduler.js
+component_depth: 1
+languages:
+- java
+- javascript
