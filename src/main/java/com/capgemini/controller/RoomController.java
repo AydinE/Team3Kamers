@@ -23,7 +23,7 @@ public class RoomController {
 
     //http://localhost:8080/api/addRoom?roomNr=1&roomType=NORMAL&roomSize=ONE_PERSON
     @RequestMapping("/api/addRoom")
-public Room addRoom(@RequestParam(value="roomNr", required = true) int roomNr, @RequestParam(value="roomType", required = true) RoomType roomType, @RequestParam(value="roomSize", required = true) RoomSize roomSize, @RequestParam(value="availability", required = true) boolean availability)  {
+    public Room addRoom(@RequestParam(value="roomNr", required = true) int roomNr, @RequestParam(value="roomType", required = true) RoomType roomType, @RequestParam(value="roomSize", required = true) RoomSize roomSize, @RequestParam(value="availability", required = true) boolean availability)  {
 
     Room room = new Room(roomNr, roomType, roomSize, LocalDateTime.now(), true);
 
