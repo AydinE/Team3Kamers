@@ -14,7 +14,6 @@ public class Booking {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
     private int bookingNr;
     private Guest guest;
     private Room room;
@@ -27,7 +26,6 @@ public class Booking {
     @Override
     public String toString() {
         return "Booking{" +
-                "id=" + id +
                 ", bookingNr=" + bookingNr +
                 ", guest=" + guest +
                 ", room=" + room +
