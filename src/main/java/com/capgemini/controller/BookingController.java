@@ -39,7 +39,6 @@ public class BookingController {
 
     }
 
-
     @RequestMapping(value = "/api/deleteBooking", method = RequestMethod.POST)
     public void deleteBooking(@RequestBody Booking booking) {
         for (Booking excistingBooking : bookingList) {
