@@ -28,18 +28,13 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/getAllBooking", method = RequestMethod.GET)
-    public ArrayList<Booking> getAllBooking() {
-        return bookingList;
+    public Iterable<Booking> getAllBooking() {
+        return bookingRepository.findAll();
     }
 
     @RequestMapping("/getBooking")
     public Booking getBooking(@RequestParam(value = "bookingNr", required = true) int bookingNr) {
-        for (Booking requiredBooking : bookingList){
-            if (requiredBooking.getBookingNr() == bookingNr){
-                return requiredBooking;
-            }
-        }
-        return null;
+        return bookingRepository.findOne(bookingNr);
     }
 
     @RequestMapping(value = "/changeBooking", method = RequestMethod.POST)
@@ -60,12 +55,10 @@ public class BookingController {
 
     @RequestMapping(value = "/deleteBooking", method = RequestMethod.POST)
     public void deleteBooking(@RequestBody Booking booking) {
-        for (Booking excistingBooking : bookingList) {
-            if (excistingBooking.getBookingNr() == booking.getBookingNr()) {
-                bookingList.remove(excistingBooking);
-            }
+        bookingRepository.delete(booking);
         }
-    }
+
+
 
     @RequestMapping(value = "/guestCheckIn", method = RequestMethod.POST)
     public void checkIn(@RequestBody Booking booking) {
