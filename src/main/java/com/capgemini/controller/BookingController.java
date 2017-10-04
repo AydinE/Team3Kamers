@@ -14,7 +14,6 @@ public class BookingController {
 
     public BookingController(){
 
-
     }
 
     @RequestMapping(value = "/addBooking", method = RequestMethod.POST)
