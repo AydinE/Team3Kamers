@@ -1,4 +1,9 @@
 package com.capgemini.repository;
+import java.util.List;
+import com.capgemini.model.Room;
+import org.springframework.data.repository.CrudRepository;
 
-public class RoomRepository {
+public interface RoomRepository {
+
+
 }

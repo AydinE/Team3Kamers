@@ -3,10 +3,17 @@ package com.capgemini.model;
 import com.capgemini.model.enums.RoomSize;
 import com.capgemini.model.enums.RoomType;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
+@Entity
 public class Room {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int roomNr;
     private RoomType typeOfRoom;
     private RoomSize sizeOfRoom;
@@ -15,8 +22,15 @@ public class Room {
 
     public Room() {}
 
-    public int getRoomNr() {
-        return roomNr;
+    @Override
+    public String toString() {
+        return "Room{" +
+                "roomNr=" + roomNr +
+                ", typeOfRoom=" + typeOfRoom +
+                ", sizeOfRoom=" + sizeOfRoom +
+                ", createdOn=" + createdOn +
+                ", availability=" + availability +
+                '}';
     }
 
     public RoomType getTypeOfRoom() {
