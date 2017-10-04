@@ -53,9 +53,9 @@ public class RoomController {
                 oldRoom.setTypeOfRoom(room.getTypeOfRoom());
                 oldRoom.setSizeOfRoom(room.getSizeOfRoom());
                 oldRoom.setCreatedOn(room.getCreatedOn());
+                return room;
             }
             System.out.println(room);
-            return room;
         }
         return null;
     }
