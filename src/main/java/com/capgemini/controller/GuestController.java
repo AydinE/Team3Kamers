@@ -1,6 +1,8 @@
 package com.capgemini.controller;
 
 import com.capgemini.model.Guest;
+import com.capgemini.repository.RepositoryGuest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,6 +12,9 @@ import java.util.ArrayList;
 public class GuestController {
 
     private ArrayList<Guest> guestList = new ArrayList<>();
+
+    @Autowired
+    private RepositoryGuest repository;
 
     public GuestController() {
         this.guestList = guestList;
@@ -31,14 +36,8 @@ public class GuestController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getGuest")
-    public Guest getGuest(@RequestParam(value = "firstName", required = true) String firstName,
-                          @RequestParam(value = "lastName", required = true) String lastName) {
-        for (Guest guest : guestList) {
-            if (guest.getFirstName().equals(firstName) && guest.getLastName().equals(lastName)) {
-                return guest;
-            }
-        }
-        return null;
+    public Guest getGuest(@RequestParam(value = "guestNumber", required = true) int guestNumber) {
+        return repository.findOne(guestNumber);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/addGuest")
