@@ -1,16 +1,13 @@
 package com.capgemini.controller;
 
 import com.capgemini.model.Booking;
-import com.capgemini.model.Guest;
-import com.capgemini.model.Room;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+@RestController
+@RequestMapping("/api")
 public class BookingController {
 
     private ArrayList<Booking> bookingList= new ArrayList<>();
@@ -20,20 +17,18 @@ public class BookingController {
 
     }
 
-    @RequestMapping("/api/addBooking")
-    public Booking addBooking(@RequestParam(value="bookingNr", required = true) int bookingNr, @RequestParam(value = "guest", required = true)Guest guest, @RequestParam(value = "room", required = true)Room room, @RequestParam(value = "startDate", required = true)LocalDateTime startDate, @RequestParam(value = "endDate", required = true)LocalDateTime endDate, @RequestParam(value = "checkedIn", required = true) boolean checkedIn) {
-
-        Booking booking = new Booking(bookingNr, guest, room, startDate, endDate, checkedIn);
+    @RequestMapping(value = "addBooking", method = RequestMethod.POST)
+    public Booking addBooking(@RequestBody Booking booking){
         bookingList.add(booking);
         return booking;
     }
 
-    @RequestMapping("/api/getAllBooking")
-    public ArrayList<Booking> getAllBooking(@RequestBody Booking booking) {
+    @RequestMapping(value = "getAllBooking", method = RequestMethod.GET)
+    public ArrayList<Booking> getAllBooking() {
         return bookingList;
     }
 
-    @RequestMapping("/api/getBooking")
+    @RequestMapping("/getBooking")
     public Booking getBooking(@RequestParam(value = "bookingNr", required = true) int bookingNr) {
         for (Booking requiredBooking : bookingList){
             if (requiredBooking.getBookingNr() == bookingNr){
@@ -43,25 +38,23 @@ public class BookingController {
         return null;
     }
 
-    @RequestMapping(value = "/api/changeBooking", method = RequestMethod.POST) //does not return anything yet VOID
-    public void changeBooking(@RequestBody Booking booking){
-
-        for (Booking changedBooking : bookingList){
-
-            if (changedBooking.getBookingNr() == booking.getBookingNr()) {
-
-                changedBooking.setBookingNr(booking.getBookingNr());
-                changedBooking.setGuest(booking.getGuest());
-                changedBooking.setRoom(booking.getRoom());
-                changedBooking.setStartDate(LocalDateTime.now());
-                changedBooking.setEndDate(LocalDateTime.now());
+    @RequestMapping(value = "/changeBooking", method = RequestMethod.POST)
+    public Booking changeBooking(@RequestBody int bookingNr, Booking booking){
+        for (Booking oldBooking : bookingList){
+            if (oldBooking.getBookingNr() == bookingNr) {
+                oldBooking.setBookingNr(booking.getBookingNr());
+                oldBooking.setGuest(booking.getGuest());
+                oldBooking.setRoom(booking.getRoom());
+                oldBooking.setStartDate(LocalDateTime.now());
+                oldBooking.setEndDate(LocalDateTime.now());
+                return booking;
             }
             System.out.println(booking);
         }
-
+        return null;
     }
 
-    @RequestMapping(value = "/api/deleteBooking", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteBooking", method = RequestMethod.POST)
     public void deleteBooking(@RequestBody Booking booking) {
         for (Booking excistingBooking : bookingList) {
             if (excistingBooking.getBookingNr() == booking.getBookingNr()) {
@@ -74,11 +67,8 @@ public class BookingController {
     public void checkIn(@RequestBody Booking booking) {
         for (Booking booking1 : bookingList) {
             if (booking1.getBookingNr() == booking.getBookingNr()) {
-                if (booking.isCheckedIn() == false) {
-                    booking.setCheckedIn(true);
-
-                }
-            }
+                booking.setCheckedIn(true);
+           }
         }
     }
 
