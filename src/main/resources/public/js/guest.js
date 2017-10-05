@@ -46,6 +46,8 @@ $(".removeButton").on('click', function(event){
     var url = "/api/getGuest?guestNumber=" + guestNumber;
     $.get(url, function(data){
         console.log(data);
+
+        // POST in get methode, omdat eerst de Getter moet worden uitgevoerd. De uitvoering verloopt asynchroon.
         $.ajax({
            url: "/api/removeGuest",                            // deze zoekt hij mee in de restcontroller naar een POST methode met die url.
            type: "POST",
