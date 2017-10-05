@@ -14,7 +14,6 @@ function clickTab(tab) {
         $('#sidebar').toggleClass("inactive");
         return;
     }
-    console.log(tab);
     changeTab(tab);
  }
 
@@ -51,6 +50,4 @@ function clickTab(tab) {
         $("#sidebar-content-search").hide();
         console.log("Showing add");
     }
-        console.log($("#sidebar-content-search"));
-        console.log($("#sidebar-content"));
  }
