@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface RepositoryGuest extends CrudRepository<Guest, Integer> {
 
-    //List<Guest> findByBrand(String brand);
+    Guest findOneByFirstNameAndLastName(String firstName, String lastName);
 
 }
