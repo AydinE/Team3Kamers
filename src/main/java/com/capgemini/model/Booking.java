@@ -3,10 +3,7 @@ package com.capgemini.model;
 import com.sun.javafx.beans.IDProperty;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,10 +12,17 @@ public class Booking {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int bookingNr;
+
+    @ManyToOne
     private Guest guest;
+
+    @ManyToOne
     private Room room;
+
     private LocalDateTime startDate;
+
     private LocalDateTime endDate;
+
     private boolean checkedIn;
 
     public Booking() {}

@@ -13,8 +13,16 @@ package com.capgemini.model;
 //    email varchar(30)
 //);
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Guest {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int guestNumber;
     private String firstName;
     private String lastName;
