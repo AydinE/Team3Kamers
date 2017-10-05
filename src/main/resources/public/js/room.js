@@ -22,11 +22,12 @@ $(document).ready( function () {
         for (i = 0; i < data.length; i++) {
             console.log(data[i]);
             table.row.add([
+                "<a href=\"javascript:del(" + data[i].roomNr + ")\"><i class='fa fa-trash-o' aria-hidden='true'></i></a>",
                 data[i].roomNr,
                 data[i].typeOfRoom,
                 data[i].sizeOfRoom,
                 data[i].createdOn.dayOfMonth + "-" +  data[i].createdOn.monthValue + "-" + data[i].createdOn.year,
-                data[i].available
+                data[i].available,
             ]);
         }
 
@@ -34,8 +35,8 @@ $(document).ready( function () {
 
     });
 });
-
-
-//    $('#table_id').DataTable( {
-//        "ajax":  {"url":"/api//getAllRooms", "dataSrc":""},
-
+function del(id) {
+    $.ajax({url: "/api/deleteRoom"+id+"/", type: "DELETE"}).done( function() {
+    getAll();
+    })
+}
