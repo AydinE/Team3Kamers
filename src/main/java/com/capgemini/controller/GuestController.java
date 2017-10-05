@@ -1,7 +1,7 @@
 package com.capgemini.controller;
 
 import com.capgemini.model.Guest;
-import com.capgemini.repository.BookingRepository;
+import com.capgemini.repository.RepositoryGuest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +12,9 @@ import java.util.ArrayList;
 public class GuestController {
 
     private ArrayList<Guest> guestList = new ArrayList<>();
+
+    @Autowired
+    private RepositoryGuest repository;
 
     public GuestController() {
         this.guestList = guestList;
@@ -33,20 +36,14 @@ public class GuestController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getGuest")
-    public Guest getGuest(@RequestParam(value = "firstName", required = true) String firstName,
-                          @RequestParam(value = "lastName", required = true) String lastName) {
-        for (Guest guest : guestList) {
-            if (guest.getFirstName().equals(firstName) && guest.getLastName().equals(lastName)) {
-                return guest;
-            }
-        }
-        return null;
+    public Guest getGuest(@RequestParam(value = "guestNumber", required = true) int guestNumber) {
+        return repository.findOne(guestNumber);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/addGuest")
     public Guest addGuest(@RequestBody Guest guest) {
         guestList.add(guest);
-        return guest;
+        return repository.save(guest);
     }
 
     @RequestMapping(value = "/changeGuest", method = RequestMethod.POST)
@@ -54,7 +51,7 @@ public class GuestController {
         for (int i = 0; i < guestList.size(); i++) {
             if (guestList.get(i).getGuestNumber() == guestNumber) {
                 guestList.set(i, guest);
-                return guest;
+                return repository.save(guest);
             }
         }
         return null;
@@ -65,6 +62,7 @@ public class GuestController {
         for (Guest removeGuest1 : guestList) {
             if (removeGuest1.getGuestNumber() == (guest.getGuestNumber())) {
                 guestList.remove(guest);
+                repository.delete(guest);
             }
         }
 
