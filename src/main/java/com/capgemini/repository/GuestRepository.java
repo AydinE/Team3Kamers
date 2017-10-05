@@ -1,10 +1,12 @@
 package com.capgemini.repository;
 
 import com.capgemini.model.Guest;
-import com.capgemini.model.Room;
 import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
 
 public interface GuestRepository extends CrudRepository<Guest, Integer> {
 
+    Guest findOneByFirstNameAndLastName(String firstName, String lastName);
 
 }

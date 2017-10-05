@@ -1,7 +1,7 @@
 package com.capgemini.controller;
 
 import com.capgemini.model.Guest;
-import com.capgemini.repository.RepositoryGuest;
+import com.capgemini.repository.GuestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class GuestController {
 
     @Autowired
-    private RepositoryGuest repository;
+    private GuestRepository repository;
 
     public GuestController() {
 
