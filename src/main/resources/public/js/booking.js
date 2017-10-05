@@ -18,7 +18,7 @@ $(document).ready(function () {
 
  function populateGuestList() {
     var endpoint = "/getGuestList";
-    makeGetRequest  (endpoint, function(guests) {
+    makeGetRequest(endpoint, function(guests) {
         $.each(guests, function(key, guest) {
             var o = new Option(guest.firstName + " " + guest.lastName, guest.id);
             $(o).html(guest.firstName + " " + guest.lastName);
@@ -29,7 +29,7 @@ $(document).ready(function () {
 
  function populateRoomList() {
     var endpoint = "/getRoomList";
-    makeGetRequest  (endpoint, function(rooms) {
+    makeGetRequest(endpoint, function(rooms) {
         $.each(rooms, function(key, room) {
             var o = new Option(room.id, room.id);
             $(o).html(room.id);
