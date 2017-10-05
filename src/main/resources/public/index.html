@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--<script src="js/jquery-3.2.1.min.js"></script>-->
     <!--<script src="js/bootstrap.min.js"></script>-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-3.7.7.min.css">
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/sidebar.js"></script>
+    <script src="js/gettasks.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/navbar-style.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -48,45 +49,35 @@
     <div class="wrapper">
         <nav id="sidebar">
             <div class="row">
-                <div class="col-md-2">
-                    <ul id="sidebar-icons" class="list-unstyled components">
+                <div>
+                    <ul id="sidebar-icons" class="col-md-2 list-unstyled components">
                         <li>
-                            <div class="icon selected" id="addButton">
+                            <div class="icon selected" id="add">
                                 <img src="images/symbol-add.png" alt="add_symbol" style="width:25px;height:25px;">
                             </div>
                         </li>
                         <li>
-                            <div class="icon" id="searchButton">
+                            <div class="icon" id="search">
                                 <img src="images/symbol-search.png" alt="search_symbol" style="width:25px;height:25px;">
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div id="sidebar-content" class="col-md-10 sidebar-content" >
-                    <!--<h4>Create new booking</h4>-->
-                    <!--<input type="text" name="fname" placeholder="First name"><br>-->
-                    <!--<input type="text" name="lname" placeholder="Last name"><br>-->
-                    <!--<input type="submit" value="Submit">-->
-                    <div class="card-header">Maak mens</div>
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <label>First Name</label>
-                                <input class="form-control mens-naam" id="mens-naam" type="name" aria-describedby="emailHelp" placeholder="John">
-                            </div>
-                            <div class="form-group">
-                                <label>Last Name</label>
-                                <input class="form-control mens-achternaam" id="mens-achternaam" type="name" placeholder="Doe">
-                            </div>
-                            <div class="form-group">
-                                <label>Age</label>
-                                <input class="form-control mens-leeftijd" id="mens-leeftijd" type="age" placeholder="20">
-                            </div>
-                            <div class="form-group">
-                            </div>
-                            <a class="btn btn-primary btn-block mens-btn">Maak Mens</a>
-                        </form>
-                    </div>
+                <div id="sidebar-content-add" class="col-md-10 sidebar-content" >
+                    <h4>Create new booking</h4>
+                    <input type="text" name="firstName" placeholder="First name"><br>
+                    <input type="text" name="lastName" placeholder="Last name"><br>
+                    <input type="datetime-local" name="startDate"><br>
+                    <input type="datetime-local" name="endDate"><br>
+                    <input type="submit" value="Submit">
+                </div>
+                <div id="sidebar-content-search" class="col-md-10 sidebar-content" style="display:none;">
+                    <h4>Search booking</h4>
+                    <input type="text" name="firstName" placeholder="First name"><br>
+                    <input type="text" name="lastName" placeholder="Last name"><br>
+                    <input type="datetime-local" name="startDate"><br>
+                    <input type="datetime-local" name="endDate"><br>
+                    <input type="submit" value="Submit">
                 </div>
             </div>
         </nav>
@@ -103,7 +94,6 @@
                             <div id="pit-scheduler"></div>
                         </div>
                     </div>
-                    <script src="js/bootstrap.min.js"></script>
                     <script src="js/moment-with-locales.min.js"></script>
                     <script src="js/bootstrap-datetimepicker.js"></script>
                     <script src="js/pitscheduler.js"></script>
