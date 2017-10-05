@@ -75,8 +75,7 @@ public class BookingController {
         booking.setGuest(guest);
         booking.setRoom(room);
 
-        bookingRepository.save(booking);
-        return booking;
+        return bookingRepository.save(booking);
     }
 
     @RequestMapping(value = "/getAllBookings", method = RequestMethod.GET)
@@ -98,7 +97,7 @@ public class BookingController {
                 oldBooking.setRoom(booking.getRoom());
                 oldBooking.setStartDate(LocalDateTime.now());
                 oldBooking.setEndDate(LocalDateTime.now());
-                return booking;
+                return bookingRepository.save(booking);
             }
             System.out.println(booking);
         }
@@ -117,7 +116,9 @@ public class BookingController {
         for (Booking booking1 : bookingList) {
             if (booking1.getBookingNr() == booking.getBookingNr()) {
                 booking.setCheckedIn(true);
+                bookingRepository.save(booking);
            }
+
         }
     }
 

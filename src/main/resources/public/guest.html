@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <!--ondertaande 4 regels zijn van table-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<script src="js/jquery-3.2.1.min.js"></script>-->
+    <!--<script src="js/bootstrap.min.js"></script>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/navbar-style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/sidebar.css">
+
+    <!--<link index.html rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+    <link  rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.css">
+    <link  rel="stylesheet" type="text/css" href="css/pitscheduler.css">
+    <link  rel="stylesheet" type="text/css" href="css/demo.css">
+</head>
+<body>
+    <nav class="navbar navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Logo</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="inactive"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Link</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <!-- Table inhoud -->
+    <div class="container">
+        <h2>Add Guest</h2>
+        <p>The following Guest has been added:</p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Guestnumber</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Address</th>
+                    <th>Postalcode</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Phonenumber</th>
+                    <th>Email</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td id="guest-outputField1"></td>
+                    <td id="guest-outputField2"></td>
+                    <td id="guest-outputField3"> </td>
+                    <td id="guest-outputField4"> </td>
+                    <td id="guest-outputField5"> </td>
+                    <td id="guest-outputField6"> </td>
+                    <td id="guest-outputField7"> </td>
+                    <td id="guest-outputField8"> </td>
+                    <td id="guest-outputField9"> </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Einde table inhoud -->
+
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="row">
+                <div class="col-md-2">
+                    <ul id="sidebar-icons" class="list-unstyled components">
+                        <li>
+                            <div class="icon selected" id="addButton">
+                                <img src="images/symbol-add.png" alt="add_symbol" style="width:25px;height:25px;">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon" id="searchButton">
+                                <img src="images/symbol-search.png" alt="search_symbol" style="width:25px;height:25px;">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="sidebar-content" class="col-md-10 sidebar-content" >
+                    <!--<h4>Create new booking</h4>-->
+                    <!--<input type="text" name="fname" placeholder="First name"><br>-->
+                    <!--<input type="text" name="lname" placeholder="Last name"><br>-->
+                    <!--<input type="submit" value="Submit">-->
+                    <div class="card-header">Add Guest</div>
+                    <div class="card-body">
+                        <!--<Hier aanmaken invoer gegevens>-->
+                        <form>
+
+                           <div class="form-group">
+                                <label>First Name</label>
+                                <input class="form-control guest-firstName" id="guest-firstName" type="name" aria-describedby="emailHelp" placeholder="John">
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input class="form-control guest-lastName" id="guest-lastName" type="name" placeholder="Doe">
+                            </div>
+                            <div class="form-group">
+                                <label>Addresss</label>
+                                <input class="form-control guest-address" id="guest-address" type="name" placeholder="DoStreet 14">
+                            </div>
+                            <div class="form-group">
+                                <label>Postalcode</label>
+                                <input class="form-control guest-costalCode" id="guest-postalCode" type="name" placeholder="4433BP">
+
+                            </div>
+                            <div class="form-group">
+                                <label>City</label>
+                                <input class="form-control guest-city" id="guest-city" type="name" placeholder="DoTown">
+
+                            </div>
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input class="form-control guest-country" id="guest-country" type="name" placeholder="Netherlands">
+
+                            </div>
+                            <div class="form-group">
+                                <label>Phonenumber</label>
+                                <input class="form-control guest-phoneNumber" id="guest-phoneNumber" type="name" placeholder="0645678899">
+
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input class="form-control guest-email" id="guest-email" type="name" placeholder="johndoe@dotown.nl">
+
+                            </div>
+
+                            <a class="btn btn-primary btn-block createButton">Add Guest</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+    <script src="js/guest.js"></script>
+</body>
+</html>

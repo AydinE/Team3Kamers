@@ -35,18 +35,6 @@ public class GuestController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/getGuestByName")
     public Guest getGuest(@RequestParam(value = "firstName", required = true) String firstName, @RequestParam(value = "lastName", required = true) String lastName) {
-
-        Guest guest = new Guest();
-        guest.setFirstName("Pipo");
-        guest.setLastName("de Clown");
-        guest.setAddress("Clownstraat");
-        guest.setPostalCode("3321bp");
-        guest.setCity("Clownstad");
-        guest.setCountry("NL");
-        guest.setPhoneNumber("06789");
-        guest.setEmail("pip@slechteclown.nl");
-        repository.save(guest);
-
         return repository.findOneByFirstNameAndLastName(firstName, lastName);
     }
 
