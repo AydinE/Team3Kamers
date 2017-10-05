@@ -51,8 +51,17 @@ public class BookingController {
         room.setAvailability(true);
         room.setSizeOfRoom(RoomSize.FIVE_SIX_PERSONS);
         room.setTypeOfRoom(RoomType.LUXURY);
+        room.setCreatedOn(LocalDateTime.now());
 
         room = roomRepository.save(room);
+
+        Room room2 = new Room();
+        room2.setAvailability(false);
+        room2.setSizeOfRoom(RoomSize.THREE_FOUR_PERSONS);
+        room2.setTypeOfRoom(RoomType.BUDGET);
+        room2.setCreatedOn(LocalDateTime.now());
+
+        room2 = roomRepository.save(room2);
 
         Booking booking = new Booking();
         booking.setRoom(room);

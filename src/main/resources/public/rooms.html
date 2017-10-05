@@ -21,7 +21,7 @@
 <body>
 <nav class="navbar navbar-custom navbar-fixed-top">
     <div class="container-fluid">
-           <div class="navbar-header">
+        <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
@@ -60,10 +60,19 @@
             </div>
             <div id="sidebar-content-add" class="col-md-10 sidebar-content">
                 <h4>Add new room</h4>
-                <select id="addGuestList" class="dropdown-select" name="state"></select>
-                <select id="addRoomList" class="dropdown-select" name="state"></select>
-                <input type="datetime-local" id="addStartDate"><br>
-                <input type="datetime-local" id="addEndDate"><br>
+                Room type:
+                <select id="addRoomType">
+                    <option value="0">Luxury</option>
+                    <option value="1">Normal</option>
+                    <option value="2">Budget</option>
+                </select><br/>
+                Room size:
+                <select id="addRoomSize">
+                    <option value="0">1</option>
+                    <option value="1">2</option>
+                    <option value="2">3-4</option>
+                    <option value="3">5-6</option>
+                </select></br>
                 <input type="submit" id="addButton" value="Create">
             </div>
             <div id="sidebar-content-search" class="col-md-10 sidebar-content" style="display:none;">
@@ -91,7 +100,7 @@
                                 <th>Type</th>
                                 <th>Size</th>
                                 <th>Creation date</th>
-                                <th>Availability</th>
+                                <th>Available</th>
                             </tr>
                             </thead>
                             <tbody></tbody>

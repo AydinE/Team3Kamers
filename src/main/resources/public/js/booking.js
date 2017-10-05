@@ -5,16 +5,19 @@ $(document).ready(function () {
     populateRoomList();
 
     $("#addButton").click(function() {
-        var booking = {
-            guest: {id: $("#addGuestList").val()},
-            room: {id: $("#addRoomList").val()},
-            startDate: $("#addStartDate").val(),
-            endDate: $("#addEndDate").val()
-        };
-        makeAjaxRequest("POST", "/addBooking", booking, function(result) {
-        });
+        createBooking();
     });
 });
+
+function createBooking() {
+    var booking = {
+        guest: {id: $("#addGuestList").val()},
+        room: {id: $("#addRoomList").val()},
+        startDate: $("#addStartDate").val(),
+        endDate: $("#addEndDate").val()
+    };
+    makeAjaxRequest("POST", "/addBooking", booking);
+}
 
  function populateGuestList() {
     var endpoint = "/getGuestList";

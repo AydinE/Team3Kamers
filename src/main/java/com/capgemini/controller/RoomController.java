@@ -5,6 +5,7 @@ import com.capgemini.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,15 +16,13 @@ public class RoomController {
     @Autowired
     RoomRepository roomRepository;
 
-    public RoomController() {
+    public RoomController() {}
 
-    }
-
-    //http://localhost:8080/api/addRoom?roomNr=1&roomType=NORMAL&roomSize=ONE_PERSON
     @RequestMapping(value = "/addRoom", method = RequestMethod.POST)
     public Room addRoom(@RequestBody Room room) {
-        roomRepository.save(room);
-        return room;
+        room.setCreatedOn(LocalDateTime.now());
+        room.setAvailability(true);
+        return roomRepository.save(room);
     }
 
     @RequestMapping(value = "/getRoomList", method = RequestMethod.GET)
@@ -62,6 +61,5 @@ public class RoomController {
     public void deleteRoom(@PathVariable int id) {
         roomRepository.delete(id);
     }
-
 
 }

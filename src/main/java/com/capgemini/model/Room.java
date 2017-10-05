@@ -13,14 +13,15 @@ import java.time.LocalDateTime;
 public class Room {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private RoomType typeOfRoom;
     private RoomSize sizeOfRoom;
     private LocalDateTime createdOn;
     private boolean availability;
 
-    public Room() {}
+    public Room() {
+    }
 
     @Override
     public String toString() {
@@ -41,13 +42,21 @@ public class Room {
         return sizeOfRoom;
     }
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
-    public boolean isAvailable() { return availability; }
+    public boolean isAvailable() {
+        return availability;
+    }
 
-    public void setAvailability(boolean availability) { this.availability = availability; }
+    public void setAvailability(boolean availability) {
+        this.availability = availability;
+    }
 
-    public LocalDateTime getCreatedOn() { return createdOn; }
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
 
     public void setId(int id) {
         this.id = id;
