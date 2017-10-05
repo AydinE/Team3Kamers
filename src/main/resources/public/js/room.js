@@ -11,12 +11,27 @@ $("#createButton").click(function() {
 
 $(document).ready( function () {
 
-    var table = $("#table_id").DataTable();
+    var table = $("#table").DataTable();
+    var url = "/api/getAllRooms";
+    table.clear();
+
     $.get(url, function(data) {
 
+        console.log(data);
 
+        for (i = 0; i < data.length; i++) {
+            console.log(data[i]);
+            table.row.add([
+                data[i].roomNr,
+                data[i].typeOfRoom,
+                data[i].sizeOfRoom,
+                data[i].createdOn.dayOfMonth + "-" +  data[i].createdOn.monthValue + "-" + data[i].createdOn.year,
+                data[i].available
+            ]);
+        }
 
-//    table.row.add([roomNr, typeOfRoom, sizeOfRoom, createdOn, availability])
+        table.draw();
+
     });
 });
 
