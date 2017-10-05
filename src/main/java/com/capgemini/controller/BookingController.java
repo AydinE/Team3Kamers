@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -67,20 +68,18 @@ public class BookingController {
 
     @RequestMapping(value = "/addBooking", method = RequestMethod.POST)
     public Booking addBooking(@RequestBody Booking booking){
-
-        Guest guest = guestRepository.findOne(booking.getGuest().getGuestNumber());
-
-        Room room = roomRepository.findOne(booking.getRoom().getRoomNr());
-
+        Guest guest = guestRepository.findOne(booking.getGuest().getId());
+        Room room = roomRepository.findOne(booking.getRoom().getId());
         booking.setGuest(guest);
         booking.setRoom(room);
-
         return bookingRepository.save(booking);
     }
 
-    @RequestMapping(value = "/getAllBookings", method = RequestMethod.GET)
-    public Iterable<Booking> getAllBookings() {
-        return bookingRepository.findAll();
+    @RequestMapping(value = "/getBookingList", method = RequestMethod.GET)
+    public List<Booking> getAllBookings() {
+        List<Booking> list = new ArrayList<>();
+        bookingRepository.findAll().forEach(list::add);
+        return list;
     }
 
     @RequestMapping("/getBooking")

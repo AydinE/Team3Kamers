@@ -14,7 +14,7 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private int roomNr;
+    private int id;
     private RoomType typeOfRoom;
     private RoomSize sizeOfRoom;
     private LocalDateTime createdOn;
@@ -25,7 +25,7 @@ public class Room {
     @Override
     public String toString() {
         return "Room{" +
-                "roomNr=" + roomNr +
+                "id=" + id +
                 ", typeOfRoom=" + typeOfRoom +
                 ", sizeOfRoom=" + sizeOfRoom +
                 ", createdOn=" + createdOn +
@@ -41,7 +41,7 @@ public class Room {
         return sizeOfRoom;
     }
 
-    public int getRoomNr() { return roomNr; }
+    public int getId() { return id; }
 
     public boolean isAvailable() { return availability; }
 
@@ -49,8 +49,8 @@ public class Room {
 
     public LocalDateTime getCreatedOn() { return createdOn; }
 
-    public void setRoomNr(int roomNr) {
-        this.roomNr = roomNr;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setTypeOfRoom(RoomType typeOfRoom) {

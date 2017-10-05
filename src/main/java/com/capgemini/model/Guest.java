@@ -2,7 +2,7 @@ package com.capgemini.model;
 
 // SQL create table
 //CREATE TABLE guest (
-//    guestNumber int NOT NULL AUTO_INCREMENT,
+//    id int NOT NULL AUTO_INCREMENT,
 //    firstName varchar(25),
 //    lastName varchar(25),
 //    address varchar(50),
@@ -23,7 +23,7 @@ public class Guest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int guestNumber;
+    private int id;
     private String firstName;
     private String lastName;
     private String address;
@@ -35,8 +35,8 @@ public class Guest {
 
     public Guest() {}
 
-    public int getGuestNumber() {
-        return guestNumber;
+    public int getId() {
+        return id;
     }
 
     public String getFirstName() {
@@ -71,8 +71,8 @@ public class Guest {
         return email;
     }
 
-    public void setGuestNumber(int guestNumber) {
-        this.guestNumber = guestNumber;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setFirstName(String firstName) {
@@ -110,7 +110,7 @@ public class Guest {
     @Override
     public String toString() {
         return "Guest{" +
-                "guestNumber=" + guestNumber +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' +

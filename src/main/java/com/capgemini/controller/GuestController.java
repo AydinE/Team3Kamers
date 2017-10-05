@@ -22,9 +22,7 @@ public class GuestController {
     @RequestMapping(method = RequestMethod.GET, value = "/getGuestList")
     public List<Guest> getGuestList() {
         List<Guest> list = new ArrayList<>();
-        for (Guest guest : repository.findAll()) {
-            list.add(guest);
-        }
+        repository.findAll().forEach(list::add);
         return list;
     }
 

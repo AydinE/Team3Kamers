@@ -2,7 +2,7 @@ jQuery.fn.GetTasks = function() {
 
     var tasks = [];
 
-    var url = "/api/getAllBookings";
+    var url = "/api/getBookingList";
     $.get(url, function(data) {
 
             for (i = 0; i < data.length; i++) {

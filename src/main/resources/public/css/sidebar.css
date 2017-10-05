@@ -9,8 +9,8 @@
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 275px;
+    max-width: 275px;
     background: #f1f1f1;
     color: #fff;
     transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
@@ -40,14 +40,23 @@
 #sidebar .sidebar-content {
     color: #000000;
     text-align: center;
-    width 150px;
+    width 200px;
     padding: 5px;
     overflow: hidden;
 }
 
-#sidebar input {
+#sidebar input, select {
     margin: 4px;
-    width: 150px;
+    width: 200px;
+    text-align: left;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+
+#sidebar input[type="submit"] {
+    width: auto;
+    text-align: center;
 }
 
 /* Toggling the sidebar header content, hide the big heading [h3] and showing the small heading [strong] and vice versa*/
