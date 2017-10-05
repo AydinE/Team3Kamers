@@ -68,8 +68,8 @@ public class RoomController {
         return null;
     }
 
-    @RequestMapping(value = "/deleteRoom", method = RequestMethod.POST)
-    public void deleteRoom(@RequestBody Room room) {roomRepository.delete(room); }
+    @RequestMapping(value = "/deleteRoom", method = RequestMethod.DELETE)
+    public void deleteRoom(@PathVariable int id) {roomRepository.delete(id); }
 
     public void setRoomList(ArrayList<Room> roomList) {
         this.roomList = roomList;
