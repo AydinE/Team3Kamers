@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
@@ -11,16 +11,13 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/sidebar.js"></script>
-    <script src="js/gettasks.js"></script>
+    <script src="css/DataTables-1.10.16/js/dataTables.jqueryui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/datatables.min.css">
     <link rel="stylesheet" type="text/css" href="css/navbar-style.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/sidebar.css">
 
-    <!--<link  rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
-    <link  rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.css">
-    <link  rel="stylesheet" type="text/css" href="css/pitscheduler.css">
-    <link  rel="stylesheet" type="text/css" href="css/demo.css">
 </head>
 <body>
     <nav class="navbar navbar-custom navbar-fixed-top">
@@ -65,55 +62,53 @@
                 </div>
                 <div id="sidebar-content-add" class="col-md-10 sidebar-content" >
                     <h4>Create new booking</h4>
-                    <input type="text" id="inputDropdown" placeholder="Guest name">
-
-                    <ul id="myUL">
-                        <li style="display:none" value="1"><a>Adele</a></li>
-                        <li style="display:none"><a>Agnes</a></li>
-                        <li style="display:none"><a>Billy</a></li>
-                        <li style="display:none"><a>Bob</a></li>
-                        <li style="display:none"><a>Calvin</a></li>
-                        <li style="display:none"><a>Christina</a></li>
-                        <li style="display:none"><a>Cindy</a></li>
-                    </ul>
-
-                    <input type="number" id="addRoom" placeholder="Room number"><br>
-                    <input type="datetime-local" id="addStartDate"><br>
-                    <input type="datetime-local" id="addEndDate"><br>
-                    <input type="submit" id="addButton" value="Create">
+                    <input type="text" name="firstName" placeholder="First name"><br>
+                    <input type="text" name="lastName" placeholder="Last name"><br>
+                    <input type="datetime-local" name="startDate"><br>
+                    <input type="datetime-local" name="endDate"><br>
+                    <input type="submit" value="Submit">
                 </div>
                 <div id="sidebar-content-search" class="col-md-10 sidebar-content" style="display:none;">
                     <h4>Search booking</h4>
-                    <input type="text" id="searchGuestName" placeholder="Guest name"><br>
-                    <input type="number" id="searchRoom" placeholder="Room number"><br>
-                    <input type="datetime-local" id="searchStartDate"><br>
-                    <input type="datetime-local" id="searchEndDate"><br>
-
+                    <input type="text" name="firstName" placeholder="First name"><br>
+                    <input type="text" name="lastName" placeholder="Last name"><br>
+                    <input type="datetime-local" name="startDate"><br>
+                    <input type="datetime-local" name="endDate"><br>
+                    <input type="submit" value="Submit">
                 </div>
             </div>
         </nav>
     </div>
-
     <!-- Scheduler -->
     <div class="row">
         <div class="col-md-10">
+            <div class="container">
                 <div class="row content">
                     <div class="main-container container-fluid row">
                         <div class="demo-container">
-                            <h1 class="text-center">Bookings</h1><br>
-
-                            <div id="pit-scheduler"></div>
+                            <h1 class="text-center">Room overview</h1><br>
+                            <table id="table" class="display">
+                                <thead>
+                                <tr>
+                                    <th>room nr</th>
+                                    <th>type of room</th>
+                                    <th>size off room</th>
+                                    <th>created on</th>
+                                    <th>availability</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                    <script type="text/javascript" charset="utf8" src="js/datatables.min.js"></script>
+                    <script src="js/room.js"></script>
+
                 </div>
+            </div>
         </div>
     </div>
-    <script src="js/moment-with-locales.min.js"></script>
-    <script src="js/bootstrap-datetimepicker.js"></script>
-    <script src="js/pitscheduler.js"></script>
-    <script src="js/schedulerinit.js"></script>
-    <script src="js/api.js"></script>
-    <script src="js/booking.js"></script>
     <!-- End of Scheduler -->
 
 

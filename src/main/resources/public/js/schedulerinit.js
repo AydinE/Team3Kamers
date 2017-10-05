@@ -155,4 +155,8 @@
 		]
 	});
 
+	var MyFunctionResult = $().GetTasks();
+
+	console.log(MyFunctionResult);
+
 });
