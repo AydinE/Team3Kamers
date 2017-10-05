@@ -23,6 +23,7 @@ public class BookingController {
 
     @RequestMapping(value = "/addBooking", method = RequestMethod.POST)
     public Booking addBooking(@RequestBody Booking booking){
+        System.out.println("In booking");
         bookingRepository.save(booking);
         return booking;
     }

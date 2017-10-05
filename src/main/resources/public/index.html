@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
@@ -64,27 +64,38 @@
                 </div>
                 <div id="sidebar-content-add" class="col-md-10 sidebar-content" >
                     <h4>Create new booking</h4>
-                    <input type="text" name="firstName" placeholder="First name"><br>
-                    <input type="text" name="lastName" placeholder="Last name"><br>
-                    <input type="datetime-local" name="startDate"><br>
-                    <input type="datetime-local" name="endDate"><br>
-                    <input type="submit" value="Submit">
+                    <input type="text" id="inputDropdown" placeholder="Guest name">
+
+                    <ul id="myUL">
+                        <li style="display:none" value="1"><a>Adele</a></li>
+                        <li style="display:none"><a>Agnes</a></li>
+                        <li style="display:none"><a>Billy</a></li>
+                        <li style="display:none"><a>Bob</a></li>
+                        <li style="display:none"><a>Calvin</a></li>
+                        <li style="display:none"><a>Christina</a></li>
+                        <li style="display:none"><a>Cindy</a></li>
+                    </ul>
+
+                    <input type="number" id="addRoom" placeholder="Room number"><br>
+                    <input type="datetime-local" id="addStartDate"><br>
+                    <input type="datetime-local" id="addEndDate"><br>
+                    <input type="submit" id="addButton" value="Create">
                 </div>
                 <div id="sidebar-content-search" class="col-md-10 sidebar-content" style="display:none;">
                     <h4>Search booking</h4>
-                    <input type="text" name="firstName" placeholder="First name"><br>
-                    <input type="text" name="lastName" placeholder="Last name"><br>
-                    <input type="datetime-local" name="startDate"><br>
-                    <input type="datetime-local" name="endDate"><br>
-                    <input type="submit" value="Submit">
+                    <input type="text" id="searchGuestName" placeholder="Guest name"><br>
+                    <input type="number" id="searchRoom" placeholder="Room number"><br>
+                    <input type="datetime-local" id="searchStartDate"><br>
+                    <input type="datetime-local" id="searchEndDate"><br>
+
                 </div>
             </div>
         </nav>
     </div>
+
     <!-- Scheduler -->
     <div class="row">
         <div class="col-md-10">
-            <div class="container">
                 <div class="row content">
                     <div class="main-container container-fluid row">
                         <div class="demo-container">
@@ -93,14 +104,15 @@
                             <div id="pit-scheduler"></div>
                         </div>
                     </div>
-                    <script src="js/moment-with-locales.min.js"></script>
-                    <script src="js/bootstrap-datetimepicker.js"></script>
-                    <script src="js/pitscheduler.js"></script>
-                    <script src="js/schedulerinit.js"></script>
                 </div>
-            </div>
         </div>
     </div>
+    <script src="js/moment-with-locales.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.js"></script>
+    <script src="js/pitscheduler.js"></script>
+    <script src="js/schedulerinit.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/booking.js"></script>
     <!-- End of Scheduler -->
 
 
