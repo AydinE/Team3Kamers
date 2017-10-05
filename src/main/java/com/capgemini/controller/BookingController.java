@@ -1,6 +1,8 @@
 package com.capgemini.controller;
 
 import com.capgemini.model.Booking;
+import com.capgemini.repository.BookingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -10,6 +12,9 @@ import java.util.ArrayList;
 @RequestMapping("/api")
 public class BookingController {
 
+    @Autowired
+    BookingRepository bookingRepository;
+
     private ArrayList<Booking> bookingList= new ArrayList<>();
 
     public BookingController(){
@@ -18,23 +23,18 @@ public class BookingController {
 
     @RequestMapping(value = "/addBooking", method = RequestMethod.POST)
     public Booking addBooking(@RequestBody Booking booking){
-        bookingList.add(booking);
+        bookingRepository.save(booking);
         return booking;
     }
 
     @RequestMapping(value = "/getAllBooking", method = RequestMethod.GET)
-    public ArrayList<Booking> getAllBooking() {
-        return bookingList;
+    public Iterable<Booking> getAllBooking() {
+        return bookingRepository.findAll();
     }
 
     @RequestMapping("/getBooking")
     public Booking getBooking(@RequestParam(value = "bookingNr", required = true) int bookingNr) {
-        for (Booking requiredBooking : bookingList){
-            if (requiredBooking.getBookingNr() == bookingNr){
-                return requiredBooking;
-            }
-        }
-        return null;
+        return bookingRepository.findOne(bookingNr);
     }
 
     @RequestMapping(value = "/changeBooking", method = RequestMethod.POST)
@@ -55,12 +55,10 @@ public class BookingController {
 
     @RequestMapping(value = "/deleteBooking", method = RequestMethod.POST)
     public void deleteBooking(@RequestBody Booking booking) {
-        for (Booking excistingBooking : bookingList) {
-            if (excistingBooking.getBookingNr() == booking.getBookingNr()) {
-                bookingList.remove(excistingBooking);
-            }
+        bookingRepository.delete(booking);
         }
-    }
+
+
 
     @RequestMapping(value = "/guestCheckIn", method = RequestMethod.POST)
     public void checkIn(@RequestBody Booking booking) {

@@ -1,6 +1,8 @@
 package com.capgemini.controller;
 
 import com.capgemini.model.Guest;
+import com.capgemini.repository.BookingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
