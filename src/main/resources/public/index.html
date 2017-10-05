@@ -15,6 +15,9 @@
     <link rel="stylesheet" type="text/css" href="css/navbar-style.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/sidebar.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+
 
     <!--<link index.html rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
     <link  rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.css">
@@ -38,8 +41,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="inactive"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Link</a></li>
+                    <li class="inactive"><a href="index.html">Bookings <span class="sr-only">(current)</span></a></li>
+                    <li><a href="guests.html">Guests</a></li>
+                    <li><a href="rooms.html">Rooms</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -64,21 +68,14 @@
                 </div>
                 <div id="sidebar-content-add" class="col-md-10 sidebar-content" >
                     <h4>Create new booking</h4>
-                    <input type="text" id="inputDropdown" placeholder="Guest name">
-
-                    <ul id="myUL">
-                        <li style="display:none" value="1"><a>Adele</a></li>
-                        <li style="display:none"><a>Agnes</a></li>
-                        <li style="display:none"><a>Billy</a></li>
-                        <li style="display:none"><a>Bob</a></li>
-                        <li style="display:none"><a>Calvin</a></li>
-                        <li style="display:none"><a>Christina</a></li>
-                        <li style="display:none"><a>Cindy</a></li>
-                    </ul>
-
-                    <input type="number" id="addRoom" placeholder="Room number"><br>
-                    <input type="datetime-local" id="addStartDate"><br>
-                    <input type="datetime-local" id="addEndDate"><br>
+                    Guest name: </br>
+                    <select id="addGuestList" class="dropdown-select" name="state"></select></br>
+                    Room number: </br>
+                    <select id="addRoomList" class="dropdown-select" name="state"></select></br>
+                    Start date: </br>
+                    <input type="datetime-local" id="addStartDate"></br>
+                    End date: </br>
+                    <input type="datetime-local" id="addEndDate"></br>
                     <input type="submit" id="addButton" value="Create">
                 </div>
                 <div id="sidebar-content-search" class="col-md-10 sidebar-content" style="display:none;">
@@ -87,7 +84,6 @@
                     <input type="number" id="searchRoom" placeholder="Room number"><br>
                     <input type="datetime-local" id="searchStartDate"><br>
                     <input type="datetime-local" id="searchEndDate"><br>
-
                 </div>
             </div>
         </nav>
@@ -95,7 +91,7 @@
 
     <!-- Scheduler -->
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-9    ">
                 <div class="row content">
                     <div class="main-container container-fluid row">
                         <div class="demo-container">
