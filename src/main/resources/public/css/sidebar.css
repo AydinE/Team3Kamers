@@ -37,15 +37,30 @@
 }
 
 /* Shrinking the sidebar from 250px to 80px and center aligining its content*/
-#sidebar.inactive {
-    min-width: 51px;
-    max-width: 51px;
+#sidebar .sidebar-content {
+    color: #000000;
+    text-align: center;
+}
+
+#sidebar input {
+    margin: 4px;
 }
 
 /* Toggling the sidebar header content, hide the big heading [h3] and showing the small heading [strong] and vice versa*/
 #sidebar .sidebar-header strong {
     display: none;
 }
+
+#sidebar.inactive {
+    min-width: 51px;
+    max-width: 51px;
+}
+
+#sidebar.inactive .sidebar-content {
+    max-width: 0px;
+    visibility: hidden;
+}
+
 #sidebar.inactive .sidebar-header h3 {
     display: none;
 }
@@ -91,37 +106,6 @@
        collapsing in on toggle button click with removal of
        the vertical rotation.   */
     #sidebar {
-        margin-left: -250px;
-        transform: rotateY(100deg);
-    }
-    #sidebar.inactive {
-        margin-left: 0;
-        transform: none;
-    }
-
-    /* Reversing the behavior of the bars:
-       Removing the rotation from the first,
-       last bars and reappear the second bar on default state,
-       and giving them a vertical margin */
-    #sidebarCollapse span:first-of-type,
-    #sidebarCollapse span:nth-of-type(2),
-    #sidebarCollapse span:last-of-type {
-        transform: none;
-        opacity: 1;
-        margin: 5px auto;
-    }
-
-    /* Removing the vertical margin and make the first and last bars rotate again when the sidebar is open, hiding the second bar */
-    #sidebarCollapse.inactive span {
-        margin: 0 auto;
-    }
-    #sidebarCollapse.inactive span:first-of-type {
-        transform: rotate(45deg) translate(2px, 2px);
-    }
-    #sidebarCollapse.inactive span:nth-of-type(2) {
-        opacity: 0;
-    }
-    #sidebarCollapse.inactive span:last-of-type {
-        transform: rotate(-45deg) translate(1px, -1px);
+        visibility:hidden;
     }
 }
