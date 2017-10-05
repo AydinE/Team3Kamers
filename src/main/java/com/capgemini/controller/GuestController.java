@@ -43,7 +43,7 @@ public class GuestController {
     @RequestMapping(method = RequestMethod.POST, value = "/addGuest")
     public Guest addGuest(@RequestBody Guest guest) {
         guestList.add(guest);
-        return guest;
+        return repository.save(guest);
     }
 
     @RequestMapping(value = "/changeGuest", method = RequestMethod.POST)
@@ -51,7 +51,7 @@ public class GuestController {
         for (int i = 0; i < guestList.size(); i++) {
             if (guestList.get(i).getGuestNumber() == guestNumber) {
                 guestList.set(i, guest);
-                return guest;
+                return repository.save(guest);
             }
         }
         return null;
@@ -62,6 +62,7 @@ public class GuestController {
         for (Guest removeGuest1 : guestList) {
             if (removeGuest1.getGuestNumber() == (guest.getGuestNumber())) {
                 guestList.remove(guest);
+                repository.delete(guest);
             }
         }
 
