@@ -8,3 +8,19 @@ $("#createButton").click(function() {
         $("#outputField").html("Room " + data.roomNr + " created")
     });
 });
+
+$(document).ready( function () {
+
+    var table = $("#table_id").DataTable();
+    $.get(url, function(data) {
+
+
+
+//    table.row.add([roomNr, typeOfRoom, sizeOfRoom, createdOn, availability])
+    });
+});
+
+
+//    $('#table_id').DataTable( {
+//        "ajax":  {"url":"/api//getAllRooms", "dataSrc":""},
+
