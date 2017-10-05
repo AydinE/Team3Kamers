@@ -37,7 +37,9 @@ public class GuestController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/getGuest")
     public Guest getGuest(@RequestParam(value = "guestNumber", required = true) int guestNumber) {
-        return repository.findOne(guestNumber);
+
+        return repository.findOne(guestNumber); // eigenlijk staat hier: Guest guest = repository.findOne(guestnumber);
+                                                // return guest
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/addGuest")
@@ -57,7 +59,7 @@ public class GuestController {
         return null;
     }
 
-    @RequestMapping(value = "/removeguest", method = RequestMethod.POST)
+    @RequestMapping(value = "/removeGuest", method = RequestMethod.POST)
     public void removeGuest(@RequestBody Guest guest) {
         for (Guest removeGuest1 : guestList) {
             if (removeGuest1.getGuestNumber() == (guest.getGuestNumber())) {

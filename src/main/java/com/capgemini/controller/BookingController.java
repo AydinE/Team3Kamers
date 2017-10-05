@@ -46,7 +46,7 @@ public class BookingController {
                 oldBooking.setRoom(booking.getRoom());
                 oldBooking.setStartDate(LocalDateTime.now());
                 oldBooking.setEndDate(LocalDateTime.now());
-                return booking;
+                return bookingRepository.save(booking);
             }
             System.out.println(booking);
         }
@@ -66,6 +66,7 @@ public class BookingController {
             if (booking1.getBookingNr() == booking.getBookingNr()) {
                 booking.setCheckedIn(true);
            }
+
         }
     }
 
