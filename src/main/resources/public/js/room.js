@@ -28,7 +28,9 @@ function populateTable() {
                 "</td><td>" + getType(room.typeOfRoom) +
                 "</td><td>" + getSize(room.sizeOfRoom) +
                 "</td><td>" + parseDate(room.createdOn) +
-                "</td><td>" + getAvailable(room.available) + "</td></tr>");
+                "</td><td>" + getAvailable(room.available) +
+                "</td><td>" +
+                "</td></tr>");
         });
         $("#dataTable").DataTable({searching: false});
     });
