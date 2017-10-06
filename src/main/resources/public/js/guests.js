@@ -1,22 +1,36 @@
+var table;
+
 $(document).ready( function () {
     populateTable();
+    table = $("#dataTable").DataTable({searching: false});
     $("#addButton").click(function() {
-        createRoom();
+        createGuest();
     });
 });
 
-function createRoom() {
-    var json = {
-        typeOfRoom: $("#addRoomType").val(),
-        sizeOfRoom: $("#addRoomSize").val()
+function createGuest() {
+    var obj = {
+        firstName: $("#addFirstName").val(),
+        lastName: $("#addLastName").val(),
+        address: $("#addAddress").val(),
+        postalCode: $("#addPostalCode").val(),
+        city: $("#addCity").val(),
+        country: $("#addCountry").val(),
+        phoneNumber: $("#addPhoneNumber").val(),
+        email: $("#addEmail").val()
     };
-    makeAjaxRequest("POST", "/addRoom", json, function(room) {
-        console.log(room);
-        $("#dataTable tbody").append("<tr><td>" + room.id +
-            "</td><td>" + getType(room.typeOfRoom) +
-            "</td><td>" + getSize(room.sizeOfRoom) +
-            "</td><td>" + parseDate(room.createdOn) +
-            "</td><td>" + getAvailable(room.available) + "</td></tr>");
+    makeAjaxRequest("POST", "/addGuest", obj, function(guest) {
+        $("#dataTable tbody").append("<tr><td>" + guest.id +
+            "</td><td>" + guest.firstName +
+            "</td><td>" + guest.lastName +
+            "</td><td>" + guest.address +
+            "</td><td>" + guest.postalCode +
+            "</td><td>" + guest.city +
+            "</td><td>" + guest.country +
+            "</td><td>" + guest.phoneNumber +
+            "</td><td>" + guest.email +
+            "</td><td>" + "<a href=\"javascript:del(" + guest.id + ")\" class=\"btn btn-danger\">Delete</a>" +
+            "</td></tr>");
     });
 }
 
@@ -32,14 +46,21 @@ function populateTable() {
                 "</td><td>" + guest.city +
                 "</td><td>" + guest.country +
                 "</td><td>" + guest.phoneNumber +
-                "</td><td>" + guest.email + "</td></tr>");
+                "</td><td>" + guest.email +
+                "</td><td>" + "<a href=\"javascript:del(" + guest.id + ")\" class=\"btn btn-danger\">Delete</a>" +
+                "</td></tr>");
         });
-        $("#dataTable").DataTable({searching: false});
     });
 }
 
-//function del(id) {
-//    $.ajax({url: "/api/deleteRoom"+id+"/", type: "DELETE"}).done( function() {
-//    getAll();
-//    })
-//}
+function refreshTable() {
+    table.clear();
+    populateTable();
+    table.draw();
+}
+
+function del(id) {
+    $.ajax({url: "/api/removeGuest/" + id, type: "DELETE"}).done( function() {
+        refreshTable();
+    })
+}

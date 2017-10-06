@@ -61,27 +61,38 @@
             </div>
             <div id="sidebar-content-add" class="col-md-10 sidebar-content">
                 <h4>Add new room</h4>
-                Room type:
+                Room type:<br>
                 <select id="addRoomType">
                     <option value="0">Luxury</option>
                     <option value="1">Normal</option>
                     <option value="2">Budget</option>
-                </select><br/>
-                Room size:
+                </select><br>
+                Room size:<br>
                 <select id="addRoomSize">
                     <option value="0">1</option>
                     <option value="1">2</option>
                     <option value="2">3-4</option>
                     <option value="3">5-6</option>
-                </select></br>
+                </select><br>
                 <input type="submit" id="addButton" value="Create">
             </div>
             <div id="sidebar-content-search" class="col-md-10 sidebar-content" style="display:none;">
                 <h4>Search rooms</h4>
-                <input type="text" id="searchGuestName" placeholder="Guest name"><br>
-                <input type="number" id="searchRoom" placeholder="Room number"><br>
-                <input type="datetime-local" id="searchStartDate"><br>
-                <input type="datetime-local" id="searchEndDate"><br>
+                Room number:<br>
+                <input type="text" id="searchRoomNumber"><br>
+                Room type:<br>
+                <select id="searchRoomType">
+                    <option value="0">Luxury</option>
+                    <option value="1">Normal</option>
+                    <option value="2">Budget</option>
+                </select><br>
+                Room size:<br>
+                <select id="searchRoomSize">
+                    <option value="0">1</option>
+                    <option value="1">2</option>
+                    <option value="2">3-4</option>
+                    <option value="3">5-6</option>
+                </select><br>
             </div>
         </div>
     </nav>
@@ -102,6 +113,7 @@
                                 <th>Size</th>
                                 <th>Creation date</th>
                                 <th>Available</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody></tbody>

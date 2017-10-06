@@ -1,24 +1,28 @@
+Number.prototype.pad = function(size) {
+    var s = String(this);
+    while (s.length < (size || 2)) {s = "0" + s;}
+    return s;
+}
+
 $(document).ready(function() {
 
     // Tasks - >      Bookings (Name)
     // Users - >      Rooms
     // User tasks - > Booking (dates)
 
-    console.log("Gettasks was called");
-
     var tasks = [];
     var users = [];
     //var userTasks = [];
 
     // Get Tasks
-    var url = "/api/getAllBookings";
+    var url = "/api/getBookingList";
     $.get(url, function(data) {
 
         for (i = 0; i < data.length; i++) {
 
             var taskObj = {
                 //id: "room" + data[i].bookingNr,
-                id: data[i].bookingNr,
+                id: data[i].bookingNr.toString(),
                 name: data[i].guest.firstName + " " + data[i].guest.lastName,
                 description: data[i].startDate + " - " + data[i].endDate,
                 color: '#536DFE'
@@ -26,59 +30,67 @@ $(document).ready(function() {
             tasks.push(taskObj);
         }
 
-    });
-
-    // Get Users
-    var url = "/api/getAllRooms";
-    $.get(url, function(data) {
-
-        for (i = 0; i < data.length; i++) {
-
-            var roomObj = {
-                name: data[i].roomNr,
-                group: 'Rooms',
-                tasks: []
-            }
-            users.push(roomObj);
-        }
+        getUsers();
 
     });
 
-    // Get UserTasks
-    var url = "/api/getAllBookings";
-    $.get(url, function(data) {
+    function getUsers() {
+      // Get Users
+        var url = "/api/getRoomList";
+        $.get(url, function(data) {
 
-        for (i = 0; i < data.length; i++) {
+            for (i = 0; i < data.length; i++) {
 
-            console.log("length " + data[i].startDate[1]);
-
-            if (data[i].startDate[1] < 10) {
-                String.fromCharCode(48) + String.fromCharCode(data[i].startDate[1] + 49);
-            }
-
-            if (data[i].startDate[2] < 10) {
-                String.fromCharCode(48) + String.fromCharCode(data[i].startDate[2] + 49);
-            }
-
-            var taskObj = {
-                id: data[i].room.roomNr,
-                start_date: data[i].startDate[0] + "-" + data[i].startDate[1] + "-" + data[i].startDate[2] + " " + "17:00",
-                end_date: data[i].endDate[0] + "-" + data[i].endDate[1] + "-" + data[i].endDate[2] + " " + "11:00"
-            }
-            //tasks.push(taskObj);
-            for (i = 0; i < users.length; i++) {
-                if (users[i].name == taskObj.id) {
-                    users[i].tasks.push(taskObj);
+                var roomObj = {
+                    name: data[i].id.toString(),
+                    group: 'Rooms',
+                    tasks: []
                 }
+                users.push(roomObj);
             }
 
-        }
+            getUserTasks();
 
-    });
+        });
+    }
 
-    console.log(tasks);
-    console.log(users);
+    function getUserTasks() {
+          // Get UserTasks
+            var url = "/api/getBookingList";
+            $.get(url, function(data) {
 
-    $().schedulerInit(tasks, users)
+                for (i = 0; i < data.length; i++) {
+
+                    if (data[i].startDate[1] < 10) {
+                        data[i].startDate[1] = data[i].startDate[1].pad();
+                    }
+
+                    if (data[i].startDate[2] < 10) {
+                        data[i].startDate[2] = data[i].startDate[2].pad();
+                    }
+
+                    var taskObj = {
+                        id: data[i].room.id.toString(),
+                        start_date: data[i].startDate[0] + "-" + data[i].startDate[1] + "-" + data[i].startDate[2] + " " + "17:00",
+                        end_date: data[i].endDate[0] + "-" + data[i].endDate[1] + "-" + data[i].endDate[2] + " " + "11:00"
+                    }
+                    //tasks.push(taskObj);
+                    for (j = 0; j < users.length; j++) {
+                        console.log("id en id: " + users[j].name + " " + taskObj.id);
+                        if (users[j].name == taskObj.id) {
+                            users[j].tasks.push(taskObj);
+                        }
+                    }
+
+                }
+
+                console.log(tasks);
+                console.log(users);
+
+                $().schedulerInit(tasks, users);
+
+            });
+
+    }
 
 });

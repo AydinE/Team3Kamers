@@ -1,5 +1,8 @@
+var table;
+
 $(document).ready( function () {
     populateTable();
+    table = $("#dataTable").DataTable({searching: false});
     $("#addButton").click(function() {
         createRoom();
     });
@@ -11,12 +14,13 @@ function createRoom() {
         sizeOfRoom: $("#addRoomSize").val()
     };
     makeAjaxRequest("POST", "/addRoom", json, function(room) {
-        console.log(room);
         $("#dataTable tbody").append("<tr><td>" + room.id +
             "</td><td>" + getType(room.typeOfRoom) +
             "</td><td>" + getSize(room.sizeOfRoom) +
             "</td><td>" + parseDate(room.createdOn) +
-            "</td><td>" + getAvailable(room.available) + "</td></tr>");
+            "</td><td>" + getAvailable(room.available) +
+            "</td><td>" + "<a href=\"javascript:del(" + room.id + ")\" class=\"btn btn-danger\">Delete</a>" +
+            "</td></tr>");
     });
 }
 
@@ -28,10 +32,17 @@ function populateTable() {
                 "</td><td>" + getType(room.typeOfRoom) +
                 "</td><td>" + getSize(room.sizeOfRoom) +
                 "</td><td>" + parseDate(room.createdOn) +
-                "</td><td>" + getAvailable(room.available) + "</td></tr>");
+                "</td><td>" + getAvailable(room.available) +
+                "</td><td>" + "<a href=\"javascript:del(" + room.id + ")\" class=\"btn btn-danger\">Delete</a>" +
+                "</td></tr>");
         });
-        $("#dataTable").DataTable({searching: false});
     });
+}
+
+function refreshTable() {
+    table.clear();
+    populateTable();
+    table.draw();
 }
 
 function getSize(size) {
@@ -67,7 +78,6 @@ function getAvailable(availability) {
 }
 
 function parseDate(date) {
-    console.log(date);
     var year = date[0];
     var month = date[1] - 1; // Month is 0-indexed
     var day = date[2];
@@ -77,8 +87,8 @@ function parseDate(date) {
     return day + "-" + month + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
 }
 
-//function del(id) {
-//    $.ajax({url: "/api/deleteRoom"+id+"/", type: "DELETE"}).done( function() {
-//    getAll();
-//    })
-//}
+function del(id) {
+    $.ajax({url: "/api/deleteRoom/" + id, type: "DELETE"}).done( function() {
+        refreshTable();
+    })
+}
