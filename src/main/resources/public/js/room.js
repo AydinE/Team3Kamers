@@ -14,7 +14,6 @@ function createRoom() {
         sizeOfRoom: $("#addRoomSize").val()
     };
     makeAjaxRequest("POST", "/addRoom", json, function(room) {
-        console.log(room);
         $("#dataTable tbody").append("<tr><td>" + room.id +
             "</td><td>" + getType(room.typeOfRoom) +
             "</td><td>" + getSize(room.sizeOfRoom) +
@@ -79,7 +78,6 @@ function getAvailable(availability) {
 }
 
 function parseDate(date) {
-    console.log(date);
     var year = date[0];
     var month = date[1] - 1; // Month is 0-indexed
     var day = date[2];
@@ -90,7 +88,6 @@ function parseDate(date) {
 }
 
 function del(id) {
-    console.log(id);
     $.ajax({url: "/api/deleteRoom/" + id, type: "DELETE"}).done( function() {
         refreshTable();
     })
