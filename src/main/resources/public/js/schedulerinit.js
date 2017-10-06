@@ -13,7 +13,7 @@ jQuery.fn.schedulerInit = function(taskies, usies) {
         var pitObj = {
             locale: 'en',
             defaultDisplay: 'months',
-            hideEmptyLines: true,
+            hideEmptyLines: false,
             disableLabelsMovement: false,
             defaultGroupName: 'Default group',
             defaultDate: '2017-10-01 16:30',
@@ -40,17 +40,17 @@ jQuery.fn.schedulerInit = function(taskies, usies) {
 //                    },
 //            ]
         }
-//        console.log("taskies en usies");
-//        console.log("Taskies: " + tasken.length + " usies: " + usen.length );
-//        for (i = 0; i < tasken.length; i++) {
-//            console.log(tasken[i]);
-//            pitObj.tasks.push(tasken[i]);
-//        }
-//
-//        for (i = 0; i < usen.length; i++) {
-//            console.log(usen[i]);
-//            pitObj.users.push(usen[i]);
-//        }
+        console.log("taskies en usies");
+        console.log("Taskies: " + tasken.length + " usies: " + usen.length );
+        for (i = 0; i < tasken.length; i++) {
+            console.log(tasken[i]);
+            pitObj.tasks.push(tasken[i]);
+        }
+
+        for (i = 0; i < usen.length; i++) {
+            console.log(usen[i]);
+            pitObj.users.push(usen[i]);
+        }
 
 
         //pitObj.tasks = MyFunctionResult;

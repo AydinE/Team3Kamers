@@ -1,3 +1,9 @@
+Number.prototype.pad = function(size) {
+    var s = String(this);
+    while (s.length < (size || 2)) {s = "0" + s;}
+    return s;
+}
+
 $(document).ready(function() {
 
     // Tasks - >      Bookings (Name)
@@ -11,7 +17,7 @@ $(document).ready(function() {
     //var userTasks = [];
 
     // Get Tasks
-    var url = "/api/getAllBookings";
+    var url = "/api/getBookingList";
     $.get(url, function(data) {
 
         for (i = 0; i < data.length; i++) {
@@ -29,7 +35,7 @@ $(document).ready(function() {
     });
 
     // Get Users
-    var url = "/api/getAllRooms";
+    var url = "/api/getRoomList";
     $.get(url, function(data) {
 
         for (i = 0; i < data.length; i++) {
@@ -45,7 +51,7 @@ $(document).ready(function() {
     });
 
     // Get UserTasks
-    var url = "/api/getAllBookings";
+    var url = "/api/getBookingList";
     $.get(url, function(data) {
 
         for (i = 0; i < data.length; i++) {
@@ -53,11 +59,11 @@ $(document).ready(function() {
             console.log("length " + data[i].startDate[1]);
 
             if (data[i].startDate[1] < 10) {
-                String.fromCharCode(48) + String.fromCharCode(data[i].startDate[1] + 49);
+                data[i].startDate[1] = data[i].startDate[1].pad();
             }
 
             if (data[i].startDate[2] < 10) {
-                String.fromCharCode(48) + String.fromCharCode(data[i].startDate[2] + 49);
+                data[i].startDate[2] = data[i].startDate[2].pad();
             }
 
             var taskObj = {
