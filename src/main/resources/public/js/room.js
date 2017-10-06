@@ -16,7 +16,9 @@ function createRoom() {
             "</td><td>" + getType(room.typeOfRoom) +
             "</td><td>" + getSize(room.sizeOfRoom) +
             "</td><td>" + parseDate(room.createdOn) +
-            "</td><td>" + getAvailable(room.available) + "</td></tr>");
+            "</td><td>" + getAvailable(room.available) +
+            "</td><td>" + "<a href=\"javascript:del(" + room.id + ")\" class=\"btn btn-danger\">delete</a>" +
+            "</td></tr>");
     });
 }
 
@@ -29,7 +31,7 @@ function populateTable() {
                 "</td><td>" + getSize(room.sizeOfRoom) +
                 "</td><td>" + parseDate(room.createdOn) +
                 "</td><td>" + getAvailable(room.available) +
-                "</td><td>" +
+                "</td><td>" + "<a href=\"javascript:del(" + room.id + ")\" class=\"btn btn-danger\">delete</a>" +
                 "</td></tr>");
         });
         $("#dataTable").DataTable({searching: false});
@@ -79,8 +81,9 @@ function parseDate(date) {
     return day + "-" + month + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
 }
 
-//function del(id) {
-//    $.ajax({url: "/api/deleteRoom"+id+"/", type: "DELETE"}).done( function() {
-//    getAll();
-//    })
-//}
+function del(id) {
+    console.log(id);
+    $.ajax({url: "/api/deleteRoom/" + id, type: "DELETE"}).done( function() {
+    getAll();
+    })
+}
