@@ -13,8 +13,5 @@ public class KamerDemo {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(KamerDemo.class, args);
-
-        System.out.println("Datetime" + LocalDateTime.now());
-
     }
 }
