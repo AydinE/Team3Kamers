@@ -1,5 +1,8 @@
+var table;
+
 $(document).ready( function () {
     populateTable();
+    table = $("#dataTable").DataTable({searching: false});
     $("#addButton").click(function() {
         createGuest();
     });
@@ -25,7 +28,9 @@ function createGuest() {
             "</td><td>" + guest.city +
             "</td><td>" + guest.country +
             "</td><td>" + guest.phoneNumber +
-            "</td><td>" + guest.email + "</td></tr>");
+            "</td><td>" + guest.email +
+            "</td><td>" + "<a href=\"javascript:del(" + guest.id + ")\" class=\"btn btn-danger\">delete</a>" +
+            "</td></tr>");
     });
 }
 
@@ -41,14 +46,21 @@ function populateTable() {
                 "</td><td>" + guest.city +
                 "</td><td>" + guest.country +
                 "</td><td>" + guest.phoneNumber +
-                "</td><td>" + guest.email + "</td></tr>");
+                "</td><td>" + guest.email +
+                "</td><td>" + "<a href=\"javascript:del(" + guest.id + ")\" class=\"btn btn-danger\">delete</a>" +
+                "</td></tr>");
         });
-        $("#dataTable").DataTable({searching: false});
     });
 }
 
-//function del(id) {
-//    $.ajax({url: "/api/deleteRoom"+id+"/", type: "DELETE"}).done( function() {
-//    getAll();
-//    })
-//}
+function refreshTable() {
+    table.clear();
+    populateTable();
+    table.draw();
+}
+
+function del(id) {
+    $.ajax({url: "/api/removeGuest/" + id, type: "DELETE"}).done( function() {
+        refreshTable();
+    })
+}
