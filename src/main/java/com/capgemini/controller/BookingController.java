@@ -42,7 +42,9 @@ public class BookingController {
         guest.setLastName("Klaas");
         guest.setAddress("Pietenlaan 10");
         guest.setPostalCode("1234AB");
+        guest.setCity("Barcelona");
         guest.setCountry("Spanje");
+        guest.setPhoneNumber("112");
         guest.setEmail("sinterklaas@spanje.nl");
 
         guest = guestRepository.save(guest);
