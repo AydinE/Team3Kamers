@@ -57,7 +57,7 @@ public class RoomController {
         return roomRepository.save(room);
     }
 
-    @RequestMapping(value = "/deleteRoom", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteRoom/{id}", method = RequestMethod.DELETE)
     public void deleteRoom(@PathVariable int id) {
         roomRepository.delete(id);
     }

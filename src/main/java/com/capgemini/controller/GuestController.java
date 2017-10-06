@@ -47,9 +47,9 @@ public class GuestController {
         return repository.save(guest);
     }
 
-    @RequestMapping(value = "/removeGuest", method = RequestMethod.POST)
-    public void removeGuest(@RequestBody Guest guest) {
-        repository.delete(guest);
+    @RequestMapping(value = "/removeGuest/{id}", method = RequestMethod.DELETE)
+    public void removeGuest(@PathVariable int id) {
+        repository.delete(id);
     }
 
 }
