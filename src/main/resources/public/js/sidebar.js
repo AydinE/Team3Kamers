@@ -5,6 +5,7 @@ $(document).ready(function () {
 });
 
 function clickTab(tab) {
+     toggleContentVisibility(tab);
     // If this tab is already selected
     if (tab.hasClass("selected")) {
         tab.toggleClass("selected");
@@ -21,9 +22,7 @@ function clickTab(tab) {
      $("#sidebar-icons li div").each(function(k, v) {
          if ($(v).hasClass("selected")) {
              $(v).toggleClass("selected");
-             toggleContentVisibility($(v));
              tab.toggleClass("selected");
-             toggleContentVisibility(tab);
              flag = true;
              return;
          }
