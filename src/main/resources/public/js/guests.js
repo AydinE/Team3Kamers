@@ -1,8 +1,8 @@
 var table;
 
 $(document).ready( function () {
-    populateTable();
     table = $("#dataTable").DataTable({searching: false});
+    refreshTable();
     $("#addButton").click(function() {
         createGuest();
     });
@@ -31,6 +31,7 @@ function createGuest() {
             "</td><td>" + guest.email +
             "</td><td>" + "<a href=\"javascript:del(" + guest.id + ")\" class=\"btn btn-danger\">Delete</a>" +
             "</td></tr>");
+        refreshTable();
     });
 }
 
