@@ -29,7 +29,7 @@ function createGuest() {
             "</td><td>" + guest.country +
             "</td><td>" + guest.phoneNumber +
             "</td><td>" + guest.email +
-            "</td><td>" + "<a href=\"javascript:del(" + guest.id + ")\" class=\"btn btn-danger\">delete</a>" +
+            "</td><td>" + "<a href=\"javascript:del(" + guest.id + ")\" class=\"btn btn-danger\">Delete</a>" +
             "</td></tr>");
     });
 }
@@ -47,7 +47,7 @@ function populateTable() {
                 "</td><td>" + guest.country +
                 "</td><td>" + guest.phoneNumber +
                 "</td><td>" + guest.email +
-                "</td><td>" + "<a href=\"javascript:del(" + guest.id + ")\" class=\"btn btn-danger\">delete</a>" +
+                "</td><td>" + "<a href=\"javascript:del(" + guest.id + ")\" class=\"btn btn-danger\">Delete</a>" +
                 "</td></tr>");
         });
     });
