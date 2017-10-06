@@ -10,8 +10,6 @@ $(document).ready(function() {
     // Users - >      Rooms
     // User tasks - > Booking (dates)
 
-    console.log("Gettasks was called");
-
     var tasks = [];
     var users = [];
     //var userTasks = [];
@@ -24,7 +22,7 @@ $(document).ready(function() {
 
             var taskObj = {
                 //id: "room" + data[i].bookingNr,
-                id: data[i].bookingNr,
+                id: data[i].bookingNr.toString(),
                 name: data[i].guest.firstName + " " + data[i].guest.lastName,
                 description: data[i].startDate + " - " + data[i].endDate,
                 color: '#536DFE'
@@ -41,7 +39,7 @@ $(document).ready(function() {
         for (i = 0; i < data.length; i++) {
 
             var roomObj = {
-                name: data[i].roomNr,
+                name: data[i].id.toString(),
                 group: 'Rooms',
                 tasks: []
             }
@@ -56,8 +54,6 @@ $(document).ready(function() {
 
         for (i = 0; i < data.length; i++) {
 
-            console.log("length " + data[i].startDate[1]);
-
             if (data[i].startDate[1] < 10) {
                 data[i].startDate[1] = data[i].startDate[1].pad();
             }
@@ -67,12 +63,13 @@ $(document).ready(function() {
             }
 
             var taskObj = {
-                id: data[i].room.roomNr,
+                id: data[i].room.id.toString(),
                 start_date: data[i].startDate[0] + "-" + data[i].startDate[1] + "-" + data[i].startDate[2] + " " + "17:00",
                 end_date: data[i].endDate[0] + "-" + data[i].endDate[1] + "-" + data[i].endDate[2] + " " + "11:00"
             }
             //tasks.push(taskObj);
             for (i = 0; i < users.length; i++) {
+                console.log("id en id: " + users[i].name + " " + taskObj.id);
                 if (users[i].name == taskObj.id) {
                     users[i].tasks.push(taskObj);
                 }

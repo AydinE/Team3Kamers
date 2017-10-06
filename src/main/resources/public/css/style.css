@@ -14,3 +14,9 @@
   }
   .row.content {height:auto;}
 }
+
+@font-face{
+    font-family: "glyphicons-halflings-regular";
+    src: url('fonts/glyphicons-halflings-regular.ttf'),
+    url('fonts/glyphicons-halflings-regular.eot'); /* IE */
+}
