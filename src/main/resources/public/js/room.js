@@ -1,5 +1,8 @@
+var table;
+
 $(document).ready( function () {
     populateTable();
+    table = $("#dataTable").DataTable({searching: false});
     $("#addButton").click(function() {
         createRoom();
     });
@@ -34,8 +37,13 @@ function populateTable() {
                 "</td><td>" + "<a href=\"javascript:del(" + room.id + ")\" class=\"btn btn-danger\">delete</a>" +
                 "</td></tr>");
         });
-        $("#dataTable").DataTable({searching: false});
     });
+}
+
+function refreshTable() {
+    table.clear();
+    populateTable();
+    table.draw();
 }
 
 function getSize(size) {
@@ -84,6 +92,6 @@ function parseDate(date) {
 function del(id) {
     console.log(id);
     $.ajax({url: "/api/deleteRoom/" + id, type: "DELETE"}).done( function() {
-    getAll();
+        refreshTable();
     })
 }
