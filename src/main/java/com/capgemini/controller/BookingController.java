@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -27,9 +28,9 @@ public class BookingController {
     @Autowired
     RoomRepository roomRepository;
 
-    private ArrayList<Booking> bookingList= new ArrayList<>();
+    private ArrayList<Booking> bookingList = new ArrayList<>();
 
-    public BookingController(){
+    public BookingController() {
 
     }
 
@@ -50,15 +51,24 @@ public class BookingController {
         room.setAvailability(true);
         room.setSizeOfRoom(RoomSize.FIVE_SIX_PERSONS);
         room.setTypeOfRoom(RoomType.LUXURY);
+        room.setCreatedOn(LocalDateTime.now());
 
         room = roomRepository.save(room);
+
+        Room room2 = new Room();
+        room2.setAvailability(false);
+        room2.setSizeOfRoom(RoomSize.THREE_FOUR_PERSONS);
+        room2.setTypeOfRoom(RoomType.BUDGET);
+        room2.setCreatedOn(LocalDateTime.now());
+
+        room2 = roomRepository.save(room2);
 
         Booking booking = new Booking();
         booking.setRoom(room);
         booking.setGuest(guest);
         booking.setCheckedIn(false);
-        booking.setStartDate(LocalDateTime.of(2017,10,8, 16,00));
-        booking.setEndDate(LocalDateTime.of(2017,10,10, 11,00));
+        booking.setStartDate(LocalDateTime.of(2017, 10, 8, 16, 00));
+        booking.setEndDate(LocalDateTime.of(2017, 10, 10, 11, 00));
 
         bookingRepository.save(booking);
 
@@ -66,21 +76,19 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/addBooking", method = RequestMethod.POST)
-    public Booking addBooking(@RequestBody Booking booking){
-
-        Guest guest = guestRepository.findOne(booking.getGuest().getGuestNumber());
-
-        Room room = roomRepository.findOne(booking.getRoom().getRoomNr());
-
+    public Booking addBooking(@RequestBody Booking booking) {
+        Guest guest = guestRepository.findOne(booking.getGuest().getId());
+        Room room = roomRepository.findOne(booking.getRoom().getId());
         booking.setGuest(guest);
         booking.setRoom(room);
-
         return bookingRepository.save(booking);
     }
 
-    @RequestMapping(value = "/getAllBookings", method = RequestMethod.GET)
-    public Iterable<Booking> getAllBookings() {
-        return bookingRepository.findAll();
+    @RequestMapping(value = "/getBookingList", method = RequestMethod.GET)
+    public List<Booking> getAllBookings() {
+        List<Booking> list = new ArrayList<>();
+        bookingRepository.findAll().forEach(list::add);
+        return list;
     }
 
     @RequestMapping("/getBooking")
@@ -89,37 +97,21 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/changeBooking", method = RequestMethod.POST)
-    public Booking changeBooking(@RequestBody int bookingNr, Booking booking){
-        for (Booking oldBooking : bookingList){
-            if (oldBooking.getBookingNr() == bookingNr) {
-                oldBooking.setBookingNr(booking.getBookingNr());
-                oldBooking.setGuest(booking.getGuest());
-                oldBooking.setRoom(booking.getRoom());
-                oldBooking.setStartDate(LocalDateTime.now());
-                oldBooking.setEndDate(LocalDateTime.now());
-                return bookingRepository.save(booking);
-            }
-            System.out.println(booking);
-        }
-        return null;
+    public Booking changeBooking(@RequestBody int bookingNr, Booking booking) {
+        bookingRepository.delete(bookingNr);
+        return bookingRepository.save(booking);
     }
 
     @RequestMapping(value = "/deleteBooking", method = RequestMethod.POST)
     public void deleteBooking(@RequestBody Booking booking) {
         bookingRepository.delete(booking);
-        }
-
-
+    }
 
     @RequestMapping(value = "/guestCheckIn", method = RequestMethod.POST)
-    public void checkIn(@RequestBody Booking booking) {
-        for (Booking booking1 : bookingList) {
-            if (booking1.getBookingNr() == booking.getBookingNr()) {
-                booking.setCheckedIn(true);
-                bookingRepository.save(booking);
-           }
-
-        }
+    public Booking checkIn(@RequestBody int bookingId) {
+        Booking booking = bookingRepository.findOne(bookingId);
+        booking.setCheckedIn(true);
+        return bookingRepository.save(booking);
     }
 
 }

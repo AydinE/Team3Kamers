@@ -1,7 +1,7 @@
 package com.capgemini.controller;
 
 import com.capgemini.model.Guest;
-import com.capgemini.repository.RepositoryGuest;
+import com.capgemini.repository.GuestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class GuestController {
 
     @Autowired
-    private RepositoryGuest repository;
+    private GuestRepository repository;
 
     public GuestController() {
 
@@ -22,9 +22,7 @@ public class GuestController {
     @RequestMapping(method = RequestMethod.GET, value = "/getGuestList")
     public List<Guest> getGuestList() {
         List<Guest> list = new ArrayList<>();
-        for (Guest guest : repository.findAll()) {
-            list.add(guest);
-        }
+        repository.findAll().forEach(list::add);
         return list;
     }
 
@@ -49,7 +47,7 @@ public class GuestController {
         return repository.save(guest);
     }
 
-    @RequestMapping(value = "/removeguest", method = RequestMethod.POST)
+    @RequestMapping(value = "/removeGuest", method = RequestMethod.POST)
     public void removeGuest(@RequestBody Guest guest) {
         repository.delete(guest);
     }
