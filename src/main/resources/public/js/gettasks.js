@@ -82,6 +82,7 @@ $(document).ready(function() {
     console.log(tasks);
     console.log(users);
 
-    $().schedulerInit(tasks, users)
+    $().schedulerInit(tasks, users);
+    $("#pit-scheduler").viewMode();
 
 });
