@@ -33,6 +33,8 @@ function populateTable() {
                 "</td><td>" + getSize(room.sizeOfRoom) +
                 "</td><td>" + parseDate(room.createdOn) +
                 "</td><td>" + getAvailable(room.available) +
+
+                // hier wordt van een link een knop gemaakt in de row.
                 "</td><td>" + "<a href=\"javascript:del(" + room.id + ")\" class=\"btn btn-danger\">Delete</a>" +
                 "</td></tr>");
         });

@@ -5,6 +5,8 @@ $(document).ready( function () {
     refreshTable();
     $("#addButton").click(function() {
         createGuest();
+
+
     });
 });
 
@@ -33,6 +35,10 @@ function createGuest() {
             "</td></tr>");
         refreshTable();
     });
+    $.alert({
+                title: 'Added Guest!',
+                content: '',
+            });
 }
 
 function populateTable() {
@@ -61,7 +67,17 @@ function refreshTable() {
 }
 
 function del(id) {
+    $.alert({
+                title: 'Alert!',
+                content: 'Simple alert!',
+            });
     $.ajax({url: "/api/removeGuest/" + id, type: "DELETE"}).done( function() {
         refreshTable();
     })
+}
+
+// When the user clicks on <div>, open the popup
+function myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
 }
