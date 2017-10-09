@@ -61,7 +61,10 @@ function refreshTable() {
 }
 
 function del(id) {
-    $.ajax({url: "/api/removeGuest/" + id, type: "DELETE"}).done( function() {
-        refreshTable();
-    })
+    var r = confirm("Weet je zeker dat je de informatie van \"naam\" wilt verwijderen?");
+    if (r == true) {
+        $.ajax({url: "/api/removeGuest/" + id, type: "DELETE"}).done( function() {
+                refreshTable();
+            })
+        }
 }
