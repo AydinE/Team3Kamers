@@ -114,5 +114,4 @@ public class BookingController {
         booking.setCheckedIn(true);
         return bookingRepository.save(booking);
     }
-
 }

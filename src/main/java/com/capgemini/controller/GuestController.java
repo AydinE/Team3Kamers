@@ -2,6 +2,7 @@ package com.capgemini.controller;
 
 import com.capgemini.model.Guest;
 import com.capgemini.repository.GuestRepository;
+import com.capgemini.utils.Validators;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +39,9 @@ public class GuestController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/addGuest")
     public Guest addGuest(@RequestBody Guest guest) {
+        Validators.emailMatcher(guest.getEmail());
+        Validators.phoneMatcher(guest.getPhoneNumber());
+        Validators.nameMatcher(guest.getFirstName(),guest.getLastName());
         return repository.save(guest);
     }
 
