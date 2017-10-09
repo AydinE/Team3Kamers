@@ -88,7 +88,10 @@ function parseDate(date) {
 }
 
 function del(id) {
-    $.ajax({url: "/api/deleteRoom/" + id, type: "DELETE"}).done( function() {
-        refreshTable();
-    })
+    var r = confirm("Weet je zeker dat je kamer " + id + " wilt verwijderen?");
+    if (r == true) {
+        $.ajax({url: "/api/deleteRoom/" + id, type: "DELETE"}).done( function() {
+                refreshTable();
+            })
+        }
 }
