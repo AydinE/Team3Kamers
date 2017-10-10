@@ -1,3 +1,42 @@
+function getBooking(bookingNumber) {
+
+    var url = "/api/getBooking?bookingNr=" + bookingNumber ;
+    $.get(url, function(data) {
+
+        return data;
+
+    });
+
+}
+
+function deleteBooking(bookingNumber) {
+
+    var url = "/api/getBooking?bookingNr=" + bookingNumber ;
+    $.get(url, function(data) {
+
+        //console.log("Return data from get: ");
+        //console.log(data);
+        //return data;
+        $.ajax({
+            url: "/api/deleteBooking",
+            type: "POST",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            success: function(result) {
+                //console.log(result);
+                // Switch the views real quick to refresh the page sneaky beaky like :)
+                $.fn.pitScheduler.default().viewMode(null);
+                //$.fn.pitScheduler.default().viewMode('months');
+            },
+            error: function(err) {
+                //console.log(err);
+            }
+        });
+
+    });
+
+}
+
 Number.prototype.pad = function(size) {
     var s = String(this);
     while (s.length < (size || 2)) {s = "0" + s;}
@@ -69,6 +108,14 @@ $(document).ready(function() {
                         data[i].startDate[2] = data[i].startDate[2].pad();
                     }
 
+                    if (data[i].endDate[1] < 10) {
+                        data[i].endDate[1] = data[i].endDate[1].pad();
+                    }
+
+                    if (data[i].endDate[2] < 10) {
+                        data[i].endDate[2] = data[i].endDate[2].pad();
+                    }
+
                     var taskObj = {
                         id: data[i].room.id.toString(),
                         start_date: data[i].startDate[0] + "-" + data[i].startDate[1] + "-" + data[i].startDate[2] + " " + "17:00",
@@ -84,8 +131,8 @@ $(document).ready(function() {
 
                 }
 
-                console.log(tasks);
-                console.log(users);
+                //console.log(tasks);
+                //console.log(users);
 
                 $().schedulerInit(tasks, users);
 

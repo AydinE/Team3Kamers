@@ -226,6 +226,7 @@ var i18n = {
             $('.pts-header-date-display').empty();
             switch (settings.currentDisplay) {
                 case 'days':
+                case 'days':
                     $('.pts-header-date-display').append(moment(settings.date.selected).locale(settings.locale).format('LL'));
                     break;
                 case 'months':
@@ -1643,13 +1644,11 @@ var i18n = {
             var $tag = (task.tag ? '<span class="label label-default pts-check-color" style="background-color:' + task.tagColor  + '">' + task.tag + '</span><br>' : '');
             var $content =  ['<div class="panel-body">',
                 '<h4 class="pts-check-color text-semibold pts-toolbox-title progress-bar-striped pts-close-toolbox" style="background-color:' + task.color + '">' + task.name,
-                '<button class="btn btn-xs pts-button-see-all">' + settings.i18n.seeAll + '</button>',
                 '<i class="glyphicon glyphicon-remove pull-right"></i></h4>' + $tag,
                 '<p><b>' + settings.i18n.description + ' : </b><br>' + (task.description ? task.description : settings.i18n.notSpecified) + '</p>',
                 '<div class="btn-group">',
-                '<button type="button" class="pts-delete-task-btn btn btn-danger" data-task="' + task.id + '" data-confirm="false">' + settings.i18n.remove + '</button>',
-                '<button type="button" class="btn pts-assign-task-btn" style="background-color:#00BCD4;color:#fff" data-task="' + task.id + '">' + settings.i18n.assign + '</button>',
-                '<button type="button" class="btn pts-edit-task-btn" style="background-color:#0097A7;color:#fff" data-task="' + task.id + '">' + settings.i18n.edit + '</button></div><br>',
+                '<button type="button" id="pts-delete-task-btn" class="pts-delete-task-btn btn btn-danger" data-task="' + task.id + '" data-confirm="false">' + settings.i18n.remove + '</button>',
+                '</div><br>',
                 '<br><div class="divider"></div></div>'].join('\n');
             $('#pts-toolbox-container').append($content);
 
@@ -2423,7 +2422,11 @@ var i18n = {
                     }, 2000);
                     return;
                 }
+                //Aydin - Remove button
+                console.log("button.data task: " + $button.data('task') );
+                deleteBooking($button.data('task'));
                 removeTask($button.data('task'));
+
             })
             .on('click', '.pts-assign-task-btn', function () {
                 openToolbox($(this).data('task'), null, 'assignTask');

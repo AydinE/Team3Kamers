@@ -6,6 +6,7 @@ $(document).ready(function () {
 
     $("#addButton").click(function() {
         createBooking();
+        $.fn.pitScheduler.default().viewMode('months');
     });
 });
 
