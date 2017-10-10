@@ -82,14 +82,14 @@ function edit(id){
     $("#btnUpdateGuest").show();
     $.get({url:"/getGuest"+id+"/", type:"GET"}).done( function(result) {
         $("#id").val(result.guestID);
-        $("#firstName").val(result.guestFirstName);
-        $("#lastName").val(result.guestLastName);
-        $("#phoneNumber").val(result.guestPhonenumber);
-        $("#emailAddress").val(result.guestEmailAdress);
-        $("#address").val(result.guestAdress);
-        $("#zipCode").val(result.guestZipcode);
-        $("#city").val(result.guestCity);
-        $("#country").val(result.guestCountry);
+        $("#editFirstName").val(result.guestFirstName);
+        $("#editLastName").val(result.guestLastName);
+        $("#editPhoneNumber").val(result.guestPhonenumber);
+        $("#editEmailAddress").val(result.guestEmailAdress);
+        $("#editAddress").val(result.guestAdress);
+        $("#editZipCode").val(result.guestZipcode);
+        $("#editCity").val(result.guestCity);
+        $("#editCountry").val(result.guestCountry);
         $("#guestModal").modal("toggle");
     })
 
