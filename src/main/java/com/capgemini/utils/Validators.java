@@ -6,22 +6,23 @@ import com.capgemini.model.*;
 
 public class Validators {
 
-    {
-        final String message = "Input is correct";
-        final Pattern pattern = Pattern.compile("POLL\\s+([ADM]{10})\\s+(yes|no\\s+([a-z. ]+))", Pattern.CASE_INSENSITIVE);
-        Matcher m = pattern.matcher(message);
+    public static boolean emailMatcher(String email) {//Email validator
+        final Pattern pattern = Pattern.compile("[_a-zA-Z0-9-]+\\@+[a-zA-Z0-9-.]+\\.+[a-zA-Z]*", Pattern.CASE_INSENSITIVE);
+        Matcher e = pattern.matcher(email);
+        return e.find();
     }
 
-    {
-        final String message = "Email is not correct";
-        final Pattern pattern = Pattern.compile("[_a-zA-Z0-9--.]*@[a-zA-Z0-9-]*\\.[a-zA-Z0-9-]*$", Pattern.CASE_INSENSITIVE);
-        Matcher e = pattern.matcher(message);
+    public static boolean phoneMatcher(String phoneNumber) {//PhoneNumber validator
+        final Pattern pattern = Pattern.compile("\\+([0-9]){1,6}-([0-9]){10,15}", Pattern.CASE_INSENSITIVE);
+        Matcher p = pattern.matcher(phoneNumber);
+        return p.find();
     }
 
-    {
-        final String message = "Phonenumber is not correct";
-        final Pattern pattern = Pattern.compile("\\+([0-9]){10,}$", Pattern.CASE_INSENSITIVE);
-        Matcher p = pattern.matcher(message);
+    public static boolean nameMatcher(String firstName, String lastName) {//Names validator
+        final Pattern pattern = Pattern.compile("([aA-zZ.]){1,50}", Pattern.CASE_INSENSITIVE);
+        Matcher ln = pattern.matcher(lastName);
+        Matcher fn = pattern.matcher(firstName);
+        return ln.find()&& fn.find();
     }
 }
 
