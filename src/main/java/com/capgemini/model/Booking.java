@@ -1,8 +1,5 @@
 package com.capgemini.model;
 
-import com.sun.javafx.beans.IDProperty;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
