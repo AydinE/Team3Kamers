@@ -10,16 +10,17 @@ $(document).ready( function () {
 
 function createRoom() {
     var json = {
+        nameOfRoom: $("#addRoomName").val(),
         typeOfRoom: $("#addRoomType").val(),
         sizeOfRoom: $("#addRoomSize").val()
     };
     makeAjaxRequest("POST", "/addRoom", json, function(room) {
-        $("#dataTable tbody").append("<tr><td>" + room.id +
+        $("#dataTable tbody").append("<tr><td>" + room.nameOfRoom +
             "</td><td>" + getType(room.typeOfRoom) +
             "</td><td>" + getSize(room.sizeOfRoom) +
             "</td><td>" + parseDate(room.createdOn) +
             "</td><td>" + getAvailable(room.available) +
-            "</td><td>" + "<a href=\"javascript:del(" + room.id + ")\" class=\"btn btn-danger\">Delete</a>" +
+            "</td><td>" + "<a href=\"javascript:del(" + room.id + ", '" + specialCharReplacer(room.nameOfRoom) + "')\" class=\"btn btn-danger\">Delete</a>" +
             "</td></tr>");
     });
 }
@@ -28,15 +29,21 @@ function populateTable() {
     var endpoint = "/getRoomList";
     makeGetRequest(endpoint, function(rooms) {
         $.each(rooms, function(key, room) {
-            $("#dataTable tbody").append("<tr><td>" + room.id +
+            $("#dataTable tbody").append("<tr><td>" + room.nameOfRoom +
                 "</td><td>" + getType(room.typeOfRoom) +
                 "</td><td>" + getSize(room.sizeOfRoom) +
                 "</td><td>" + parseDate(room.createdOn) +
                 "</td><td>" + getAvailable(room.available) +
-                "</td><td>" + "<a href=\"javascript:del(" + room.id + ")\" class=\"btn btn-danger\">Delete</a>" +
+                "</td><td>" + "<a href=\"javascript:del(" + room.id + ", '" + specialCharReplacer(room.nameOfRoom) + "')\" class=\"btn btn-danger\">Delete</a>" +
                 "</td></tr>");
         });
     });
+}
+
+function specialCharReplacer(roomName) {
+    roomName = roomName.replace(new RegExp("\'", 'g'), "\\'");
+    roomName = roomName.replace(new RegExp("\"", 'g'), "&quot;");
+    return roomName;
 }
 
 function refreshTable() {
@@ -87,8 +94,8 @@ function parseDate(date) {
     return day + "-" + month + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
 }
 
-function del(id) {
-    var r = confirm("Weet je zeker dat je kamer " + id + " wilt verwijderen?");
+function del(id, nameOfRoom) {
+    var r = confirm("Are you sure you want to delete room \"" + nameOfRoom + "\" ?");
     if (r == true) {
         $.ajax({url: "/api/deleteRoom/" + id, type: "DELETE"}).done( function() {
                 refreshTable();
