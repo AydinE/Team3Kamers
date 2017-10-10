@@ -18,6 +18,7 @@ function createBooking() {
         endDate: $("#addEndDate").val()
     };
     makeAjaxRequest("POST", "/addBooking", booking);
+    window.location.reload();
 }
 
  function populateGuestList() {

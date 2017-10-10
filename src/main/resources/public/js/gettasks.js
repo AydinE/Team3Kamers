@@ -25,8 +25,9 @@ function deleteBooking(bookingNumber) {
             success: function(result) {
                 //console.log(result);
                 // Switch the views real quick to refresh the page sneaky beaky like :)
-                $.fn.pitScheduler.default().viewMode(null);
+                //$.fn.pitScheduler.default().viewMode(null);
                 //$.fn.pitScheduler.default().viewMode('months');
+                window.location.reload();
             },
             error: function(err) {
                 //console.log(err);
