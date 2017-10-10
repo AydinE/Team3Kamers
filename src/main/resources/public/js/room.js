@@ -41,8 +41,8 @@ function populateTable() {
 }
 
 function specialCharReplacer(roomName) {
-    roomName = roomName.replace("\'", "\\'");
-    roomName = roomName.replace("\"", "&quot;");
+    roomName = roomName.replace(new RegExp("\'", 'g'), "\\'");
+    roomName = roomName.replace(new RegExp("\"", 'g'), "&quot;");
     return roomName;
 }
 
