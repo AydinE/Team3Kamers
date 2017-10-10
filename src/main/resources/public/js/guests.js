@@ -45,8 +45,8 @@ function populateTable() {
     var endpoint = "/getGuestList";
     makeGetRequest(endpoint, function(guests) {
         $.each(guests, function(key, guest) {
-            $("#dataTable tbody").append("<tr><td>" + guest.id +
-                "</td><td>" + "<a href=\"javascript:edit(" + guest.id + ")\" class=\"btn btn-danger\">Edit</a>" +
+            $("#dataTable tbody").append("<tr><td>" + guest.id +                                                    // Hier wordt de MODAL aangeroepen # guestModal
+                "</td><td>" + "<a href=\"javascript:edit(" + guest.id + ")\" class=\"btn btn-danger\"data-toggle=\"modal\" data-target=\"#guestModal\">Edit</a>" +
                 "</td><td>" + guest.firstName +
                 "</td><td>" + guest.lastName +
                 "</td><td>" + guest.address +
@@ -57,6 +57,7 @@ function populateTable() {
                 "</td><td>" + guest.email +
                 "</td><td>" + "<a href=\"javascript:del(" + guest.id + ")\" class=\"btn btn-danger\">Delete</a>" +
                 "</td></tr>");
+
         });
     });
 }
@@ -80,17 +81,18 @@ function del(id) {
 function edit(id){
     $("#btnAddGuest").hide();
     $("#btnUpdateGuest").show();
-    $.get({url:"/getGuest"+id+"/", type:"GET"}).done( function(result) {
-        $("#id").val(result.guestID);
-        $("#editFirstName").val(result.guestFirstName);
-        $("#editLastName").val(result.guestLastName);
-        $("#editPhoneNumber").val(result.guestPhonenumber);
-        $("#editEmailAddress").val(result.guestEmailAdress);
-        $("#editAddress").val(result.guestAdress);
-        $("#editZipCode").val(result.guestZipcode);
-        $("#editCity").val(result.guestCity);
-        $("#editCountry").val(result.guestCountry);
-        $("#guestModal").modal("toggle");
+    $.get({url:"/api/getGuest/?id="+id, type:"GET"}).done( function(result) {
+        console.log(result);
+        $("#id").val(result.guestId);
+        $("#editFirstName").val(result.firstName);
+        $("#editLastName").val(result.lastName);
+        $("#editPhoneNumber").val(result.phonenumber);
+        $("#editEmailAddress").val(result.email);
+        $("#editAddress").val(result.adress);
+        $("#editZipCode").val(result.postalCode);
+        $("#editCity").val(result.city);
+        $("#editCountry").val(result.country);
+      //$("#guestModal").modal();
     })
 
 
