@@ -46,6 +46,7 @@ function populateTable() {
     makeGetRequest(endpoint, function(guests) {
         $.each(guests, function(key, guest) {
             $("#dataTable tbody").append("<tr><td>" + guest.id +
+                "</td><td>" + "<a href=\"javascript:edit(" + guest.id + ")\" class=\"btn btn-danger\">Edit</a>" +
                 "</td><td>" + guest.firstName +
                 "</td><td>" + guest.lastName +
                 "</td><td>" + guest.address +
@@ -74,6 +75,27 @@ function del(id) {
             })
         }
 }
+
+// links nog kloppend maken
+function edit(id){
+    $("#btnAddGuest").hide();
+    $("#btnUpdateGuest").show();
+    $.get({url:"/getGuest"+id+"/", type:"GET"}).done( function(result) {
+        $("#id").val(result.guestID);
+        $("#firstName").val(result.guestFirstName);
+        $("#lastName").val(result.guestLastName);
+        $("#phoneNumber").val(result.guestPhonenumber);
+        $("#emailAddress").val(result.guestEmailAdress);
+        $("#address").val(result.guestAdress);
+        $("#zipCode").val(result.guestZipcode);
+        $("#city").val(result.guestCity);
+        $("#country").val(result.guestCountry);
+        $("#guestModal").modal("toggle");
+    })
+
+
+}
+
 
 // When the user clicks on <div>, open the popup
 function myFunction() {
