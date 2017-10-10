@@ -91,7 +91,7 @@ public class BookingController {
         }
 
         return null;
-  
+
     }
 
     @RequestMapping(value = "/getBookingList", method = RequestMethod.GET)

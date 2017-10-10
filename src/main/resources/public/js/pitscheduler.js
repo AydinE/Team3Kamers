@@ -2425,7 +2425,9 @@ var i18n = {
                 //Aydin - Remove button
                 console.log("button.data task: " + $button.data('task') );
                 deleteBooking($button.data('task'));
-                removeTask($button.data('task'));
+                //removeTask($button.data('task'));
+                $( "#pit-scheduler" ).empty();
+                callInit();
 
             })
             .on('click', '.pts-assign-task-btn', function () {

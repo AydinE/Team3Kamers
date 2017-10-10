@@ -27,7 +27,9 @@ function deleteBooking(bookingNumber) {
                 // Switch the views real quick to refresh the page sneaky beaky like :)
                 //$.fn.pitScheduler.default().viewMode(null);
                 //$.fn.pitScheduler.default().viewMode('months');
-                window.location.reload();
+                //window.location.reload();
+                $( "#pit-scheduler" ).empty();
+                callInit();
             },
             error: function(err) {
                 //console.log(err);
@@ -44,11 +46,11 @@ Number.prototype.pad = function(size) {
     return s;
 }
 
-$(document).ready(function() {
 
-    // Tasks - >      Bookings (Name)
-    // Users - >      Rooms
-    // User tasks - > Booking (dates)
+// Tasks - >      Bookings (Name)
+// Users - >      Rooms
+// User tasks - > Booking (dates)
+function callInit() {
 
     var tasks = [];
     var users = [];
@@ -140,5 +142,11 @@ $(document).ready(function() {
             });
 
     }
+
+}
+
+$(document).ready(function() {
+
+    callInit()
 
 });
