@@ -129,14 +129,15 @@ function callInit() {
                     }
 
                     var taskObj = {
-                        id: data[i].room.id.toString(),
+                        // was room.roomnr
+                        id: data[i].bookingNr.toString(),
                         start_date: data[i].startDate[0] + "-" + data[i].startDate[1] + "-" + data[i].startDate[2] + " " + "17:00",
                         end_date: data[i].endDate[0] + "-" + data[i].endDate[1] + "-" + data[i].endDate[2] + " " + "11:00"
                     }
                     //tasks.push(taskObj);
                     for (j = 0; j < users.length; j++) {
                         console.log("id en id: " + users[j].name + " " + taskObj.id);
-                        if (users[j].name == taskObj.id) {
+                        if (users[j].name == data[i].room.id) {
                             users[j].tasks.push(taskObj);
                         }
                     }

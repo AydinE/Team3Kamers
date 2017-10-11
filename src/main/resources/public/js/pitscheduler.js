@@ -543,7 +543,8 @@ var i18n = {
                 end_date: (settings.currentDisplay == 'days' ? moment(settings.date.selected).endOf('day') : moment(settings.date.selected).endOf('month'))
             };
             user.tasks.forEach(function (task) {
-                var original = getTaskById(task.id);
+                // Aydin -> changed this from: var original = getTaskById(task.id);
+                var original = task;
                 if (getFiltersResponse('task', original.name) == false && getFiltersResponse('tag', original.tag) == false) {
                     if (settings.hideEmptyLines && tasks.indexOf(task.id) < 0 && isDateInDate(originDates, task) == true) {
                         tasks.push(task.id);
@@ -561,20 +562,21 @@ var i18n = {
          * @returns {Boolean}
          */
         var userLineIsShowed = function (user) {
-            log.log('CALL FUNCTION: userLineIsShowed: user: ' + user.name);
-            if (getFiltersResponse('group', user.group)) return false;
-            if (getFiltersResponse('user', user.name)) return false;
-            var response = 0,
-                originDates = {
-                    start_date: (settings.currentDisplay == 'days' ? moment(settings.date.selected).startOf('day') : moment(settings.date.selected).startOf('month')),
-                    end_date: (settings.currentDisplay == 'days' ? moment(settings.date.selected).endOf('day') : moment(settings.date.selected).endOf('month'))
-                };
-            if (!user.tasks) return generateNotification('warning', '<b>' + user.name + '</b> ' + settings.i18n.notif.userHasNoTask);
-            user.tasks.forEach(function (task) {
-                var original = getTaskById(task.id)
-                if (isDateInDate(originDates, task) && getFiltersResponse('task', original.name) == false && getFiltersResponse('tag', original.tag) == false) response++;
-            });
-            return ((response > 0) || settings.hideEmptyLines === false);
+//            log.log('CALL FUNCTION: userLineIsShowed: user: ' + user.name);
+//            if (getFiltersResponse('group', user.group)) return false;
+//            if (getFiltersResponse('user', user.name)) return false;
+//            var response = 0,
+//                originDates = {
+//                    start_date: (settings.currentDisplay == 'days' ? moment(settings.date.selected).startOf('day') : moment(settings.date.selected).startOf('month')),
+//                    end_date: (settings.currentDisplay == 'days' ? moment(settings.date.selected).endOf('day') : moment(settings.date.selected).endOf('month'))
+//                };
+//            if (!user.tasks) return generateNotification('warning', '<b>' + user.name + '</b> ' + settings.i18n.notif.userHasNoTask);
+//            user.tasks.forEach(function (task) {
+//                var original = getTaskById(task.id)
+//                if (isDateInDate(originDates, task) && getFiltersResponse('task', original.name) == false && getFiltersResponse('tag', original.tag) == false) response++;
+//            });
+//            return ((response > 0) || settings.hideEmptyLines === false);
+            return true;
         };
 
         /**
