@@ -16,7 +16,7 @@ jQuery.fn.schedulerInit = function(taskies, usies) {
             hideEmptyLines: false,
             disableLabelsMovement: false,
             defaultGroupName: 'Default group',
-            defaultDate: '2017-10-01 16:30',
+            defaultDate: '2017-10-12 16:30',
             disableNotifications: false,
             notificationDuration: 4000,
             hideSpinner: true,

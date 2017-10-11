@@ -119,9 +119,16 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/guestCheckIn", method = RequestMethod.POST)
-    public Booking checkIn(@RequestBody int bookingId) {
-        Booking booking = bookingRepository.findOne(bookingId);
+    public Booking checkIn(@RequestBody Booking bookingId) {
+        Booking booking = bookingRepository.findOne(bookingId.getBookingNr());
         booking.setCheckedIn(true);
+        return bookingRepository.save(booking);
+    }
+
+    @RequestMapping(value = "/guestCheckOut", method = RequestMethod.POST)
+    public Booking checkOut(@RequestBody Booking bookingId) {
+        Booking booking = bookingRepository.findOne(bookingId.getBookingNr());
+        booking.setCheckedIn(false);
         return bookingRepository.save(booking);
     }
 }

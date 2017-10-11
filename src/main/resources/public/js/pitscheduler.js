@@ -29,7 +29,7 @@ var i18n = {
         from: 'From',
         to: 'to',
         notSpecified: 'Not specified',
-        disableLabelsMovement: 'Disable labels mouvement',
+        disableLabelsMovement: 'Disable labels movement',
         today: 'Today',
         thisWeek: 'This week',
         thisMonth: 'This month',
@@ -1344,14 +1344,15 @@ var i18n = {
                     dayDate.add(1, 'day');
                 }
             }
-            var $settingsMenu = ['<div style="display:inline-flex"><div class="dropdown" style="top:2px"><button id="addDropdown" class="btn btn-sm pts-btn-add-elem dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
-                '<i class="glyphicon glyphicon-plus"></i></button>',
-                '<ul class="dropdown-menu" aria-labelledby="addDropdown">',
-                '<li><a href="#" class="pts-add-new-task">' + settings.i18n.addNewTask + '</a></li>',
-                '<li><a href="#" class="pts-add-new-user">' + settings.i18n.addNewUser + '</a></li>',
-                '</ul></div><div class="dropdown">',
-                '<button class="btn ' + (settings.filters.length > 0 ? 'btn-success' : 'btn-default') + ' pts-open-filters-menu dropdown-toggle" type="button">',
-                '<i class="glyphicon glyphicon-filter"></i></button>',
+            var $settingsMenu = [
+//                '<div style="display:inline-flex"><div class="dropdown" style="top:2px"><button id="addDropdown" class="btn btn-sm pts-btn-add-elem dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
+//                '<i class="glyphicon glyphicon-plus"></i></button>',
+//                '<ul class="dropdown-menu" aria-labelledby="addDropdown">',
+//                '<li><a href="#" class="pts-add-new-task">' + settings.i18n.addNewTask + '</a></li>',
+//                '<li><a href="#" class="pts-add-new-user">' + settings.i18n.addNewUser + '</a></li>',
+//                '</ul></div><div class="dropdown">',
+//                '<button class="btn ' + (settings.filters.length > 0 ? 'btn-success' : 'btn-default') + ' pts-open-filters-menu dropdown-toggle" type="button">',
+//                '<i class="glyphicon glyphicon-filter"></i></button>',
                 '<button class="btn btn-default dropdown-toggle" type="button" id="settingsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
                 '<i class="glyphicon glyphicon-cog"></i> <span class="caret"></span></button>',
                 '<ul class="dropdown-menu" aria-labelledby="settingsDropdown">',
@@ -1650,6 +1651,7 @@ var i18n = {
                 '<p><b>' + settings.i18n.description + ' : </b><br>' + (task.description ? task.description : settings.i18n.notSpecified) + '</p>',
                 '<div class="btn-group">',
                 '<button type="button" id="pts-delete-task-btn" class="pts-delete-task-btn btn btn-danger" data-task="' + task.id + '" data-confirm="false">' + settings.i18n.remove + '</button>',
+                '<button type="button" id="booking-checkin-btn" class="btn booking-checkin-btn" style="background-color:#42f456;color:#fff" data-task="' + task.id + '">Check In</button>',
                 '</div><br>',
                 '<br><div class="divider"></div></div>'].join('\n');
             $('#pts-toolbox-container').append($content);
@@ -2289,6 +2291,12 @@ var i18n = {
         });
 
         $scheduler
+            .on('click', '.booking-checkin-btn', function () {
+                console.log("Booking butoon data: " + $(this).data('task'));
+                checkInBooking($(this).data('task'));
+                //$( "#pit-scheduler" ).empty();
+                //callInit();
+            })
             .on('click', '.close-group-panel', function () {
                 var $usersPanel = $('#group-container-' + $(this).attr('data-group'));
                 var $groupPanel = $('#user-group-' + $(this).attr('data-group'));
@@ -2434,12 +2442,16 @@ var i18n = {
             })
             .on('click', '.pts-assign-task-btn', function () {
                 openToolbox($(this).data('task'), null, 'assignTask');
+                checkInBooking($button.data('task'));
+                $( "#pit-scheduler" ).empty();
+                callInit();
             })
             .on('click', '#pts-task-assign-btn[data-task]', function () {
                 var start_date = $('.pts-datetimepicker-start').data('DateTimePicker').date(),
                     end_date = $('.pts-datetimepicker-end').data('DateTimePicker').date(),
                     users = $('.pts-task-assign-users-list').val(),
                     task = getTaskById($(this).data('task'));
+                    checkInBooking($button.data('task'));
                 if (users && start_date && end_date) {
                     assignUsersToTask(users, task, start_date, end_date);
                 } else {
@@ -2451,7 +2463,9 @@ var i18n = {
                     end_date = $('.pts-datetimepicker-end').data('DateTimePicker').date(),
                     tasks = $('.pts-user-assign-tasks-list').val(),
                     user = settings.users[$(this).data('user')];
-
+                    checkInBooking($button.data('task'));
+                    $( "#pit-scheduler" ).empty();
+                    callInit();
                 if (user && tasks && start_date && end_date) {
                     assignTasksToUser(user, tasks, start_date, end_date);
                 } else {
@@ -2515,7 +2529,25 @@ var i18n = {
                 openToolbox(null, $(this).data('user'), 'editUser');
             })
             .on('click', '.pts-assign-user-btn[data-user]', function () {
+                checkInBooking($button.data('task'));
+                $( "#pit-scheduler" ).empty();
+                callInit();
                 openToolbox(null, $(this).data('user'), 'assignUser');
+                var $button = $(this),
+                    user = settings.users[$button.data('user')];
+
+                if ($button.attr('data-confirm') == 'false') {
+                    $button.text(settings.i18n.confirm);
+                    $button.attr('data-confirm', true);
+                    setTimeout(function () {
+                        $button.text(settings.i18n.remove);
+                        $button.attr('data-confirm', false);
+                    }, 2000);
+                    return;
+                }
+                if (user) {
+                    checkIn(user);
+                }
             })
             .on('click', '.pts-edit-user-confirm-btn[data-user]', function () {
                 var newData = {};
