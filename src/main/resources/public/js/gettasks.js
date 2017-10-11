@@ -40,6 +40,53 @@ function deleteBooking(bookingNumber) {
 
 }
 
+function checkInBooking(bookingNumber) {
+
+    var Objectje = {
+        bookingNr: bookingNumber
+    }
+
+    $.ajax({
+        url: "/api/guestCheckIn",
+        type: "POST",
+        data: JSON.stringify(Objectje),
+        contentType: "application/json; charset=utf-8",
+        success: function(result) {
+            $( "#pit-scheduler" ).empty();
+            callInit();
+        },
+        error: function(err) {
+            //console.log(err);
+        }
+    });
+
+
+}
+
+function checkOutBooking(bookingNumber) {
+
+    var Objectje = {
+        bookingNr: bookingNumber
+    }
+
+    $.ajax({
+        url: "/api/guestCheckIn",
+        type: "POST",
+        data: JSON.stringify(Objectje),
+        contentType: "application/json; charset=utf-8",
+        success: function(result) {
+            $( "#pit-scheduler" ).empty();
+            callInit();
+        },
+        error: function(err) {
+            //console.log(err);
+        }
+    });
+
+
+}
+
+
 Number.prototype.pad = function(size) {
     var s = String(this);
     while (s.length < (size || 2)) {s = "0" + s;}
@@ -72,6 +119,11 @@ function callInit() {
                 description: data[i].startDate + " - " + data[i].endDate,
                 color: '#536DFE'
             }
+
+            if(data[i].checkedIn == true) {
+                taskObj.color = "#42f456";
+            }
+
             tasks.push(taskObj);
         }
 

@@ -77,25 +77,6 @@ public class BookingController {
         return "Database populated with test data";
     }
 
-    @GetMapping("/freerooms")
-    public List<Room> getFreeRooms (){
-        Booking booking = new Booking();
-
-        List<Room> freeRoomsList = new ArrayList<>();
-        roomRepository.findAll().forEach(freeRoomsList::add);
-
-        List<Booking> allBookinglist = new ArrayList<>();
-        bookingRepository.findAll().forEach(allBookinglist::add);
-
-        for (Booking registeredBooking : allBookinglist) {
-            if (true) { // find collision conditie moet nog erin gezet worden
-                
-                freeRoomsList.remove(registeredBooking.getRoom());
-            }
-        }
-        return freeRoomsList;
-    }
-
     @RequestMapping(value = "/addBooking", method = RequestMethod.POST)
     public Booking addBooking(@RequestBody Booking booking) {
 
@@ -142,6 +123,4 @@ public class BookingController {
         booking.setCheckedIn(true);
         return bookingRepository.save(booking);
     }
-
-
 }
