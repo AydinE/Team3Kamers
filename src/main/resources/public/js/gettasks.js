@@ -60,6 +60,9 @@ function callInit() {
     var url = "/api/getBookingList";
     $.get(url, function(data) {
 
+        console.log("Bookinglist");
+        console.log(data);
+
         for (i = 0; i < data.length; i++) {
 
             var taskObj = {
@@ -80,6 +83,9 @@ function callInit() {
       // Get Users
         var url = "/api/getRoomList";
         $.get(url, function(data) {
+
+            console.log("Bookinglist");
+            console.log(data);
 
             for (i = 0; i < data.length; i++) {
 
