@@ -1,7 +1,17 @@
 var table;
 
 $(document).ready(function () {
-    // populateTable();
+    initializeTable();
+    $("#addButton").click(function () {
+        addRoom();
+    });
+    $('#dataTable tbody').on("click", "#deleteButton", function () {
+        var row = table.row($(this).parents("tr"));
+        deleteRoom(row);
+    });
+});
+
+function initializeTable() {
     makeGetRequest("/getRoomList", function (data) {
         var tableData = [];
         for (var i = 0; i < data.length; i++) {
@@ -19,19 +29,12 @@ $(document).ready(function () {
             searching: false,
             data: tableData,
             aoColumnDefs: [
-                { "bSearchable": false, "bVisible": false, "aTargets": [ 0 ] }]
+                {"bSearchable": false, "bVisible": false, "aTargets": [0]}]
         });
     });
-    $("#addButton").click(function () {
-        createRoom();
-    });
-    $('#dataTable tbody').on("click", "#deleteButton", function () {
-        var row = table.row($(this).parents("tr"));
-        del(row);
-    });
-});
+}
 
-function createRoom() {
+function addRoom() {
     var json = {
         nameOfRoom: $("#addRoomName").val(),
         typeOfRoom: $("#addRoomType").val(),
@@ -45,15 +48,18 @@ function createRoom() {
             getSize(room.sizeOfRoom),
             parseDate(room.createdOn),
             getAvailable(room.available),
-            "<a href=\"javascript:del(" + room.id + ", '" + specialCharReplacer(room.nameOfRoom) + "')\" class=\"btn btn-danger\">Delete</a>"
+            "<a class=\"btn btn-danger\" id=\"deleteButton\">Delete</a>"
         ]).draw(false);
     });
 }
 
-function specialCharReplacer(roomName) {
-    // roomName = roomName.replace(new RegExp("\'", 'g'), "\\'");
-    // roomName = roomName.replace(new RegExp("\"", 'g'), "&quot;");
-    return roomName;
+function deleteRoom(row) {
+    var r = confirm("Are you sure you want to delete room \"" + row.data()[1] + "\" ?");
+    if (r == true) {
+        $.ajax({url: "/api/deleteRoom/" + row.data()[0], type: "DELETE"}).done(function () {
+            row.remove().draw();
+        })
+    }
 }
 
 function getSize(size) {
@@ -96,14 +102,4 @@ function parseDate(date) {
     var minutes = date[4];
     var seconds = date[5];
     return day + "-" + month + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
-}
-
-function del(row) {
-    console.log(row.data()[0]);
-    var r = confirm("Are you sure you want to delete room \"" + row.data()[1] + "\" ?");
-    if (r == true) {
-        $.ajax({url: "/api/deleteRoom/" + row.data()[0], type: "DELETE"}).done(function () {
-            row.remove().draw();
-        })
-    }
 }
