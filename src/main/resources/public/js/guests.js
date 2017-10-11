@@ -45,8 +45,8 @@ function populateTable() {
     var endpoint = "/getGuestList";
     makeGetRequest(endpoint, function(guests) {
         $.each(guests, function(key, guest) {
-            $("#dataTable tbody").append("<tr><td>" + guest.id +                                                    // Hier wordt de MODAL aangeroepen # guestModal
-                "</td><td>" + "<a href=\"javascript:edit(" + guest.id + ")\" class=\"btn btn-danger\">Edit</a>" +
+            $("#dataTable tbody").append(                                                 // Hier wordt de MODAL aangeroepen # guestModal
+                "<tr><td>" + "<a href=\"javascript:edit(" + guest.id + ")\" class=\"btn btn-danger\">Edit</a>" +
                 "</td><td>" + guest.firstName +
                 "</td><td>" + guest.lastName +
                 "</td><td>" + guest.address +
