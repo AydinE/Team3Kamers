@@ -72,6 +72,11 @@ function callInit() {
                 description: data[i].startDate + " - " + data[i].endDate,
                 color: '#536DFE'
             }
+
+            if(data[i].checkedIn == true) {
+                taskObj.color = "#42f456";
+            }
+
             tasks.push(taskObj);
         }
 

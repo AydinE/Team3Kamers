@@ -71,6 +71,7 @@ public class BookingController {
         booking.setCheckedIn(false);
         booking.setStartDate(LocalDateTime.of(2017, 10, 8, 16, 00));
         booking.setEndDate(LocalDateTime.of(2017, 10, 10, 11, 00));
+        booking.setCheckedIn(true);
 
         bookingRepository.save(booking);
 
