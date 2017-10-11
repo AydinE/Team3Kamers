@@ -8,6 +8,7 @@ import com.capgemini.model.enums.RoomType;
 import com.capgemini.repository.BookingRepository;
 import com.capgemini.repository.GuestRepository;
 import com.capgemini.repository.RoomRepository;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
@@ -70,6 +71,7 @@ public class BookingController {
         booking.setCheckedIn(false);
         booking.setStartDate(LocalDateTime.of(2017, 10, 8, 16, 00));
         booking.setEndDate(LocalDateTime.of(2017, 10, 10, 11, 00));
+        booking.setCheckedIn(true);
 
         bookingRepository.save(booking);
 
@@ -78,11 +80,19 @@ public class BookingController {
 
     @RequestMapping(value = "/addBooking", method = RequestMethod.POST)
     public Booking addBooking(@RequestBody Booking booking) {
-        Guest guest = guestRepository.findOne(booking.getGuest().getId());
-        Room room = roomRepository.findOne(booking.getRoom().getId());
-        booking.setGuest(guest);
-        booking.setRoom(room);
-        return bookingRepository.save(booking);
+
+        if(booking.getStartDate().isAfter(LocalDateTime.now()) && booking.getEndDate().isAfter(booking.getStartDate())) {
+
+            Guest guest = guestRepository.findOne(booking.getGuest().getId());
+            Room room = roomRepository.findOne(booking.getRoom().getId());
+            booking.setGuest(guest);
+            booking.setRoom(room);
+            return bookingRepository.save(booking);
+
+        }
+
+        return null;
+
     }
 
     @RequestMapping(value = "/getBookingList", method = RequestMethod.GET)
@@ -114,5 +124,4 @@ public class BookingController {
         booking.setCheckedIn(true);
         return bookingRepository.save(booking);
     }
-
 }

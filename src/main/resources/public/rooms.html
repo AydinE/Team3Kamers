@@ -30,7 +30,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Logo</a>
+            <a class="navbar-brand" href="#">Saint-Nicolas Lake Resort</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -61,6 +61,8 @@
             </div>
             <div id="sidebar-content-add" class="col-md-10 sidebar-content">
                 <h4>Add new room</h4>
+                Room name:<br>
+                <input type="text" id="addRoomName"><br>
                 Room type:<br>
                 <select id="addRoomType">
                     <option value="0">Luxury</option>
@@ -78,6 +80,8 @@
             </div>
             <div id="sidebar-content-search" class="col-md-10 sidebar-content" style="display:none;">
                 <h4>Search rooms</h4>
+                Room number/name:<br>
+                <input type="text" id="searchRoomName"><br>
                 Room number:<br>
                 <input type="text" id="searchRoomNumber"><br>
                 Room type:<br>
@@ -108,7 +112,7 @@
                         <table id="dataTable" class="display" style="width: 80%">
                             <thead>
                             <tr>
-                                <th>Room number</th>
+                                <th>Room name</th>
                                 <th>Type</th>
                                 <th>Size</th>
                                 <th>Creation date</th>

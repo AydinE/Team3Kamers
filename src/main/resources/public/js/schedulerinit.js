@@ -1,9 +1,9 @@
 jQuery.fn.schedulerInit = function(taskies, usies) {
 
         //var MyFunctionResult = $().GetTasks();
-        console.log("scheudlerinit called");
-        console.log(taskies);
-        console.log(usies);
+        //console.log("scheudlerinit called");
+//        console.log(taskies);
+//        console.log(usies);
 
         var tasken = taskies;
         var usen = usies;
@@ -33,24 +33,13 @@ jQuery.fn.schedulerInit = function(taskies, usies) {
             resizeTask: false,
             tasks: taskies,
             users: usies,
-//            tasks: [{id: '0'}],
-//            users: [{   name: '0',
-//                        group: 'Rooms',
-//                        tasks: []
-//                    },
-//            ]
         }
-        console.log("taskies en usies");
-        console.log("Taskies: " + tasken.length + " usies: " + usen.length );
-
-        //pitObj.tasks = MyFunctionResult;
-        console.log("Pitobj tasks");
-        console.log(pitObj.tasks);
-        console.log(pitObj.users);
 
         $("#pit-scheduler").pitScheduler( pitObj );
 
         $.fn.pitScheduler.default().viewMode('months');
+
+        //$("#pit-scheduler").pitScheduler.default().viewMode('months');
 
 };
 

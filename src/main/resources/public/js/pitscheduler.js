@@ -226,6 +226,7 @@ var i18n = {
             $('.pts-header-date-display').empty();
             switch (settings.currentDisplay) {
                 case 'days':
+                case 'days':
                     $('.pts-header-date-display').append(moment(settings.date.selected).locale(settings.locale).format('LL'));
                     break;
                 case 'months':
@@ -542,7 +543,8 @@ var i18n = {
                 end_date: (settings.currentDisplay == 'days' ? moment(settings.date.selected).endOf('day') : moment(settings.date.selected).endOf('month'))
             };
             user.tasks.forEach(function (task) {
-                var original = getTaskById(task.id);
+                // Aydin -> changed this from: var original = getTaskById(task.id);
+                var original = task;
                 if (getFiltersResponse('task', original.name) == false && getFiltersResponse('tag', original.tag) == false) {
                     if (settings.hideEmptyLines && tasks.indexOf(task.id) < 0 && isDateInDate(originDates, task) == true) {
                         tasks.push(task.id);
@@ -560,20 +562,21 @@ var i18n = {
          * @returns {Boolean}
          */
         var userLineIsShowed = function (user) {
-            log.log('CALL FUNCTION: userLineIsShowed: user: ' + user.name);
-            if (getFiltersResponse('group', user.group)) return false;
-            if (getFiltersResponse('user', user.name)) return false;
-            var response = 0,
-                originDates = {
-                    start_date: (settings.currentDisplay == 'days' ? moment(settings.date.selected).startOf('day') : moment(settings.date.selected).startOf('month')),
-                    end_date: (settings.currentDisplay == 'days' ? moment(settings.date.selected).endOf('day') : moment(settings.date.selected).endOf('month'))
-                };
-            if (!user.tasks) return generateNotification('warning', '<b>' + user.name + '</b> ' + settings.i18n.notif.userHasNoTask);
-            user.tasks.forEach(function (task) {
-                var original = getTaskById(task.id)
-                if (isDateInDate(originDates, task) && getFiltersResponse('task', original.name) == false && getFiltersResponse('tag', original.tag) == false) response++;
-            });
-            return ((response > 0) || settings.hideEmptyLines === false);
+//            log.log('CALL FUNCTION: userLineIsShowed: user: ' + user.name);
+//            if (getFiltersResponse('group', user.group)) return false;
+//            if (getFiltersResponse('user', user.name)) return false;
+//            var response = 0,
+//                originDates = {
+//                    start_date: (settings.currentDisplay == 'days' ? moment(settings.date.selected).startOf('day') : moment(settings.date.selected).startOf('month')),
+//                    end_date: (settings.currentDisplay == 'days' ? moment(settings.date.selected).endOf('day') : moment(settings.date.selected).endOf('month'))
+//                };
+//            if (!user.tasks) return generateNotification('warning', '<b>' + user.name + '</b> ' + settings.i18n.notif.userHasNoTask);
+//            user.tasks.forEach(function (task) {
+//                var original = getTaskById(task.id)
+//                if (isDateInDate(originDates, task) && getFiltersResponse('task', original.name) == false && getFiltersResponse('tag', original.tag) == false) response++;
+//            });
+//            return ((response > 0) || settings.hideEmptyLines === false);
+            return true;
         };
 
         /**
@@ -1643,13 +1646,11 @@ var i18n = {
             var $tag = (task.tag ? '<span class="label label-default pts-check-color" style="background-color:' + task.tagColor  + '">' + task.tag + '</span><br>' : '');
             var $content =  ['<div class="panel-body">',
                 '<h4 class="pts-check-color text-semibold pts-toolbox-title progress-bar-striped pts-close-toolbox" style="background-color:' + task.color + '">' + task.name,
-                '<button class="btn btn-xs pts-button-see-all">' + settings.i18n.seeAll + '</button>',
                 '<i class="glyphicon glyphicon-remove pull-right"></i></h4>' + $tag,
                 '<p><b>' + settings.i18n.description + ' : </b><br>' + (task.description ? task.description : settings.i18n.notSpecified) + '</p>',
                 '<div class="btn-group">',
-                '<button type="button" class="pts-delete-task-btn btn btn-danger" data-task="' + task.id + '" data-confirm="false">' + settings.i18n.remove + '</button>',
-                '<button type="button" class="btn pts-assign-task-btn" style="background-color:#00BCD4;color:#fff" data-task="' + task.id + '">' + settings.i18n.assign + '</button>',
-                '<button type="button" class="btn pts-edit-task-btn" style="background-color:#0097A7;color:#fff" data-task="' + task.id + '">' + settings.i18n.edit + '</button></div><br>',
+                '<button type="button" id="pts-delete-task-btn" class="pts-delete-task-btn btn btn-danger" data-task="' + task.id + '" data-confirm="false">' + settings.i18n.remove + '</button>',
+                '</div><br>',
                 '<br><div class="divider"></div></div>'].join('\n');
             $('#pts-toolbox-container').append($content);
 
@@ -2423,7 +2424,13 @@ var i18n = {
                     }, 2000);
                     return;
                 }
-                removeTask($button.data('task'));
+                //Aydin - Remove button
+                console.log("button.data task: " + $button.data('task') );
+                deleteBooking($button.data('task'));
+                //removeTask($button.data('task'));
+                $( "#pit-scheduler" ).empty();
+                callInit();
+
             })
             .on('click', '.pts-assign-task-btn', function () {
                 openToolbox($(this).data('task'), null, 'assignTask');

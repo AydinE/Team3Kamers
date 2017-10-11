@@ -15,6 +15,7 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    private String nameOfRoom;
     private RoomType typeOfRoom;
     private RoomSize sizeOfRoom;
     private LocalDateTime createdOn;
@@ -72,5 +73,13 @@ public class Room {
 
     public void setCreatedOn(LocalDateTime createdOn) {
         this.createdOn = createdOn;
+    }
+
+    public String getNameOfRoom() {
+        return nameOfRoom;
+    }
+
+    public void setNameOfRoom(String nameOfRoom) {
+        this.nameOfRoom = nameOfRoom;
     }
 }
