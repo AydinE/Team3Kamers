@@ -35,6 +35,9 @@ function populateTable() {
                 "</td><td>" + parseDate(room.createdOn) +
                 "</td><td>" + getAvailable(room.available) +
                 "</td><td>" + "<a href=\"javascript:del(" + room.id + ", '" + specialCharReplacer(room.nameOfRoom) + "')\" class=\"btn btn-danger\">Delete</a>" +
+
+                // hier wordt van een link een knop gemaakt in de row.
+
                 "</td></tr>");
         });
     });
