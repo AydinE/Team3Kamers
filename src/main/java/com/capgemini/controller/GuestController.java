@@ -39,15 +39,24 @@ public class GuestController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/addGuest")
     public Guest addGuest(@RequestBody Guest guest) {
-        Validators.emailMatcher(guest.getEmail());
-        Validators.phoneMatcher(guest.getPhoneNumber());
-        Validators.nameMatcher(guest.getFirstName(),guest.getLastName());
-        return repository.save(guest);
+        if (Validators.emailMatcher(guest.getEmail()) &&
+            Validators.phoneMatcher(guest.getPhoneNumber()) &&
+            Validators.nameMatcher(guest.getFirstName(),guest.getLastName()) &&
+            Validators.countryCityMatcher(guest.getCountry(),guest.getCity()) &&
+            Validators.postalCodeAdressMatcher(guest.getPostalCode(),guest.getAddress())) {
+            return repository.save(guest);
+        }
+        return null;
     }
 
     @RequestMapping(value = "/changeGuest", method = RequestMethod.POST)
     public Guest changeGuest(@RequestBody int guestNumber, Guest guest) {
         repository.delete(guestNumber);
+        Validators.emailMatcher(guest.getEmail());
+        Validators.phoneMatcher(guest.getPhoneNumber());
+        Validators.nameMatcher(guest.getFirstName(),guest.getLastName());
+        Validators.countryCityMatcher(guest.getCountry(),guest.getCity());
+        Validators.postalCodeAdressMatcher(guest.getPostalCode(),guest.getAddress());
         return repository.save(guest);
     }
 

@@ -15,13 +15,9 @@ public class Booking {
 
     @ManyToOne
     private Room room;
-
     private LocalDateTime startDate;
-
     private LocalDateTime endDate;
-
     private boolean checkedIn;
-
     public Booking() {}
 
     @Override

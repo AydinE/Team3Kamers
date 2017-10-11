@@ -20,6 +20,9 @@ function createGuest() {
         email: $("#addEmail").val()
     };
     makeAjaxRequest("POST", "/addGuest", obj, function(guest) {
+        if (guest) {
+            console.log(true);
+        console.log(guest);
         $("#dataTable tbody").append("<tr><td>" + guest.id +
             "</td><td>" + guest.firstName +
             "</td><td>" + guest.lastName +
@@ -32,6 +35,10 @@ function createGuest() {
             "</td><td>" + "<a href=\"javascript:del(" + guest.id + ")\" class=\"btn btn-danger\">Delete</a>" +
             "</td></tr>");
         refreshTable();
+        } else {
+            console.log(false);
+             alert("some of your input is not correct, please verify your input");
+        }
     });
 }
 

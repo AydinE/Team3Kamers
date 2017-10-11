@@ -3,6 +3,9 @@ package com.capgemini.utils;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import com.capgemini.model.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Validators {
 
@@ -13,7 +16,7 @@ public class Validators {
     }
 
     public static boolean phoneMatcher(String phoneNumber) {//PhoneNumber validator
-        final Pattern pattern = Pattern.compile("\\+([0-9]){1,6}-([0-9]){10,15}", Pattern.CASE_INSENSITIVE);
+        final Pattern pattern = Pattern.compile("([0-9]){10,15}", Pattern.CASE_INSENSITIVE);
         Matcher p = pattern.matcher(phoneNumber);
         return p.find();
     }
@@ -23,6 +26,43 @@ public class Validators {
         Matcher ln = pattern.matcher(lastName);
         Matcher fn = pattern.matcher(firstName);
         return ln.find()&& fn.find();
+    }
+
+    public static boolean postalCodeAdressMatcher(String postcode, String adress) {
+        final Pattern pattern = Pattern.compile("([aA-zZ0-9.]){1,50}", Pattern.CASE_INSENSITIVE);
+        Matcher postalCodeMatcher = pattern.matcher(postcode);
+        Matcher addressMatcher = pattern.matcher(adress);
+        return postalCodeMatcher.find() && addressMatcher.find();
+    }
+
+    public static boolean countryCityMatcher(String country, String city) {
+        final Pattern pattern = Pattern.compile("([aA-zZ.]){1,50}", Pattern.CASE_INSENSITIVE);
+        Matcher countryMatcher = pattern.matcher(country);
+        Matcher cityMatcher = pattern.matcher(city);
+        return countryMatcher.find()&& cityMatcher.find();
+    }
+
+    public static boolean bookingDateValidator (String endDate, String startDate, String dateToValidate, String dateFormat){
+            if(endDate == null || startDate == null){
+                return false;
+            }
+
+            SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+            sdf.setLenient(false);
+
+            try {
+
+                //if not valid, it will throw ParseException
+                Date date = sdf.parse(dateToValidate);
+                System.out.println(date);
+
+            } catch (ParseException e) {
+
+                e.printStackTrace();
+                return false;
+            }
+
+            return true;
     }
 }
 
