@@ -27,10 +27,17 @@ public class GuestController {
         return list;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/getGuest")
-    public Guest getGuest(@RequestParam(value = "guestNumber", required = true) int guestNumber) {
-        return repository.findOne(guestNumber);
+    @RequestMapping(method = RequestMethod.GET, value = "/getGuest/")
+    public Guest getGuest(@RequestParam(value = "id", required = true) int id) {
+        return repository.findOne(id);
     }
+
+//    @RequestMapping(value="{id}/", method= RequestMethod.GET)
+//    public Guest get(@PathVariable int id) {
+//        return repository.findOne(id);
+//    }
+
+
 
     @RequestMapping(method = RequestMethod.GET, value = "/getGuestByName")
     public Guest getGuest(@RequestParam(value = "firstName", required = true) String firstName, @RequestParam(value = "lastName", required = true) String lastName) {
@@ -49,15 +56,14 @@ public class GuestController {
         return null;
     }
 
-    @RequestMapping(value = "/changeGuest", method = RequestMethod.POST)
-    public Guest changeGuest(@RequestBody int guestNumber, Guest guest) {
-        repository.delete(guestNumber);
+    @RequestMapping(value = "/changeGuest", method = RequestMethod.PUT)
+    public void changeGuest(@RequestBody Guest guest) {
         Validators.emailMatcher(guest.getEmail());
         Validators.phoneMatcher(guest.getPhoneNumber());
         Validators.nameMatcher(guest.getFirstName(),guest.getLastName());
         Validators.countryCityMatcher(guest.getCountry(),guest.getCity());
         Validators.postalCodeAdressMatcher(guest.getPostalCode(),guest.getAddress());
-        return repository.save(guest);
+         repository.save(guest);
     }
 
     @RequestMapping(value = "/removeGuest/{id}", method = RequestMethod.DELETE)
@@ -66,3 +72,4 @@ public class GuestController {
     }
 
 }
+

@@ -1,6 +1,8 @@
 package com.capgemini.controller;
 
+import com.capgemini.model.Booking;
 import com.capgemini.model.Room;
+import com.capgemini.repository.BookingRepository;
 import com.capgemini.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +18,11 @@ public class RoomController {
     @Autowired
     RoomRepository roomRepository;
 
-    public RoomController() {}
+    @Autowired
+    BookingRepository bookingRepository;
+
+    public RoomController() {
+    }
 
     @RequestMapping(value = "/addRoom", method = RequestMethod.POST)
     public Room addRoom(@RequestBody Room room) {
@@ -59,6 +65,12 @@ public class RoomController {
 
     @RequestMapping(value = "/deleteRoom/{id}", method = RequestMethod.DELETE)
     public void deleteRoom(@PathVariable int id) {
+        Iterable<Booking> bookings = bookingRepository.findByRoomId(id);
+        bookings.forEach(b -> {
+            b.setGuest(null);
+            b.setRoom(null);
+            bookingRepository.delete(b.getBookingNr());
+        });
         roomRepository.delete(id);
     }
 

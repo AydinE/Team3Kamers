@@ -4,10 +4,10 @@ $(document).ready(function () {
     populateGuestList();
     populateRoomList();
 
-    $("#addButton").click(function() {
+    $("#addButton").click(function () {
         createBooking();
         //$.fn.pitScheduler.default().viewMode('months');
-        $( "#pit-scheduler" ).empty();
+        $("#pit-scheduler").empty();
         callInit();
     });
 });
@@ -23,24 +23,24 @@ function createBooking() {
     window.location.reload();
 }
 
- function populateGuestList() {
+function populateGuestList() {
     var endpoint = "/getGuestList";
-    makeGetRequest(endpoint, function(guests) {
-        $.each(guests, function(key, guest) {
+    makeGetRequest(endpoint, function (guests) {
+        $.each(guests, function (key, guest) {
             var o = new Option(guest.firstName + " " + guest.lastName, guest.id);
             $(o).html(guest.firstName + " " + guest.lastName);
             $("#addGuestList").append(o);
         });
     });
- }
+}
 
- function populateRoomList() {
+function populateRoomList() {
     var endpoint = "/getRoomList";
-    makeGetRequest(endpoint, function(rooms) {
-        $.each(rooms, function(key, room) {
+    makeGetRequest(endpoint, function (rooms) {
+        $.each(rooms, function (key, room) {
             var o = new Option(room.id, room.id);
             $(o).html(room.id);
             $("#addRoomList").append(o);
         });
     });
- }
+}

@@ -50,6 +50,7 @@ public class BookingController {
         guest = guestRepository.save(guest);
 
         Room room = new Room();
+        room.setNameOfRoom("Room 1");
         room.setAvailability(true);
         room.setSizeOfRoom(RoomSize.FIVE_SIX_PERSONS);
         room.setTypeOfRoom(RoomType.LUXURY);
@@ -58,6 +59,7 @@ public class BookingController {
         room = roomRepository.save(room);
 
         Room room2 = new Room();
+        room2.setNameOfRoom("Room 2");
         room2.setAvailability(false);
         room2.setSizeOfRoom(RoomSize.THREE_FOUR_PERSONS);
         room2.setTypeOfRoom(RoomType.BUDGET);
@@ -119,9 +121,16 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/guestCheckIn", method = RequestMethod.POST)
-    public Booking checkIn(@RequestBody int bookingId) {
-        Booking booking = bookingRepository.findOne(bookingId);
+    public Booking checkIn(@RequestBody Booking bookingId) {
+        Booking booking = bookingRepository.findOne(bookingId.getBookingNr());
         booking.setCheckedIn(true);
+        return bookingRepository.save(booking);
+    }
+
+    @RequestMapping(value = "/guestCheckOut", method = RequestMethod.POST)
+    public Booking checkOut(@RequestBody Booking bookingId) {
+        Booking booking = bookingRepository.findOne(bookingId.getBookingNr());
+        booking.setCheckedIn(false);
         return bookingRepository.save(booking);
     }
 }
