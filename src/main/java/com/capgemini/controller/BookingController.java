@@ -88,7 +88,7 @@ public class BookingController {
         bookingRepository.findAll().forEach(allBookinglist::add);
 
         for (Booking registeredBooking : allBookinglist) {
-            if (true) { // find collision conditie moet nog erin gezet worden
+            if(booking.getStartDate().isAfter(booking.getStartDate())) /*&& geeft een error aan? */ booking.getStartDate().isBefore(booking.getStartDate());{
 
                 freeRoomsList.remove(registeredBooking.getRoom());
             }
