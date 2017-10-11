@@ -48,10 +48,9 @@ public class GuestController {
         return repository.save(guest);
     }
 
-    @RequestMapping(value = "/changeGuest", method = RequestMethod.POST)
-    public Guest changeGuest(@RequestBody int guestNumber, Guest guest) {
-        repository.delete(guestNumber);
-        return repository.save(guest);
+    @RequestMapping(value = "/changeGuest", method = RequestMethod.PUT)
+    public void changeGuest(@RequestBody Guest guest) {
+         repository.save(guest);
     }
 
     @RequestMapping(value = "/removeGuest/{id}", method = RequestMethod.DELETE)
@@ -60,3 +59,4 @@ public class GuestController {
     }
 
 }
+

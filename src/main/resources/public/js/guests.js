@@ -46,7 +46,7 @@ function populateTable() {
     makeGetRequest(endpoint, function(guests) {
         $.each(guests, function(key, guest) {
             $("#dataTable tbody").append("<tr><td>" + guest.id +                                                    // Hier wordt de MODAL aangeroepen # guestModal
-                "</td><td>" + "<a href=\"javascript:edit(" + guest.id + ")\" class=\"btn btn-danger\"data-toggle=\"modal\" data-target=\"#guestModal\">Edit</a>" +
+                "</td><td>" + "<a href=\"javascript:edit(" + guest.id + ")\" class=\"btn btn-danger\">Edit</a>" +
                 "</td><td>" + guest.firstName +
                 "</td><td>" + guest.lastName +
                 "</td><td>" + guest.address +
@@ -81,22 +81,54 @@ function del(id) {
 function edit(id){
     $("#btnAddGuest").hide();
     $("#btnUpdateGuest").show();
+
+
     $.get({url:"/api/getGuest/?id="+id, type:"GET"}).done( function(result) {
         console.log(result);
-        $("#id").val(result.guestId);
+        console.log( $("#editFirstName"));
+        $("#id").val(result.id);
         $("#editFirstName").val(result.firstName);
         $("#editLastName").val(result.lastName);
-        $("#editPhoneNumber").val(result.phonenumber);
-        $("#editEmailAddress").val(result.email);
-        $("#editAddress").val(result.adress);
-        $("#editZipCode").val(result.postalCode);
+        $("#editPhoneNumber").val(result.phoneNumber);
+        $("#editEmail").val(result.email);
+        $("#editAddress").val(result.address);
+        $("#editPostalCode").val(result.postalCode);
         $("#editCity").val(result.city);
         $("#editCountry").val(result.country);
-      //$("#guestModal").modal();
+        $("#guestModal").modal("toggle");
     })
+    }
 
 
-}
+// de EDIT knop hier werkend krijgen, zie vorige apps
+ $("#btnUpdateGuest").click(function() {
+    var obj = {
+            id: $("#id").val(),
+            firstName: $("#editFirstName").val(),
+            lastName: $("#editLastName").val(),
+            address: $("#editAddress").val(),
+            postalCode: $("#editPostalCode").val(),
+            city: $("#editCity").val(),
+            country: $("#editCountry").val(),
+            phoneNumber: $("#editPhoneNumber").val(),
+            email: $("#editEmail").val()
+        };
+
+        console.log(obj);
+
+        $.ajax({
+            url: "/api/changeGuest/",
+            method:"PUT",
+            data: JSON.stringify(obj),
+            contentType: "application/json; charset=utf-8"
+            }).done(function () {
+            $("#guestModal").modal("toggle");
+            $("#guestModal input").val("");
+            refreshTable();
+        })
+
+
+})
 
 
 // When the user clicks on <div>, open the popup
@@ -104,3 +136,4 @@ function myFunction() {
     var popup = document.getElementById("myPopup");
     popup.classList.toggle("show");
 }
+
