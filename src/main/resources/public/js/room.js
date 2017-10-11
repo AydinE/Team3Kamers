@@ -1,10 +1,33 @@
 var table;
 
-$(document).ready( function () {
-    populateTable();
-    table = $("#dataTable").DataTable({searching: false});
-    $("#addButton").click(function() {
+$(document).ready(function () {
+    // populateTable();
+    makeGetRequest("/getRoomList", function (data) {
+        var tableData = [];
+        for (var i = 0; i < data.length; i++) {
+            tableData.push({
+                0: data[i].id,
+                1: data[i].nameOfRoom,
+                2: getType(data[i].typeOfRoom),
+                3: getSize(data[i].sizeOfRoom),
+                4: parseDate(data[i].createdOn),
+                5: getAvailable(data[i].available),
+                6: "<a class=\"btn btn-danger\" id=\"deleteButton\">Delete</a>"
+            })
+        }
+        table = $("#dataTable").DataTable({
+            searching: false,
+            data: tableData,
+            aoColumnDefs: [
+                { "bSearchable": false, "bVisible": false, "aTargets": [ 0 ] }]
+        });
+    });
+    $("#addButton").click(function () {
         createRoom();
+    });
+    $('#dataTable tbody').on("click", "#deleteButton", function () {
+        var row = table.row($(this).parents("tr"));
+        del(row);
     });
 });
 
@@ -14,49 +37,27 @@ function createRoom() {
         typeOfRoom: $("#addRoomType").val(),
         sizeOfRoom: $("#addRoomSize").val()
     };
-    makeAjaxRequest("POST", "/addRoom", json, function(room) {
-        $("#dataTable tbody").append("<tr><td>" + room.nameOfRoom +
-            "</td><td>" + getType(room.typeOfRoom) +
-            "</td><td>" + getSize(room.sizeOfRoom) +
-            "</td><td>" + parseDate(room.createdOn) +
-            "</td><td>" + getAvailable(room.available) +
-            "</td><td>" + "<a href=\"javascript:del(" + room.id + ", '" + specialCharReplacer(room.nameOfRoom) + "')\" class=\"btn btn-danger\">Delete</a>" +
-            "</td></tr>");
-    });
-}
-
-function populateTable() {
-    var endpoint = "/getRoomList";
-    makeGetRequest(endpoint, function(rooms) {
-        $.each(rooms, function(key, room) {
-            $("#dataTable tbody").append("<tr><td>" + room.nameOfRoom +
-                "</td><td>" + getType(room.typeOfRoom) +
-                "</td><td>" + getSize(room.sizeOfRoom) +
-                "</td><td>" + parseDate(room.createdOn) +
-                "</td><td>" + getAvailable(room.available) +
-                "</td><td>" + "<a href=\"javascript:del(" + room.id + ", '" + specialCharReplacer(room.nameOfRoom) + "')\" class=\"btn btn-danger\">Delete</a>" +
-
-                // hier wordt van een link een knop gemaakt in de row.
-
-                "</td></tr>");
-        });
+    makeAjaxRequest("POST", "/addRoom", json, function (room) {
+        table.row.add([
+            room.id,
+            room.nameOfRoom,
+            getType(room.typeOfRoom),
+            getSize(room.sizeOfRoom),
+            parseDate(room.createdOn),
+            getAvailable(room.available),
+            "<a href=\"javascript:del(" + room.id + ", '" + specialCharReplacer(room.nameOfRoom) + "')\" class=\"btn btn-danger\">Delete</a>"
+        ]).draw(false);
     });
 }
 
 function specialCharReplacer(roomName) {
-    roomName = roomName.replace(new RegExp("\'", 'g'), "\\'");
-    roomName = roomName.replace(new RegExp("\"", 'g'), "&quot;");
+    // roomName = roomName.replace(new RegExp("\'", 'g'), "\\'");
+    // roomName = roomName.replace(new RegExp("\"", 'g'), "&quot;");
     return roomName;
 }
 
-function refreshTable() {
-    table.clear();
-    populateTable();
-    table.draw();
-}
-
 function getSize(size) {
-    switch(size) {
+    switch (size) {
         case "ONE_PERSON":
             return "1";
         case "TWO_PERSONS":
@@ -71,7 +72,7 @@ function getSize(size) {
 }
 
 function getType(type) {
-    switch(type) {
+    switch (type) {
         case "BUDGET":
             return "Budget";
         case "NORMAL":
@@ -97,11 +98,12 @@ function parseDate(date) {
     return day + "-" + month + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
 }
 
-function del(id, nameOfRoom) {
-    var r = confirm("Are you sure you want to delete room \"" + nameOfRoom + "\" ?");
+function del(row) {
+    console.log(row.data()[0]);
+    var r = confirm("Are you sure you want to delete room \"" + row.data()[1] + "\" ?");
     if (r == true) {
-        $.ajax({url: "/api/deleteRoom/" + id, type: "DELETE"}).done( function() {
-                refreshTable();
-            })
-        }
+        $.ajax({url: "/api/deleteRoom/" + row.data()[0], type: "DELETE"}).done(function () {
+            row.remove().draw();
+        })
+    }
 }
