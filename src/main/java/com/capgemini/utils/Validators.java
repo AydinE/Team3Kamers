@@ -25,7 +25,7 @@ public class Validators {
         final Pattern pattern = Pattern.compile("([aA-zZ.]){1,50}", Pattern.CASE_INSENSITIVE);
         Matcher ln = pattern.matcher(lastName);
         Matcher fn = pattern.matcher(firstName);
-        return ln.find()&& fn.find();
+        return ln.find() && fn.find();
     }
 
     public static boolean postalCodeAdressMatcher(String postcode, String adress) {
@@ -39,33 +39,9 @@ public class Validators {
         final Pattern pattern = Pattern.compile("([aA-zZ.]){1,50}", Pattern.CASE_INSENSITIVE);
         Matcher countryMatcher = pattern.matcher(country);
         Matcher cityMatcher = pattern.matcher(city);
-        return countryMatcher.find()&& cityMatcher.find();
-    }
-
-    public static boolean bookingDateValidator (String endDate, String startDate, String dateToValidate, String dateFormat){
-            if(endDate == null || startDate == null){
-                return false;
-            }
-
-            SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
-            sdf.setLenient(false);
-
-            try {
-
-                //if not valid, it will throw ParseException
-                Date date = sdf.parse(dateToValidate);
-                System.out.println(date);
-
-            } catch (ParseException e) {
-
-                e.printStackTrace();
-                return false;
-            }
-
-            return true;
+        return countryMatcher.find() && cityMatcher.find();
     }
 }
-
 
 //   "Guest{" +
 //            "id=" + id +
