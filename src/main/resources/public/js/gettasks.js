@@ -60,8 +60,8 @@ function callInit() {
     var url = "/api/getBookingList";
     $.get(url, function(data) {
 
-        console.log("Bookinglist");
-        console.log(data);
+//        console.log("Bookinglist");
+//        console.log(data);
 
         for (i = 0; i < data.length; i++) {
 
@@ -84,8 +84,8 @@ function callInit() {
         var url = "/api/getRoomList";
         $.get(url, function(data) {
 
-            console.log("Bookinglist");
-            console.log(data);
+//            console.log("RoomList");
+//            console.log(data);
 
             for (i = 0; i < data.length; i++) {
 
@@ -106,6 +106,9 @@ function callInit() {
           // Get UserTasks
             var url = "/api/getBookingList";
             $.get(url, function(data) {
+
+//                console.log("BookingList");
+//                console.log(data);
 
                 for (i = 0; i < data.length; i++) {
 
@@ -140,8 +143,8 @@ function callInit() {
 
                 }
 
-                //console.log(tasks);
-                //console.log(users);
+                console.log(tasks);
+                console.log(users);
 
                 $().schedulerInit(tasks, users);
 

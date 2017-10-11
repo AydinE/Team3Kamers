@@ -80,7 +80,7 @@ public class BookingController {
     @RequestMapping(value = "/addBooking", method = RequestMethod.POST)
     public Booking addBooking(@RequestBody Booking booking) {
 
-        if(booking.getStartDate().isAfter(LocalDateTime.now()) && booking.getStartDate().isAfter(booking.getStartDate())) {
+        if(booking.getStartDate().isAfter(LocalDateTime.now()) && booking.getEndDate().isAfter(booking.getStartDate())) {
 
             Guest guest = guestRepository.findOne(booking.getGuest().getId());
             Room room = roomRepository.findOne(booking.getRoom().getId());

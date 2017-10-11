@@ -2,8 +2,8 @@ jQuery.fn.schedulerInit = function(taskies, usies) {
 
         //var MyFunctionResult = $().GetTasks();
         //console.log("scheudlerinit called");
-        console.log(taskies);
-        console.log(usies);
+//        console.log(taskies);
+//        console.log(usies);
 
         var tasken = taskies;
         var usen = usies;
