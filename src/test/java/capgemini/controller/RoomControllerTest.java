@@ -11,10 +11,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyObject;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
@@ -70,7 +75,7 @@ public class RoomControllerTest {
         verify(roomRepository, times(1)).delete(78);
     }
     @Test
-    public void testaddRoom() {
+    public void testAddRoom() {
         roomController.addRoom(room);
         verify(roomRepository, times(1)).save(room);
     }
@@ -102,8 +107,10 @@ public class RoomControllerTest {
     @Test
     public void testChangeRoom(){
         when(roomRepository.save(room)).thenReturn(this.room);
+        when(roomRepository.findOne(anyInt())).thenReturn(room);
+        when(room.getCreatedOn()).thenReturn(LocalDateTime.now());
+        doNothing().when(room).setCreatedOn(anyObject());
         Room room = roomController.changeRoom(this.room);
-        verify(roomRepository, times(1)).delete(777);
         verify(roomRepository, times(1)).save(this.room);
         assertEquals(this.room, room);
     }

@@ -58,7 +58,7 @@ public class GuestControllerTest {
         verify(guestRepository, times(1)).findOne(1);
     }
     @Test
-    public void testaddGuest() {
+    public void testAddGuest() {
         when(guest.getEmail()).thenReturn("1a@2b.nl");
         when(guest.getPhoneNumber()).thenReturn("1234567890");
         when(guest.getFirstName()).thenReturn("chaouki");
@@ -71,7 +71,7 @@ public class GuestControllerTest {
         verify(guestRepository, times(1)).save(guest);
     }
     @Test
-    public void testaddInvalidGuest() {
+    public void testAddInvalidGuest() {
         when(guest.getEmail()).thenReturn("1a2b.nl");
         when(guest.getPhoneNumber()).thenReturn("1234567890");
         when(guest.getFirstName()).thenReturn("chaouki");
