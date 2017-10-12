@@ -266,7 +266,7 @@ var i18n = {
         var getUsersTasksInTasks = function () {
             log.info('CALL FUNCTION: getUsersTasksInTasks');
 
-            if (!settings.tasks || settings.tasks.length == 0) return generateNotification('danger', settings.i18n.notif.noTask);
+            if (!settings.tasks || settings.tasks.length == 0) return;
             settings.tasks.forEach(function (task) {
                 task = generateTaskInTask(task);
             });
@@ -279,9 +279,8 @@ var i18n = {
          */
         var generateTaskInTask = function (task) {
             log.log('CALL FUNCTION: generateTaskInTask: task: ' + task.name);
-
             task.users = {};
-            if (! settings.users) return generateNotification('danger', settings.i18n.notif.noUser );
+            if (! settings.users) return;
             if (!task.color) task.color = (settings.defaultColor ? settings.defaultColor : '#00bdd6');
             settings.users.forEach(function (user, userIndex) {
                 user.index = userIndex;
@@ -1422,7 +1421,7 @@ var i18n = {
          */
         var generateUsersList = function () {
             log.info('CALL FUNCTION: generateUsersList');
-            if (!settings.users || settings.users.length <= 0) return generateNotification('warning', settings.i18n.notif.noUser );
+            if (!settings.users || settings.users.length <= 0) return;
 
             $('.pts-group-content').empty();
             settings.users.forEach(function (user) {
@@ -2245,11 +2244,6 @@ var i18n = {
                 moveTaskResize(e);
             }
         });
-        $(window).bind('beforeunload', function(){
-            if ($('.alert').length > 0)
-                return 'Ongoing process, please wait a few seconds and retry';
-        });
-
         $('.pts-btn-day-view').click( function () {
             updateDisplay('days');
         });

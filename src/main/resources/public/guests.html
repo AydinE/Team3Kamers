@@ -116,7 +116,7 @@
                         <table id="dataTable" class="display" style="width: 80%">
                             <thead>
                             <tr>
-                                <th></th>
+                                <th>Id</th>
                                 <th>First name</th>
                                 <th>Last name</th>
                                 <th>Address</th>
@@ -125,6 +125,7 @@
                                 <th>Country</th>
                                 <th>Phone number</th>
                                 <th>Email</th>
+                                <th></th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -152,27 +153,15 @@
                     <input type="hidden" id="id">
                     <div class="form-group row">
 
-                        <label for="editFirstName" class="col-sm-4 col-form-label">Firstname:</label>
+                        <label for="editFirstName" class="col-sm-4 col-form-label">First name:</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="editFirstName">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="editLastName" class="col-sm-4 col-form-label">Lastname:</label>
+                        <label for="editLastName" class="col-sm-4 col-form-label">Last name:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="editLastName" >
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="editPhoneNumber" class="col-sm-4 col-form-label">Phonenumber:</label>
-                        <div class="col-sm-8">
-                            <input type="tel" class="form-control" id="editPhoneNumber">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="editEmail" class="col-sm-4 col-form-label">Email:</label>
-                        <div class="col-sm-8">
-                            <input type="email" class="form-control" id="editEmail" >
+                            <input type="text" class="form-control" id="editLastName">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -182,21 +171,33 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="editPostalCode" class="col-sm-4 col-form-label">Postalcode:</label>
+                        <label for="editPostalCode" class="col-sm-4 col-form-label">Postal code:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="editPostalCode" >
+                            <input type="text" class="form-control" id="editPostalCode">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="editCity" class="col-sm-4 col-form-label">City:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="editCity" >
+                            <input type="text" class="form-control" id="editCity">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="editCountry" class="col-sm-4 col-form-label">Country:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="editCountry" >
+                            <input type="text" class="form-control" id="editCountry">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="editPhoneNumber" class="col-sm-4 col-form-label">Phone number:</label>
+                        <div class="col-sm-8">
+                            <input type="tel" class="form-control" id="editPhoneNumber">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="editEmail" class="col-sm-4 col-form-label">Email:</label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="editEmail">
                         </div>
                     </div>
                 </div>
@@ -208,9 +209,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 
 <script src="js/guests.js"></script>

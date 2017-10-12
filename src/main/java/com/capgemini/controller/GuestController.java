@@ -1,6 +1,8 @@
 package com.capgemini.controller;
 
+import com.capgemini.model.Booking;
 import com.capgemini.model.Guest;
+import com.capgemini.repository.BookingRepository;
 import com.capgemini.repository.GuestRepository;
 import com.capgemini.utils.Validators;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,10 @@ import java.util.List;
 public class GuestController {
 
     @Autowired
-    private GuestRepository repository;
+    private GuestRepository guestRepository;
+
+    @Autowired
+    private BookingRepository bookingRepository;
 
     public GuestController() {
 
@@ -23,25 +28,25 @@ public class GuestController {
     @RequestMapping(method = RequestMethod.GET, value = "/getGuestList")
     public List<Guest> getGuestList() {
         List<Guest> list = new ArrayList<>();
-        repository.findAll().forEach(list::add);
+        guestRepository.findAll().forEach(list::add);
         return list;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getGuest/")
     public Guest getGuest(@RequestParam(value = "id", required = true) int id) {
-        return repository.findOne(id);
+        return guestRepository.findOne(id);
     }
 
 //    @RequestMapping(value="{id}/", method= RequestMethod.GET)
 //    public Guest get(@PathVariable int id) {
-//        return repository.findOne(id);
+//        return guestRepository.findOne(id);
 //    }
 
 
 
     @RequestMapping(method = RequestMethod.GET, value = "/getGuestByName")
     public Guest getGuest(@RequestParam(value = "firstName", required = true) String firstName, @RequestParam(value = "lastName", required = true) String lastName) {
-        return repository.findOneByFirstNameAndLastName(firstName, lastName);
+        return guestRepository.findOneByFirstNameAndLastName(firstName, lastName);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/addGuest")
@@ -51,24 +56,30 @@ public class GuestController {
             Validators.nameMatcher(guest.getFirstName(),guest.getLastName()) &&
             Validators.countryCityMatcher(guest.getCountry(),guest.getCity()) &&
             Validators.postalCodeAdressMatcher(guest.getPostalCode(),guest.getAddress())) {
-            return repository.save(guest);
+            return guestRepository.save(guest);
         }
         return null;
     }
 
     @RequestMapping(value = "/changeGuest", method = RequestMethod.PUT)
-    public void changeGuest(@RequestBody Guest guest) {
+    public Guest changeGuest(@RequestBody Guest guest) {
         Validators.emailMatcher(guest.getEmail());
         Validators.phoneMatcher(guest.getPhoneNumber());
         Validators.nameMatcher(guest.getFirstName(),guest.getLastName());
         Validators.countryCityMatcher(guest.getCountry(),guest.getCity());
         Validators.postalCodeAdressMatcher(guest.getPostalCode(),guest.getAddress());
-         repository.save(guest);
+        return guestRepository.save(guest);
     }
 
     @RequestMapping(value = "/removeGuest/{id}", method = RequestMethod.DELETE)
     public void removeGuest(@PathVariable int id) {
-        repository.delete(id);
+        Iterable<Booking> bookings = bookingRepository.findByGuestId(id);
+        bookings.forEach(b -> {
+            b.setGuest(null);
+            b.setRoom(null);
+            bookingRepository.delete(b.getBookingNr());
+        });
+        guestRepository.delete(id);
     }
 
 }

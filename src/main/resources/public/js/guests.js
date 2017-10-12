@@ -1,16 +1,56 @@
 var table;
+var selectedRow;
 
 $(document).ready(function () {
-    table = $("#dataTable").DataTable({searching: false});
-    refreshTable();
+    initializeTable();
     $("#addButton").click(function () {
-        createGuest();
-
-
+        addGuest();
+    });
+    $('#dataTable tbody').on("click", "#deleteButton", function () {
+        var row = table.row($(this).parents("tr"));
+        deleteGuest(row);
+    });
+    $('#dataTable tbody').on("click", "#editButton", function () {
+        var row = table.row($(this).parents("tr"));
+        selectedRow = row;
+        editGuest(row.data()[0]);
+    });
+    $("#btnUpdateGuest").click(function () {
+        saveChanges();
     });
 });
 
-function createGuest() {
+function initializeTable() {
+    makeGetRequest("/getGuestList", function (data) {
+        var tableData = [];
+        for (var i = 0; i < data.length; i++) {
+            tableData.push({
+                0: data[i].id,
+                1: data[i].firstName,
+                2: data[i].lastName,
+                3: data[i].address,
+                4: data[i].postalCode,
+                5: data[i].city,
+                6: data[i].country,
+                7: data[i].phoneNumber,
+                8: data[i].email,
+                9: "<a class=\"btn btn-primary\" id=\"editButton\">Edit</a>",
+                10: "<a class=\"btn btn-danger\" id=\"deleteButton\">Delete</a>"
+            })
+        }
+        table = $("#dataTable").DataTable({
+            searching: false,
+            data: tableData,
+            aoColumnDefs: [
+                {"aTargets": 0, "bSearchable": false, "bVisible": false},
+                {"aTargets": 9, "sorting": false, "orderable": false},
+                {"aTargets": 10, "sorting": false, "orderable": false}]
+        });
+    });
+}
+
+
+function addGuest() {
     var obj = {
         firstName: $("#addFirstName").val(),
         lastName: $("#addLastName").val(),
@@ -23,65 +63,48 @@ function createGuest() {
     };
     makeAjaxRequest("POST", "/addGuest", obj, function (guest) {
         if (guest) {
-            console.log(true);
-            console.log(guest);
-            refreshTable();
+            table.row.add([
+                guest.id,
+                guest.firstName,
+                guest.lastName,
+                guest.address,
+                guest.postalCode,
+                guest.city,
+                guest.country,
+                guest.phoneNumber,
+                guest.email,
+                "<a class=\"btn btn-primary\" id=\"editButton\">Edit</a>",
+                "<a class=\"btn btn-danger\" id=\"deleteButton\">Delete</a>"
+            ]).draw(false);
+            $.alert({
+                title: "Guest added!",
+                content: "",
+            });
         } else {
-            console.log(false);
-            alert("some of your input is not correct, please verify your input");
+            $.alert({
+                title: "Error!",
+                content: "Some of your input is not correct, please verify your input.",
+            });
         }
     });
-    $.alert({
-        title: 'Added Guest!',
-        content: '',
-    });
 }
 
-function populateTable() {
-    var endpoint = "/getGuestList";
-    makeGetRequest(endpoint, function (guests) {
-        $.each(guests, function (key, guest) {
-            $("#dataTable tbody").append(                                                 // Hier wordt de MODAL aangeroepen # guestModal
-                "<tr><td>" + "<a href=\"javascript:edit(" + guest.id + ")\" class=\"btn btn-danger\">Edit</a>" +
-                "</td><td>" + guest.firstName +
-                "</td><td>" + guest.lastName +
-                "</td><td>" + guest.address +
-                "</td><td>" + guest.postalCode +
-                "</td><td>" + guest.city +
-                "</td><td>" + guest.country +
-                "</td><td>" + guest.phoneNumber +
-                "</td><td>" + guest.email +
-                "</td><td>" + "<a href=\"javascript:del(" + guest.id + ")\" class=\"btn btn-danger\">Delete</a>" +
-                "</td></tr>");
-
-        });
-    });
-}
-
-function refreshTable() {
-    table.clear();
-    populateTable();
-    table.draw();
-}
-
-function del(id) {
-    var r = confirm("Weet je zeker dat je de informatie van \"naam\" wilt verwijderen?");
+function deleteGuest(row) {
+    var name = row.data()[1] + " " + row.data()[2];
+    var r = confirm("Are you sure you want to delete guest: '" + name + "'?");
     if (r == true) {
-        $.ajax({url: "/api/removeGuest/" + id, type: "DELETE"}).done(function () {
-            refreshTable();
+        $.ajax({url: "/api/removeGuest/" + row.data()[0], type: "DELETE"}).done(function () {
+            row.remove().draw();
         })
     }
 }
 
 // links nog kloppend maken
-function edit(id) {
+function editGuest(id) {
     $("#btnAddGuest").hide();
     $("#btnUpdateGuest").show();
 
-
     $.get({url: "/api/getGuest/?id=" + id, type: "GET"}).done(function (result) {
-        console.log(result);
-        console.log($("#editFirstName"));
         $("#id").val(result.id);
         $("#editFirstName").val(result.firstName);
         $("#editLastName").val(result.lastName);
@@ -97,7 +120,7 @@ function edit(id) {
 
 
 // de EDIT knop hier werkend krijgen, zie vorige apps
-$("#btnUpdateGuest").click(function () {
+function saveChanges() {
     var obj = {
         id: $("#id").val(),
         firstName: $("#editFirstName").val(),
@@ -110,21 +133,24 @@ $("#btnUpdateGuest").click(function () {
         email: $("#editEmail").val()
     };
 
-    console.log(obj);
-
-    $.ajax({
-        url: "/api/changeGuest/",
-        method: "PUT",
-        data: JSON.stringify(obj),
-        contentType: "application/json; charset=utf-8"
-    }).done(function () {
+    makeAjaxRequest("PUT", "/changeGuest", obj, function (data) {
         $("#guestModal").modal("toggle");
         $("#guestModal input").val("");
-        refreshTable();
-    })
-
-
-})
+        selectedRow.data({
+            0: data.id,
+            1: data.firstName,
+            2: data.lastName,
+            3: data.address,
+            4: data.postalCode,
+            5: data.city,
+            6: data.country,
+            7: data.phoneNumber,
+            8: data.email,
+            9: "<a class=\"btn btn-primary\" id=\"editButton\">Edit</a>",
+            10: "<a class=\"btn btn-danger\" id=\"deleteButton\">Delete</a>",
+        });
+    });
+}
 
 
 // When the user clicks on <div>, open the popup

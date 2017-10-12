@@ -54,7 +54,7 @@ function addRoom() {
 }
 
 function deleteRoom(row) {
-    var r = confirm("Are you sure you want to delete room \"" + row.data()[1] + "\" ?");
+    var r = confirm("Are you sure you want to delete room '" + row.data()[1] + "' ?");
     if (r == true) {
         $.ajax({url: "/api/deleteRoom/" + row.data()[0], type: "DELETE"}).done(function () {
             row.remove().draw();
