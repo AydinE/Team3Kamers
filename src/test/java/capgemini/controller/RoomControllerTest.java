@@ -102,7 +102,7 @@ public class RoomControllerTest {
     @Test
     public void testChangeRoom(){
         when(roomRepository.save(room)).thenReturn(this.room);
-        Room room = roomController.changeRoom(777, this.room);
+        Room room = roomController.changeRoom(this.room);
         verify(roomRepository, times(1)).delete(777);
         verify(roomRepository, times(1)).save(this.room);
         assertEquals(this.room, room);
