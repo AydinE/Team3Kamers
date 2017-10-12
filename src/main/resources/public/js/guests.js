@@ -7,7 +7,6 @@ $(document).ready(function () {
         addGuest();
     });
     $('#dataTable tbody').on("click", "#deleteButton", function () {
-        console.log("Clicked");
         var row = table.row($(this).parents("tr"));
         deleteGuest(row);
     });
@@ -106,8 +105,6 @@ function editGuest(id) {
     $("#btnUpdateGuest").show();
 
     $.get({url: "/api/getGuest/?id=" + id, type: "GET"}).done(function (result) {
-        console.log(result);
-        console.log($("#editFirstName"));
         $("#id").val(result.id);
         $("#editFirstName").val(result.firstName);
         $("#editLastName").val(result.lastName);
