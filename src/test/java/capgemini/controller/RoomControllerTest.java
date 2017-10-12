@@ -1,7 +1,9 @@
 package capgemini.controller;
 
 import com.capgemini.controller.RoomController;
+import com.capgemini.model.Booking;
 import com.capgemini.model.Room;
+import com.capgemini.repository.BookingRepository;
 import com.capgemini.repository.RoomRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -21,6 +24,9 @@ public class RoomControllerTest {
 
     @Mock
     private RoomRepository roomRepository;
+
+    @Mock
+    private BookingRepository bookingRepository;
 
     @Mock
     private Room room;
@@ -54,14 +60,19 @@ public class RoomControllerTest {
     }
     @Test
     public void testDeleteRoom(){
-        roomController.deleteRoom(1);
-        verify(roomRepository, times(1)).delete(1);
+        List<Booking> bookings= new ArrayList<>();
+        Booking booking = new Booking();
+        booking.setBookingNr(53);
+        bookings.add(booking);
+        when(bookingRepository.findByRoomId(78)).thenReturn(bookings);
+        roomController.deleteRoom(78);
+        verify(bookingRepository, times(1)).delete(53);
+        verify(roomRepository, times(1)).delete(78);
     }
     @Test
     public void testaddRoom() {
         roomController.addRoom(room);
         verify(roomRepository, times(1)).save(room);
-
     }
     @Test
     public void testUnblockRoom() {
@@ -91,9 +102,7 @@ public class RoomControllerTest {
     @Test
     public void testChangeRoom(){
         when(roomRepository.save(room)).thenReturn(this.room);
-
         Room room = roomController.changeRoom(777, this.room);
-
         verify(roomRepository, times(1)).delete(777);
         verify(roomRepository, times(1)).save(this.room);
         assertEquals(this.room, room);

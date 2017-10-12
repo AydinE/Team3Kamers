@@ -39,6 +39,32 @@ jQuery.fn.schedulerInit = function(taskies, usies) {
 
         $.fn.pitScheduler.default().viewMode('months');
 
+        $('.pts-header').slice(1).remove();
+
+        //Fill the dashboard with data
+        var endpoint = "/getGuestList";
+        makeGetRequest(endpoint, function (guests) {
+            $('#nr-guests').html(guests.length);
+        });
+
+        var url = "/api/getBookingList";
+        $.get(url, function(data) {
+            var checkedIn = 0;
+
+            for (var i = 0; i < data.length; i++) {
+                if(data[i].checkedIn == true){
+                    checkedIn = checkedIn + 1;
+                }
+            }
+
+            $('#nr-checkins').html(checkedIn);
+        });
+
+
+
+        $('#nr-bookings').html(taskies.length);
+        $('#nr-rooms').html(usies.length);
+
         //$("#pit-scheduler").pitScheduler.default().viewMode('months');
 
 };
