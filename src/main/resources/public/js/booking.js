@@ -39,7 +39,7 @@ function populateRoomList() {
     makeGetRequest(endpoint, function (rooms) {
         $.each(rooms, function (key, room) {
             var o = new Option(room.id, room.id);
-            $(o).html(room.id);
+            $(o).html(room.nameOfRoom);
             $("#addRoomList").append(o);
         });
     });
