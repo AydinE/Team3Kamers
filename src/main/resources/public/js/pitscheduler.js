@@ -92,8 +92,6 @@ var i18n = {
             usersAssigned: 'users has been assigned to the task',
             userAssigned: 'user has been assigned to the task',
             userUnassigned: 'has correctly been unassigned',
-            noUser: '<b>Warning : </b>No user has been set',
-            noTask: '<b>Warning : </b>No task has been set',
             taskNotExist: 'is assigned to an inexistent task',
             taskInformationsUpdated: 'The task has been edited',
             userHasNoTask: 'is not assigned to any task',
@@ -2245,11 +2243,6 @@ var i18n = {
                 moveTaskResize(e);
             }
         });
-        $(window).bind('beforeunload', function(){
-            if ($('.alert').length > 0)
-                return 'Ongoing process, please wait a few seconds and retry';
-        });
-
         $('.pts-btn-day-view').click( function () {
             updateDisplay('days');
         });
