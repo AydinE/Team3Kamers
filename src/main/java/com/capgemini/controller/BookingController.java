@@ -88,10 +88,20 @@ public class BookingController {
         bookingRepository.findAll().forEach(allBookinglist::add);
 
         for (Booking registeredBooking : allBookinglist) {
-            if(booking.getStartDate().isAfter(booking.getStartDate())) /*&& geeft een error aan? */ booking.getStartDate().isBefore(booking.getStartDate());{
+
+            // Als nieuwe startdatum tussen bestaande booking start en einddatum ligt, gooi kamer uit lijst..
+            if(registeredBooking.getStartDate().isAfter(booking.getStartDate()) && registeredBooking.getStartDate().isBefore(booking.getEndDate()) ){
 
                 freeRoomsList.remove(registeredBooking.getRoom());
             }
+
+            // Als nieuwe einddatum tussen bestaande booking start en einddatum ligt, gooi kamer uit lijst..
+            if(registeredBooking.getEndDate().isAfter(booking.getStartDate()) && registeredBooking.getEndDate().isBefore(booking.getEndDate()) ){
+
+                freeRoomsList.remove(registeredBooking.getRoom());
+
+            }
+
         }
         return freeRoomsList;
     }
@@ -137,9 +147,16 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/guestCheckIn", method = RequestMethod.POST)
-    public Booking checkIn(@RequestBody int bookingId) {
-        Booking booking = bookingRepository.findOne(bookingId);
+    public Booking checkIn(@RequestBody Booking bookingId) {
+        Booking booking = bookingRepository.findOne(bookingId.getBookingNr());
         booking.setCheckedIn(true);
+        return bookingRepository.save(booking);
+    }
+
+    @RequestMapping(value = "/guestCheckOut", method = RequestMethod.POST)
+    public Booking checkOut(@RequestBody Booking bookingId) {
+        Booking booking = bookingRepository.findOne(bookingId.getBookingNr());
+        booking.setCheckedIn(false);
         return bookingRepository.save(booking);
     }
 
