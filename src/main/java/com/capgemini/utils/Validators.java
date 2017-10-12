@@ -43,26 +43,4 @@ public class Validators {
     }
 }
 
-//   "Guest{" +
-//            "id=" + id +
-//            ", firstName='" + firstName + '\'' +
-//            ", lastName='" + lastName + '\'' +
-//            ", address='" + address + '\'' +
-//            ", postalCode='" + postalCode + '\'' +
-//            ", city='" + city + '\'' +
-//            ", country='" + country + '\'' +
-//            ", phoneNumber='" + phoneNumber + '\'' +
-//            ", email='" + email + '\'' +
-//            '}';
-
-//   return "Booking{" +
-//                    ", bookingNr=" + bookingNr +
-//            ", guest=" + guest +
-//            ", room=" + room +
-//            ", startDate=" + startDate +
-//            ", endDate=" + endDate +
-//            ", checkedIn=" + checkedIn +
-//            '}';
-
-
 
