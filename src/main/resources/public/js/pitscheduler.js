@@ -1398,7 +1398,7 @@ var i18n = {
                 settings.users.forEach(function (user, userIndex) {
                     var userLineHeight = user.lineHeight;
                     if (user.group === group.name && user.isShowed == true && userLineHeight > 0) {
-                        $('#group-container-' + groupIndex).append('<div id="content-user-' + userIndex + '" class="pts-main-group-user" style="height:' + userLineHeight + 'px"></div>');
+                        $('#group-container-' + groupIndex).append('<div id="content-user-' + userIndex + '" class="pts-main-group-user" style="height:' + 40 + 'px"></div>');
                     }
                 });
                 if ($('.close-group-panel[data-group='+groupIndex+']').attr('data-toggle') === 'closed') {
@@ -1451,7 +1451,7 @@ var i18n = {
             if (!user.tasks) return log.warn('Warning: user ' + user.name + ' is assigned to any task');
             if (!user.isShowed || user.lineHeight <= 0 || !group) return;
 
-            var $userNameUI = '<div class="pts-group-user pts-show-user" style="height:' + user.lineHeight + 'px" data-user="' + user.index + '"><p>' + user.name + '</p></div>';
+            var $userNameUI = '<div class="pts-group-user pts-show-user" style="height:' + 40 + 'px" data-user="' + user.index + '"><p>' + user.name + '</p></div>';
 
             $('#' + group + ' > .pts-group-content').append($userNameUI);
 
@@ -1538,7 +1538,7 @@ var i18n = {
                 topDistance = parseInt(topDistance);
                 leftDistance = parseInt(leftDistance);
                 var $task = ['<div class="pts-check-color progress-bar-striped pts-line-marker '+ (label_end ? 'complete' : 'start') +
-                '" style="top:'+topDistance+'px;left:'+ leftDistance +'px;background-color:' + task.color + ';width:'+labelWidth+'px;' + task.superposed + '" data-task="' + task.id + '" data-user="' + userIndex + '">',
+                '" style="top:'+5+'px;left:'+ leftDistance +'px;background-color:' + task.color + ';width:'+labelWidth+'px;' + task.superposed + '" data-task="' + task.id + '" data-user="' + userIndex + '">',
                     '<p class="pts-line-marker-label text-no-select" data-toggle="tooltip" title="' + task.name + ' - ' + (task.tag || '') + '">' + task.name + $tag + '</p>',
                     $resizer + '</div>'].join('\n');
                 $('#content-user-' + userIndex + ' > .pts-line-marker-group-' + task.index).append($task);
