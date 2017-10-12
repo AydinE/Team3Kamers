@@ -28,6 +28,7 @@ public class Room {
     public String toString() {
         return "Room{" +
                 "id=" + id +
+                " nameOfRoom=" + nameOfRoom +
                 ", typeOfRoom=" + typeOfRoom +
                 ", sizeOfRoom=" + sizeOfRoom +
                 ", createdOn=" + createdOn +

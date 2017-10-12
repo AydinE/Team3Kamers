@@ -11,6 +11,7 @@ import com.capgemini.repository.RoomRepository;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +81,7 @@ public class BookingController {
     }
 
     @GetMapping("/freerooms")
-    public List<Room> getFreeRooms (){
+    public List<Room> getFreeRooms() {
         Booking booking = new Booking();
 
         List<Room> freeRoomsList = new ArrayList<>();
@@ -92,13 +93,13 @@ public class BookingController {
         for (Booking registeredBooking : allBookinglist) {
 
             // Als nieuwe startdatum tussen bestaande booking start en einddatum ligt, gooi kamer uit lijst..
-            if(registeredBooking.getStartDate().isAfter(booking.getStartDate()) && registeredBooking.getStartDate().isBefore(booking.getEndDate()) ){
+            if (registeredBooking.getStartDate().isAfter(booking.getStartDate()) && registeredBooking.getStartDate().isBefore(booking.getEndDate())) {
 
                 freeRoomsList.remove(registeredBooking.getRoom());
             }
 
             // Als nieuwe einddatum tussen bestaande booking start en einddatum ligt, gooi kamer uit lijst..
-            if(registeredBooking.getEndDate().isAfter(booking.getStartDate()) && registeredBooking.getEndDate().isBefore(booking.getEndDate()) ){
+            if (registeredBooking.getEndDate().isAfter(booking.getStartDate()) && registeredBooking.getEndDate().isBefore(booking.getEndDate())) {
 
                 freeRoomsList.remove(registeredBooking.getRoom());
 
@@ -110,19 +111,14 @@ public class BookingController {
 
     @RequestMapping(value = "/addBooking", method = RequestMethod.POST)
     public Booking addBooking(@RequestBody Booking booking) {
-
-        if(booking.getStartDate().isAfter(LocalDateTime.now()) && booking.getEndDate().isAfter(booking.getStartDate())) {
-
+        if (booking.getStartDate().isAfter(LocalDateTime.now()) && booking.getEndDate().isAfter(booking.getStartDate())) {
             Guest guest = guestRepository.findOne(booking.getGuest().getId());
             Room room = roomRepository.findOne(booking.getRoom().getId());
             booking.setGuest(guest);
             booking.setRoom(room);
             return bookingRepository.save(booking);
-
         }
-
         return null;
-
     }
 
     @RequestMapping(value = "/getBookingList", method = RequestMethod.GET)
