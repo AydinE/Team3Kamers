@@ -19,8 +19,30 @@ function createBooking() {
         startDate: $("#addStartDate").val(),
         endDate: $("#addEndDate").val()
     };
-    makeAjaxRequest("POST", "/addBooking", booking);
-    window.location.reload();
+
+    $.ajax({
+            type: "POST",
+            url: "/api/addBooking",
+            data: JSON.stringify(booking),
+            contentType: "application/json; charset=utf-8",
+            success: function(result){
+            $.alert({
+                                 title: "Booking added!",
+                                 content: "",
+                           });
+            }
+        });
+
+
+
+//    makeAjaxRequest("POST", "/addBooking", booking, function(){
+//               $.alert({
+//                     title: "Booking added!",
+//                     content: "",
+//               });
+//    });
+
+
 }
 
 function populateGuestList() {
