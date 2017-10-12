@@ -92,6 +92,8 @@ var i18n = {
             usersAssigned: 'users has been assigned to the task',
             userAssigned: 'user has been assigned to the task',
             userUnassigned: 'has correctly been unassigned',
+            noUser: '<b>Warning : </b>No user has been set',
+            noTask: '<b>Warning : </b>No task has been set',
             taskNotExist: 'is assigned to an inexistent task',
             taskInformationsUpdated: 'The task has been edited',
             userHasNoTask: 'is not assigned to any task',
@@ -277,7 +279,6 @@ var i18n = {
          */
         var generateTaskInTask = function (task) {
             log.log('CALL FUNCTION: generateTaskInTask: task: ' + task.name);
-
             task.users = {};
             if (! settings.users) return generateNotification('danger', settings.i18n.notif.noUser );
             if (!task.color) task.color = (settings.defaultColor ? settings.defaultColor : '#00bdd6');
@@ -1420,7 +1421,7 @@ var i18n = {
          */
         var generateUsersList = function () {
             log.info('CALL FUNCTION: generateUsersList');
-            if (!settings.users || settings.users.length <= 0) return generateNotification('warning', settings.i18n.notif.noUser );
+            if (!settings.users || settings.users.length <= 0) return;
 
             $('.pts-group-content').empty();
             settings.users.forEach(function (user) {
