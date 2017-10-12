@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/sidebar.css">
     <link rel="stylesheet" type="text/css" href="css/demo.css">
+    <link rel="stylesheet" href="/css/jquery-confirm.min.css">
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -119,6 +120,7 @@
                                 <th>Creation date</th>
                                 <th>Available</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody></tbody>
@@ -129,7 +131,68 @@
         </div>
     </div>
 </div>
+
+<!-- Data voor popup invoerveld -->
+<div class="modal fade" id="roomModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Room</h4>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <input type="hidden" id="id">
+                    <div class="form-group row">
+                        <label for="editNameOfRoom" class="col-sm-4 col-form-label">Name:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="editNameOfRoom">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="editTypeOfRoom" class="col-sm-4 col-form-label">Type:</label>
+                        <div class="col-sm-8">
+                            <select type="text" class="form-control" id="editTypeOfRoom">
+                                <option value="0">Luxury</option>
+                                <option value="1">Normal</option>
+                                <option value="2">Budget</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="editSizeOfRoom" class="col-sm-4 col-form-label">Size:</label>
+                        <div class="col-sm-8">
+                            <select type="text" class="form-control" id="editSizeOfRoom">
+                                <option value="0">1</option>
+                                <option value="1">2</option>
+                                <option value="2">3-4</option>
+                                <option value="3">5-6</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="editAvailability" class="col-sm-4 col-form-label">Availability:</label>
+                        <div class="col-sm-8">
+                            <select type="text" class="form-control" id="editAvailability">
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type='button' id='btnAddRoom' class='btn btn-primary'>Add</button>
+                    <button type='button' id='btnUpdateRoom' class='btn btn-primary'>Edit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/js/jquery-confirm.min.js"></script>
 <script src="js/room.js"></script>
 <script src="js/api.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

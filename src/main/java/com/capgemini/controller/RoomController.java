@@ -1,6 +1,7 @@
 package com.capgemini.controller;
 
 import com.capgemini.model.Booking;
+import com.capgemini.model.Guest;
 import com.capgemini.model.Room;
 import com.capgemini.repository.BookingRepository;
 import com.capgemini.repository.RoomRepository;
@@ -39,13 +40,14 @@ public class RoomController {
     }
 
     @RequestMapping("/getRoom")
-    public Room getRoom(@RequestParam(value = "roomNr", required = true) int roomNr) {
-        return roomRepository.findOne(roomNr);
+    public Room getRoom(@RequestParam(value = "id", required = true) int id) {
+        return roomRepository.findOne(id);
     }
 
-    @RequestMapping(value = "/changeRoom", method = RequestMethod.POST)
-    public Room changeRoom(@RequestBody int roomNumber, Room room) {
-        roomRepository.delete(roomNumber);
+    @RequestMapping(value = "/changeRoom", method = RequestMethod.PUT)
+    public Room changeRoom(@RequestBody Room room) {
+        Room existing = roomRepository.findOne(room.getId());
+        room.setCreatedOn(existing.getCreatedOn());
         return roomRepository.save(room);
     }
 
