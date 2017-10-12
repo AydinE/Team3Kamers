@@ -80,7 +80,6 @@ function addGuest() {
                 content: "",
             });
         } else {
-            alert();
             $.alert({
                 title: "Error!",
                 content: "Some of your input is not correct, please verify your input.",
