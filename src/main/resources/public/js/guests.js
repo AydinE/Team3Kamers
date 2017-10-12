@@ -7,7 +7,6 @@ $(document).ready(function () {
         addGuest();
     });
     $('#dataTable tbody').on("click", "#deleteButton", function () {
-        console.log("Clicked");
         var row = table.row($(this).parents("tr"));
         deleteGuest(row);
     });
@@ -16,7 +15,7 @@ $(document).ready(function () {
         selectedRow = row;
         editGuest(row.data()[0]);
     });
-    $("#btnUpdateGuest").click(function() {
+    $("#btnUpdateGuest").click(function () {
         saveChanges();
     });
 });
@@ -106,8 +105,6 @@ function editGuest(id) {
     $("#btnUpdateGuest").show();
 
     $.get({url: "/api/getGuest/?id=" + id, type: "GET"}).done(function (result) {
-        console.log(result);
-        console.log($("#editFirstName"));
         $("#id").val(result.id);
         $("#editFirstName").val(result.firstName);
         $("#editLastName").val(result.lastName);
@@ -136,7 +133,7 @@ function saveChanges() {
         email: $("#editEmail").val()
     };
 
-    makeAjaxRequest("PUT", "/changeGuest", obj, function(data) {
+    makeAjaxRequest("PUT", "/changeGuest", obj, function (data) {
         $("#guestModal").modal("toggle");
         $("#guestModal input").val("");
         selectedRow.data({
@@ -152,7 +149,7 @@ function saveChanges() {
             9: "<a class=\"btn btn-primary\" id=\"editButton\">Edit</a>",
             10: "<a class=\"btn btn-danger\" id=\"deleteButton\">Delete</a>",
         });
-     });
+    });
 }
 
 

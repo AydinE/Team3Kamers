@@ -39,6 +39,17 @@ jQuery.fn.schedulerInit = function(taskies, usies) {
 
         $.fn.pitScheduler.default().viewMode('months');
 
+        $('.pts-header').slice(1).remove();
+
+        //Fill the dashboard with data
+        var endpoint = "/getGuestList";
+            makeGetRequest(endpoint, function (guests) {
+                $('#nr-guests').html(guests.length);
+            });
+
+        $('#nr-bookings').html(taskies.length);
+        $('#nr-rooms').html(usies.length);
+
         //$("#pit-scheduler").pitScheduler.default().viewMode('months');
 
 };
