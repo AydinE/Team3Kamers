@@ -2,10 +2,7 @@ package com.capgemini.utils;
 
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-import com.capgemini.model.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 public class Validators {
 
@@ -42,27 +39,5 @@ public class Validators {
         return countryMatcher.find() && cityMatcher.find();
     }
 }
-
-//   "Guest{" +
-//            "id=" + id +
-//            ", firstName='" + firstName + '\'' +
-//            ", lastName='" + lastName + '\'' +
-//            ", address='" + address + '\'' +
-//            ", postalCode='" + postalCode + '\'' +
-//            ", city='" + city + '\'' +
-//            ", country='" + country + '\'' +
-//            ", phoneNumber='" + phoneNumber + '\'' +
-//            ", email='" + email + '\'' +
-//            '}';
-
-//   return "Booking{" +
-//                    ", bookingNr=" + bookingNr +
-//            ", guest=" + guest +
-//            ", room=" + room +
-//            ", startDate=" + startDate +
-//            ", endDate=" + endDate +
-//            ", checkedIn=" + checkedIn +
-//            '}';
-
 
 

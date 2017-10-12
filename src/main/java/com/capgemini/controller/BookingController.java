@@ -50,7 +50,6 @@ public class BookingController {
         guest = guestRepository.save(guest);
 
         Room room = new Room();
-        room.setNameOfRoom("Room 1");
         room.setAvailability(true);
         room.setSizeOfRoom(RoomSize.FIVE_SIX_PERSONS);
         room.setTypeOfRoom(RoomType.LUXURY);
@@ -59,7 +58,6 @@ public class BookingController {
         room = roomRepository.save(room);
 
         Room room2 = new Room();
-        room2.setNameOfRoom("Room 2");
         room2.setAvailability(false);
         room2.setSizeOfRoom(RoomSize.THREE_FOUR_PERSONS);
         room2.setTypeOfRoom(RoomType.BUDGET);
@@ -73,11 +71,39 @@ public class BookingController {
         booking.setCheckedIn(false);
         booking.setStartDate(LocalDateTime.of(2017, 10, 8, 16, 00));
         booking.setEndDate(LocalDateTime.of(2017, 10, 10, 11, 00));
-        booking.setCheckedIn(true);
 
         bookingRepository.save(booking);
 
         return "Database populated with test data";
+    }
+
+    @GetMapping("/freerooms")
+    public List<Room> getFreeRooms (){
+        Booking booking = new Booking();
+
+        List<Room> freeRoomsList = new ArrayList<>();
+        roomRepository.findAll().forEach(freeRoomsList::add);
+
+        List<Booking> allBookinglist = new ArrayList<>();
+        bookingRepository.findAll().forEach(allBookinglist::add);
+
+        for (Booking registeredBooking : allBookinglist) {
+
+            // Als nieuwe startdatum tussen bestaande booking start en einddatum ligt, gooi kamer uit lijst..
+            if(registeredBooking.getStartDate().isAfter(booking.getStartDate()) && registeredBooking.getStartDate().isBefore(booking.getEndDate()) ){
+
+                freeRoomsList.remove(registeredBooking.getRoom());
+            }
+
+            // Als nieuwe einddatum tussen bestaande booking start en einddatum ligt, gooi kamer uit lijst..
+            if(registeredBooking.getEndDate().isAfter(booking.getStartDate()) && registeredBooking.getEndDate().isBefore(booking.getEndDate()) ){
+
+                freeRoomsList.remove(registeredBooking.getRoom());
+
+            }
+
+        }
+        return freeRoomsList;
     }
 
     @RequestMapping(value = "/addBooking", method = RequestMethod.POST)
@@ -133,4 +159,6 @@ public class BookingController {
         booking.setCheckedIn(false);
         return bookingRepository.save(booking);
     }
+
+
 }
