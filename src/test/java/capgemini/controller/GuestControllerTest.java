@@ -1,7 +1,9 @@
 package capgemini.controller;
 
 import com.capgemini.controller.GuestController;
+import com.capgemini.model.Booking;
 import com.capgemini.model.Guest;
+import com.capgemini.repository.BookingRepository;
 import com.capgemini.repository.GuestRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,16 +29,15 @@ public class GuestControllerTest {
     private GuestRepository guestRepository;
 
     @Mock
+    private BookingRepository bookingRepository;
+
+    @Mock
     private Guest guest;
 
     @InjectMocks
     private GuestController guestController;
 
-    //    @Test
-//    public void testDeleteGuest() {
-//        guestController.removeGuest(1);
-//        verify(guestRepository, times(1)).delete(1);
-//    }
+
     @Test
     public void testGetGuestListEmpty() {
         when(guestRepository.findAll()).thenReturn(new ArrayList<>());
@@ -70,9 +71,15 @@ public class GuestControllerTest {
         verify(guestRepository, times(1)).save(this.guest);
         assertEquals(this.guest, guest);
     }
+    @Test
+        public void testDeleteGuest() {
+        List<Booking> bookings= new ArrayList<>();
+        Booking booking = new Booking();
+        booking.setBookingNr(53);
+        bookings.add(booking);
+        when(bookingRepository.findByGuestId(78)).thenReturn(bookings);
+        guestController.removeGuest(78);
+        verify(bookingRepository, times(1)).delete(53);
+        verify(guestRepository, times(1)).delete(78);
+    }
 }
-
-//    @RequestMapping(method = RequestMethod.GET, value = "/getGuest/")
-//    public Guest getGuest(@RequestParam(value = "id", required = true) int id) {
-//        return guestRepository.findOne(id);
-//    }
