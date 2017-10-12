@@ -32,12 +32,6 @@ public class GuestController {
         return repository.findOne(id);
     }
 
-//    @RequestMapping(value="{id}/", method= RequestMethod.GET)
-//    public Guest get(@PathVariable int id) {
-//        return repository.findOne(id);
-//    }
-
-
 
     @RequestMapping(method = RequestMethod.GET, value = "/getGuestByName")
     public Guest getGuest(@RequestParam(value = "firstName", required = true) String firstName, @RequestParam(value = "lastName", required = true) String lastName) {
