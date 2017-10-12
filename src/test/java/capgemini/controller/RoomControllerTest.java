@@ -49,7 +49,7 @@ public class RoomControllerTest {
     @Test
     public void testFindOne(){
         when(roomRepository.findOne(1)).thenReturn(room);
-        Room result = roomController.getRoom(1);
+        roomController.getRoom(1);
         verify(roomRepository, times(1)).findOne(1);
     }
     @Test
@@ -59,8 +59,9 @@ public class RoomControllerTest {
     }
     @Test
     public void testaddRoom() {
-        Room result = roomController.addRoom(room);
+        roomController.addRoom(room);
         verify(roomRepository, times(1)).save(room);
+
     }
     @Test
     public void testUnblockRoom() {
