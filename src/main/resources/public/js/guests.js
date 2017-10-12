@@ -16,7 +16,7 @@ $(document).ready(function () {
         selectedRow = row;
         editGuest(row.data()[0]);
     });
-    $("#btnUpdateGuest").click(function() {
+    $("#btnUpdateGuest").click(function () {
         saveChanges();
     });
 });
@@ -136,7 +136,7 @@ function saveChanges() {
         email: $("#editEmail").val()
     };
 
-    makeAjaxRequest("PUT", "/changeGuest", obj, function(data) {
+    makeAjaxRequest("PUT", "/changeGuest", obj, function (data) {
         $("#guestModal").modal("toggle");
         $("#guestModal input").val("");
         selectedRow.data({
@@ -152,7 +152,7 @@ function saveChanges() {
             9: "<a class=\"btn btn-primary\" id=\"editButton\">Edit</a>",
             10: "<a class=\"btn btn-danger\" id=\"deleteButton\">Delete</a>",
         });
-     });
+    });
 }
 
 
