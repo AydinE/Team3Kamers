@@ -107,7 +107,7 @@ function saveChanges() {
         nameOfRoom: $("#editNameOfRoom").val(),
         typeOfRoom: $("#editTypeOfRoom").val(),
         sizeOfRoom: $("#editSizeOfRoom").val(),
-        available: $("#editAvailability").val()
+        availability: $("#editAvailability").val()
     };
     makeAjaxRequest("PUT", "/changeRoom", obj, function (data) {
         $("#roomModal").modal("toggle");
