@@ -43,7 +43,9 @@ function initializeTable() {
             searching: false,
             data: tableData,
             aoColumnDefs: [
-                {"bSearchable": false, "bVisible": false, "aTargets": [0]}]
+                {"aTargets": 0, "bSearchable": false, "bVisible": false},
+                {"aTargets": 9, "sorting": false, "orderable": false},
+                {"aTargets": 10, "sorting": false, "orderable": false}]
         });
     });
 }
