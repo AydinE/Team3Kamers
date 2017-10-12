@@ -58,6 +58,18 @@ public class GuestControllerTest {
         guestController.getGuest(1);
         verify(guestRepository, times(1)).findOne(1);
     }
+    @Test
+    public void testaddRoom() {
+        guestController.addGuest(guest);
+        verify(guestRepository, times(1)).save(guest);
+    }
+    @Test
+    public void testChangeRoom() {
+        when(guestRepository.save(guest)).thenReturn(this.guest);
+        Guest guest = guestController.changeGuest(this.guest);
+        verify(guestRepository, times(1)).save(this.guest);
+        assertEquals(this.guest, guest);
+    }
 }
 
 //    @RequestMapping(method = RequestMethod.GET, value = "/getGuest/")
