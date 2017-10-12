@@ -43,9 +43,24 @@ jQuery.fn.schedulerInit = function(taskies, usies) {
 
         //Fill the dashboard with data
         var endpoint = "/getGuestList";
-            makeGetRequest(endpoint, function (guests) {
-                $('#nr-guests').html(guests.length);
-            });
+        makeGetRequest(endpoint, function (guests) {
+            $('#nr-guests').html(guests.length);
+        });
+
+        var url = "/api/getBookingList";
+        $.get(url, function(data) {
+            var checkedIn = 0;
+
+            for (var i = 0; i < data.length; i++) {
+                if(data[i].checkedIn == true){
+                    checkedIn = checkedIn + 1;
+                }
+            }
+
+            $('#nr-checkins').html(checkedIn);
+        });
+
+
 
         $('#nr-bookings').html(taskies.length);
         $('#nr-rooms').html(usies.length);

@@ -10,9 +10,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +49,7 @@ public class GuestControllerTest {
         when(guestRepository.findAll()).thenReturn(guests);
         List<Guest> list = guestController.getGuestList();
         assertEquals(2, list.spliterator().getExactSizeIfKnown());
+        verify(guestRepository, times(1)).findAll();
     }
     @Test
     public void testFindOne() {
@@ -60,12 +58,41 @@ public class GuestControllerTest {
         verify(guestRepository, times(1)).findOne(1);
     }
     @Test
-    public void testaddRoom() {
+    public void testaddGuest() {
+        when(guest.getEmail()).thenReturn("1a@2b.nl");
+        when(guest.getPhoneNumber()).thenReturn("1234567890");
+        when(guest.getFirstName()).thenReturn("chaouki");
+        when(guest.getLastName()).thenReturn("Machinelearning");
+        when(guest.getCountry()).thenReturn("Nederland");
+        when(guest.getCity()).thenReturn("Voldemortdatabase");
+        when(guest.getPostalCode()).thenReturn("2347GO");
+        when(guest.getAddress()).thenReturn("Hyper Engine 6");
         guestController.addGuest(guest);
         verify(guestRepository, times(1)).save(guest);
     }
     @Test
-    public void testChangeRoom() {
+    public void testaddInvalidGuest() {
+        when(guest.getEmail()).thenReturn("1a2b.nl");
+        when(guest.getPhoneNumber()).thenReturn("1234567890");
+        when(guest.getFirstName()).thenReturn("chaouki");
+        when(guest.getLastName()).thenReturn("Machinelearning");
+        when(guest.getCountry()).thenReturn("Nederland");
+        when(guest.getCity()).thenReturn("Voldemortdatabase");
+        when(guest.getPostalCode()).thenReturn("2347GO");
+        when(guest.getAddress()).thenReturn("Hyper Engine 6");
+        guestController.addGuest(guest);
+        verify(guestRepository, times(0)).save(guest);
+    }
+    @Test
+    public void testChangeGuest() {
+        when(guest.getEmail()).thenReturn("1a@2b.nl");
+        when(guest.getPhoneNumber()).thenReturn("1234567890");
+        when(guest.getFirstName()).thenReturn("chaouki");
+        when(guest.getLastName()).thenReturn("Machinelearning");
+        when(guest.getCountry()).thenReturn("Nederland");
+        when(guest.getCity()).thenReturn("Voldemortdatabase");
+        when(guest.getPostalCode()).thenReturn("2347GO");
+        when(guest.getAddress()).thenReturn("Hyper Engine 6");
         when(guestRepository.save(guest)).thenReturn(this.guest);
         Guest guest = guestController.changeGuest(this.guest);
         verify(guestRepository, times(1)).save(this.guest);

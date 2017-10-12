@@ -22,7 +22,7 @@ public class Validators {
         final Pattern pattern = Pattern.compile("([a-zA-Z\\p{L}]){1,50}");
         Matcher fn = pattern.matcher(firstName);
         Matcher ln = pattern.matcher(lastName);
-        return fn.matches() && ln.matches();
+        return fn.find() && ln.find();
     }
 
     public static boolean postalCodeAdressMatcher(String postcode, String adress) {
