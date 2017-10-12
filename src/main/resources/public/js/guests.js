@@ -35,15 +35,17 @@ function initializeTable() {
                 6: data[i].country,
                 7: data[i].phoneNumber,
                 8: data[i].email,
-                9: "<a class=\"btn btn-danger\" id=\"deleteButton\">Delete</a>",
-                10: "<a class=\"btn btn-danger\" id=\"editButton\">Edit</a>"
+                9: "<a class=\"btn btn-primary\" id=\"editButton\">Edit</a>",
+                10: "<a class=\"btn btn-danger\" id=\"deleteButton\">Delete</a>"
             })
         }
         table = $("#dataTable").DataTable({
             searching: false,
             data: tableData,
             aoColumnDefs: [
-                {"bSearchable": false, "bVisible": false, "aTargets": [0]}]
+                {"aTargets": 0, "bSearchable": false, "bVisible": false},
+                {"aTargets": 9, "sorting": false, "orderable": false},
+                {"aTargets": 10, "sorting": false, "orderable": false}]
         });
     });
 }
@@ -72,16 +74,19 @@ function addGuest() {
                 guest.country,
                 guest.phoneNumber,
                 guest.email,
-                "<a class=\"btn btn-danger\" id=\"deleteButton\">Delete</a>",
-                "<a class=\"btn btn-danger\" id=\"editButton\">Edit</a>"
+                "<a class=\"btn btn-primary\" id=\"editButton\">Edit</a>",
+                "<a class=\"btn btn-danger\" id=\"deleteButton\">Delete</a>"
             ]).draw(false);
+            $.alert({
+                title: "Guest added!",
+                content: "",
+            });
         } else {
-            alert("some of your input is not correct, please verify your input");
+            $.alert({
+                title: "Error!",
+                content: "Some of your input is not correct, please verify your input.",
+            });
         }
-    });
-    $.alert({
-        title: 'Added Guest!',
-        content: '',
     });
 }
 
@@ -144,8 +149,8 @@ function saveChanges() {
             6: data.country,
             7: data.phoneNumber,
             8: data.email,
-            9: "<a class=\"btn btn-danger\" id=\"deleteButton\">Delete</a>",
-            10: "<a class=\"btn btn-danger\" id=\"editButton\">Edit</a>"
+            9: "<a class=\"btn btn-primary\" id=\"editButton\">Edit</a>",
+            10: "<a class=\"btn btn-danger\" id=\"deleteButton\">Delete</a>",
         });
      });
 }
