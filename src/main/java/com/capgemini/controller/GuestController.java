@@ -37,18 +37,6 @@ public class GuestController {
         return guestRepository.findOne(id);
     }
 
-//    @RequestMapping(value="{id}/", method= RequestMethod.GET)
-//    public Guest get(@PathVariable int id) {
-//        return guestRepository.findOne(id);
-//    }
-
-
-
-    @RequestMapping(method = RequestMethod.GET, value = "/getGuestByName")
-    public Guest getGuest(@RequestParam(value = "firstName", required = true) String firstName, @RequestParam(value = "lastName", required = true) String lastName) {
-        return guestRepository.findOneByFirstNameAndLastName(firstName, lastName);
-    }
-
     @RequestMapping(method = RequestMethod.POST, value = "/addGuest")
     public Guest addGuest(@RequestBody Guest guest) {
         if (Validators.emailMatcher(guest.getEmail()) &&

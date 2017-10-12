@@ -15,6 +15,8 @@
     <link rel="stylesheet" type="text/css" href="css/navbar-style.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="css/sb-admin-2.css">
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
 
@@ -101,7 +103,98 @@
                 <div class="row content">
                     <div class="main-container container-fluid row">
                         <div class="demo-container">
-                            <h1 class="text-center">Bookings</h1><br>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <i class="fa fa-book fa-5x"></i>
+                                                </div>
+                                                <div class="col-xs-9 text-right">
+                                                    <div id="nr-bookings" class="huge">0</div>
+                                                    <div>Bookings!</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--<a href="#">-->
+                                            <!--<div class="panel-footer">-->
+                                                <!--<span class="pull-left">View Details</span>-->
+                                                <!--<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>-->
+                                                <!--<div class="clearfix"></div>-->
+                                            <!--</div>-->
+                                        <!--</a>-->
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <!--<i class="glyphicons glyphicons-group"></i>-->
+                                                    <span class="fa fa-users fa-5x"></span>
+                                                    <!--<span class="halflings halflings-group"></span>-->
+                                                </div>
+                                                <div class="col-xs-9 text-right">
+                                                    <div id="nr-guests" class="huge">0</div>
+                                                    <div>Guests!</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--<a href="#">-->
+                                            <!--<div class="panel-footer">-->
+                                                <!--<span class="pull-left">View Details</span>-->
+                                                <!--<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>-->
+                                                <!--<div class="clearfix"></div>-->
+                                            <!--</div>-->
+                                        <!--</a>-->
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <i class="fa fa-bed fa-5x"></i>
+                                                </div>
+                                                <div class="col-xs-9 text-right">
+                                                    <div id="nr-rooms" class="huge">0</div>
+                                                    <div>Rooms!</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--<a href="#">-->
+                                            <!--<div class="panel-footer">-->
+                                                <!--<span class="pull-left">View Details</span>-->
+                                                <!--<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>-->
+                                                <!--<div class="clearfix"></div>-->
+                                            <!--</div>-->
+                                        <!--</a>-->
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="panel panel-green">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <i class="fa fa-check-square-o fa-5x"></i>
+                                                </div>
+                                                <div class="col-xs-9 text-right">
+                                                    <div id="nr-checkins" class="huge">0</div>
+                                                    <div>Checked in!</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--<a href="#">-->
+                                            <!--<div class="panel-footer">-->
+                                                <!--<span class="pull-left">View Details</span>-->
+                                                <!--<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>-->
+                                                <!--<div class="clearfix"></div>-->
+                                            <!--</div>-->
+                                        <!--</a>-->
+                                    </div>
+                                </div>
+                            </div>
 
                             <div id="pit-scheduler"></div>
                         </div>
