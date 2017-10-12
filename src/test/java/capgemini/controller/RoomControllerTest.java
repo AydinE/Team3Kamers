@@ -30,7 +30,7 @@ public class RoomControllerTest {
 
     @Test
     public void testFindAllEmpty(){
-        when(roomRepository.findAll()).thenReturn(new ArrayList<Room>());
+        when(roomRepository.findAll()).thenReturn(new ArrayList<>());
         Iterable<Room> result = roomController.getAllRooms();
         assertEquals(0, result.spliterator().getExactSizeIfKnown());
 
@@ -98,10 +98,3 @@ public class RoomControllerTest {
         assertEquals(this.room, room);
     }
 }
-
-
-
-//    @RequestMapping(value = "/changeRoom", method = RequestMethod.POST)
-//    public Room changeRoom(@RequestBody int roomNumber, Room room) {
-//        roomRepository.delete(roomNumber);
-//        return roomRepository.save(room);
