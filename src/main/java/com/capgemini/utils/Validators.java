@@ -19,10 +19,10 @@ public class Validators {
     }
 
     public static boolean nameMatcher(String firstName, String lastName) {//Names validator
-        final Pattern pattern = Pattern.compile("([aA-zZ.]){1,50}", Pattern.CASE_INSENSITIVE);
-        Matcher ln = pattern.matcher(lastName);
+        final Pattern pattern = Pattern.compile("([a-zA-Z\\p{L}]){1,50}");
         Matcher fn = pattern.matcher(firstName);
-        return ln.find() && fn.find();
+        Matcher ln = pattern.matcher(lastName);
+        return fn.matches() && ln.matches();
     }
 
     public static boolean postalCodeAdressMatcher(String postcode, String adress) {
