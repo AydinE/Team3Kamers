@@ -78,12 +78,12 @@ function addGuest() {
             ]).draw(false);
             $.alert({
                 title: "Guest added!",
-                content: "",
+                content: ""
             });
         } else {
             $.alert({
                 title: "Error!",
-                content: "Some of your input is not correct, please verify your input.",
+                content: "Some of your input is not correct, please verify your input."
             });
         }
     });
@@ -91,8 +91,7 @@ function addGuest() {
 
 function deleteGuest(row) {
     var name = row.data()[1] + " " + row.data()[2];
-    var r = confirm("Are you sure you want to delete guest: '" + name + "'?");
-    if (r == true) {
+    if (confirm("Are you sure you want to delete guest: '" + name + "'?")) {
         $.ajax({url: "/api/removeGuest/" + row.data()[0], type: "DELETE"}).done(function () {
             row.remove().draw();
         })
@@ -147,7 +146,7 @@ function saveChanges() {
             7: data.phoneNumber,
             8: data.email,
             9: "<a class=\"btn btn-primary\" id=\"editButton\">Edit</a>",
-            10: "<a class=\"btn btn-danger\" id=\"deleteButton\">Delete</a>",
+            10: "<a class=\"btn btn-danger\" id=\"deleteButton\">Delete</a>"
         });
     });
 }

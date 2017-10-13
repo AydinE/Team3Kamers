@@ -66,20 +66,19 @@ function addRoom() {
             ]).draw(false);
             $.alert({
                 title: "Room added!",
-                content: "",
+                content: ""
             });
         } else {
             $.alert({
                 title: "Error!",
-                content: "Some of your input is not correct, please verify your input.",
+                content: "Some of your input is not correct, please verify your input."
             });
         }
     });
 }
 
 function deleteRoom(row) {
-    var r = confirm("Are you sure you want to delete room '" + row.data()[1] + "' ?");
-    if (r == true) {
+    if (confirm("Are you sure you want to delete room '" + row.data()[1] + "' ?")) {
         $.ajax({url: "/api/deleteRoom/" + row.data()[0], type: "DELETE"}).done(function () {
             row.remove().draw();
         })
@@ -99,8 +98,6 @@ function editRoom(id) {
     })
 }
 
-
-// de EDIT knop hier werkend krijgen, zie vorige apps
 function saveChanges() {
     var obj = {
         id: $("#id").val(),
@@ -120,7 +117,7 @@ function saveChanges() {
             4: parseDate(data.createdOn),
             5: getAvailable(data.available),
             6: "<a class=\"btn btn-primary\" id=\"editButton\">Edit</a>",
-            7: "<a class=\"btn btn-danger\" id=\"deleteButton\">Delete</a>",
+            7: "<a class=\"btn btn-danger\" id=\"deleteButton\">Delete</a>"
         });
     });
 }
