@@ -1,18 +1,5 @@
 package com.capgemini.model;
 
-// SQL create table
-//CREATE TABLE guest (
-//    id int NOT NULL AUTO_INCREMENT,
-//    firstName varchar(25),
-//    lastName varchar(25),
-//    address varchar(50),
-//    postalCode varchar(10),
-//    city varchar(25),
-//    country varchar(25),
-//    phoneNumber varchar(15),
-//    email varchar(30)
-//);
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
