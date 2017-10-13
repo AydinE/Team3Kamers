@@ -1,7 +1,9 @@
 exclude:
-- /src/main/resources/public/js/bootstrap-datetimepicker.js
-- /src/main/resources/public/js/bootstrap.js
-- /src/main/resources/public/js/pitscheduler.js
+- /src/main/resources/public/css/*
+- /src/main/resources/public/images/*
+- /src/main/resources/public/js/*
+- /src/main/resources/public/fonts/*
+- /src/main/resources/public/js/log4j2.xml
 component_depth: 1
 languages:
 - java
