@@ -30,12 +30,6 @@ public class BookingControllerTest {
     private BookingRepository bookingRepository;
 
     @Mock
-    private GuestRepository guestRepository;
-
-    @Mock
-    private RoomRepository roomRepository;
-
-    @Mock
     private Booking booking;
 
     @Mock

@@ -21,8 +21,7 @@ public class GuestController {
     @Autowired
     private BookingRepository bookingRepository;
 
-    public GuestController() { //voor het heen en weer sturen van info met de database, moet de constructor leeg zin.
-
+    public GuestController() {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getGuestList")
