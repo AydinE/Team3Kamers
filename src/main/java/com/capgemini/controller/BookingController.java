@@ -3,12 +3,9 @@ package com.capgemini.controller;
 import com.capgemini.model.Booking;
 import com.capgemini.model.Guest;
 import com.capgemini.model.Room;
-import com.capgemini.model.enums.RoomSize;
-import com.capgemini.model.enums.RoomType;
 import com.capgemini.repository.BookingRepository;
 import com.capgemini.repository.GuestRepository;
 import com.capgemini.repository.RoomRepository;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,41 +26,8 @@ public class BookingController {
     @Autowired
     RoomRepository roomRepository;
 
-    private ArrayList<Booking> bookingList = new ArrayList<>();
-
     public BookingController() {
-
     }
-
-
-//    @GetMapping("/freerooms")
-//    public List<Room> getFreeRooms (){
-//        Booking booking = new Booking();
-//
-//        List<Room> freeRoomsList = new ArrayList<>();
-//        roomRepository.findAll().forEach(freeRoomsList::add);
-//
-//        List<Booking> allBookinglist = new ArrayList<>();
-//        bookingRepository.findAll().forEach(allBookinglist::add);
-//
-//        for (Booking registeredBooking : allBookinglist) {
-//
-//            // Als nieuwe startdatum tussen bestaande booking start en einddatum ligt, gooi kamer uit lijst..
-//            if(registeredBooking.getStartDate().isAfter(booking.getStartDate()) && registeredBooking.getStartDate().isBefore(booking.getEndDate()) ){
-//
-//                freeRoomsList.remove(registeredBooking.getRoom());
-//            }
-//
-//            // Als nieuwe einddatum tussen bestaande booking start en einddatum ligt, gooi kamer uit lijst..
-//            if(registeredBooking.getEndDate().isAfter(booking.getStartDate()) && registeredBooking.getEndDate().isBefore(booking.getEndDate()) ){
-//
-//                freeRoomsList.remove(registeredBooking.getRoom());
-//
-//            }
-//
-//        }
-//        return freeRoomsList;
-//    }
 
     @RequestMapping(value = "/addBooking", method = RequestMethod.POST)
     public Booking addBooking(@RequestBody Booking booking) {
@@ -106,13 +70,4 @@ public class BookingController {
         booking.setCheckedIn(true);
         return bookingRepository.save(booking);
     }
-
-//    @RequestMapping(value = "/guestCheckOut", method = RequestMethod.POST)
-//    public Booking checkOut(@RequestBody Booking bookingId) {
-//        Booking booking = bookingRepository.findOne(bookingId.getBookingNr());
-//        booking.setCheckedIn(false);
-//        return bookingRepository.save(booking);
-//    }
-
-
 }

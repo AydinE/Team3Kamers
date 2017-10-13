@@ -1,7 +1,6 @@
 package com.capgemini.controller;
 
 import com.capgemini.model.Booking;
-import com.capgemini.model.Guest;
 import com.capgemini.model.Room;
 import com.capgemini.repository.BookingRepository;
 import com.capgemini.repository.RoomRepository;

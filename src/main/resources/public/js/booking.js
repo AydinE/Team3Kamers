@@ -27,22 +27,13 @@ function createBooking() {
             contentType: "application/json; charset=utf-8",
             success: function(result){
             $.alert({
-                                 title: "Booking added!",
-                                 content: "",
-                           });
+                 title: "Booking added!",
+                 content: "",
+           });
+
+                window.location.reload();
             }
         });
-
-
-
-//    makeAjaxRequest("POST", "/addBooking", booking, function(){
-//               $.alert({
-//                     title: "Booking added!",
-//                     content: "",
-//               });
-//    });
-
-
 }
 
 function populateGuestList() {

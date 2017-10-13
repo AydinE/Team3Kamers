@@ -1,14 +1,7 @@
 jQuery.fn.schedulerInit = function(taskies, usies) {
 
-        //var MyFunctionResult = $().GetTasks();
-        //console.log("scheudlerinit called");
-//        console.log(taskies);
-//        console.log(usies);
-
         var tasken = taskies;
         var usen = usies;
-
-        //console.log(MyFunctionResult);
 
         var pitObj = {
             locale: 'en',
@@ -60,12 +53,8 @@ jQuery.fn.schedulerInit = function(taskies, usies) {
             $('#nr-checkins').html(checkedIn);
         });
 
-
-
         $('#nr-bookings').html(taskies.length);
         $('#nr-rooms').html(usies.length);
-
-        //$("#pit-scheduler").pitScheduler.default().viewMode('months');
 
 };
 

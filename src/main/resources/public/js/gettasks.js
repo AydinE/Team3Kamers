@@ -13,27 +13,15 @@ function deleteBooking(bookingNumber) {
 
     var url = "/api/getBooking?bookingNr=" + bookingNumber ;
     $.get(url, function(data) {
-
-        //console.log("Return data from get: ");
-        //console.log(data);
-        //return data;
         $.ajax({
             url: "/api/deleteBooking",
             type: "POST",
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             success: function(result) {
-                //console.log(result);
-                // Switch the views real quick to refresh the page sneaky beaky like :)
-                //$.fn.pitScheduler.default().viewMode(null);
-                //$.fn.pitScheduler.default().viewMode('months');
-                //window.location.reload();
                 $( "#pit-scheduler" ).empty();
                 callInit();
             },
-            error: function(err) {
-                //console.log(err);
-            }
         });
 
     });
@@ -55,9 +43,6 @@ function checkInBooking(bookingNumber) {
             $( "#pit-scheduler" ).empty();
             callInit();
         },
-        error: function(err) {
-            //console.log(err);
-        }
     });
 
 
@@ -78,9 +63,6 @@ function checkOutBooking(bookingNumber) {
             $( "#pit-scheduler" ).empty();
             callInit();
         },
-        error: function(err) {
-            //console.log(err);
-        }
     });
 
 
@@ -93,27 +75,18 @@ Number.prototype.pad = function(size) {
     return s;
 }
 
-
-// Tasks - >      Bookings (Name)
-// Users - >      Rooms
-// User tasks - > Booking (dates)
 function callInit() {
 
     var tasks = [];
     var users = [];
-    //var userTasks = [];
 
     // Get Tasks
     var url = "/api/getBookingList";
     $.get(url, function(data) {
 
-//        console.log("Bookinglist");
-//        console.log(data);
-
         for (i = 0; i < data.length; i++) {
 
             var taskObj = {
-                //id: "room" + data[i].bookingNr,
                 id: data[i].bookingNr.toString(),
                 name: data[i].guest.firstName + " " + data[i].guest.lastName,
                 description: data[i].startDate + " - " + data[i].endDate,
@@ -132,12 +105,9 @@ function callInit() {
     });
 
     function getUsers() {
-      // Get Users
+        // Get Users
         var url = "/api/getRoomList";
         $.get(url, function(data) {
-
-//            console.log("RoomList");
-//            console.log(data);
 
             for (i = 0; i < data.length; i++) {
 
@@ -155,12 +125,9 @@ function callInit() {
     }
 
     function getUserTasks() {
-          // Get UserTasks
+            // Get UserTasks
             var url = "/api/getBookingList";
             $.get(url, function(data) {
-
-//                console.log("BookingList");
-//                console.log(data);
 
                 for (i = 0; i < data.length; i++) {
 
@@ -181,12 +148,11 @@ function callInit() {
                     }
 
                     var taskObj = {
-                        // was room.roomnr
                         id: data[i].bookingNr.toString(),
                         start_date: data[i].startDate[0] + "-" + data[i].startDate[1] + "-" + data[i].startDate[2] + " " + "17:00",
                         end_date: data[i].endDate[0] + "-" + data[i].endDate[1] + "-" + data[i].endDate[2] + " " + "11:00"
                     }
-                    //tasks.push(taskObj);
+
                     for (j = 0; j < users.length; j++) {
                         console.log("id en id: " + users[j].name + " " + taskObj.id);
                         if (users[j].name == data[i].room.id) {

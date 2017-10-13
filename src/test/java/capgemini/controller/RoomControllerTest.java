@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.doNothing;
@@ -81,14 +80,9 @@ public class RoomControllerTest {
     }
     @Test
     public void testUnblockRoom() {
-        // Given - precondities
         when(roomRepository.findOne(23456)).thenReturn(room);
         when(roomRepository.save(room)).thenReturn(this.room);
-
-        // Test actie
         Room room = roomController.unblockRoom(23456);
-
-        // Expectations
         verify(roomRepository, times(1)).findOne(23456);
         verify(this.room, times(1)).setAvailability(true);
         verify(roomRepository, times(1)).save(this.room);
