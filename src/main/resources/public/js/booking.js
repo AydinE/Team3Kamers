@@ -34,17 +34,6 @@ function createBooking() {
                 window.location.reload();
             }
         });
-
-
-
-//    makeAjaxRequest("POST", "/addBooking", booking, function(){
-//               $.alert({
-//                     title: "Booking added!",
-//                     content: "",
-//               });
-//    });
-
-
 }
 
 function populateGuestList() {
